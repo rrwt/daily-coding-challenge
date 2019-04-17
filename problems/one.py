@@ -27,6 +27,17 @@ def verify_sum_2(ar, value):
     return False
 
 
+# Using sets. most efficient O(n)
+def verify_sum_3(ar, value):
+    ar = set(ar)
+
+    for _ in ar:
+        if value - _ in ar:
+            return True
+
+    return False
+
+
 if __name__ == "__main__":
     import random
 

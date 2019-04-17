@@ -10,14 +10,13 @@ from .one import verify_sum, verify_sum_2
 
 class TestSum:
     def test_only_two_numbers(self):
-        assert verify_sum([1, 2], 3) == True
-        assert verify_sum([3, 4], 5) == False
+        assert verify_sum([1, 2], 3) is True
+        assert verify_sum([3, 4], 5) is False
     
-    @pytest.mark.parametrize("arr,k,expected",
-        [([1, 1, 1],2,True),
-         ([2, 3, 4], 6, True),
-         ([2, 3, 4], 8, False)
-        ],
+    @pytest.mark.parametrize("arr,k,expected", [
+        ([1, 1, 1], 2, True),
+        ([2, 3, 4], 6, True),
+        ([2, 3, 4], 8, False)]
     )
     def test_three_numbers(self, arr, k, expected):
         assert verify_sum(arr, k) == expected
@@ -25,14 +24,13 @@ class TestSum:
 
 class TestSum2:
     def test_only_two_numbers(self):
-        assert verify_sum_2([1, 2], 3) == True
-        assert verify_sum_2([3, 4], 5) == False
+        assert verify_sum_2([1, 2], 3) is True
+        assert verify_sum_2([3, 4], 5) is False
     
-    @pytest.mark.parametrize("arr,k,expected",
-        [([1, 1, 1],2,True),
-         ([2, 3, 4], 6, True),
-         ([2, 3, 4], 8, False)
-        ],
+    @pytest.mark.parametrize("arr,k,expected", [
+        ([1, 1, 1], 2, True),
+        ([2, 3, 4], 6, True),
+        ([2, 3, 4], 8, False)]
     )
     def test_three_numbers(self, arr, k, expected):
         assert verify_sum_2(arr, k) == expected
