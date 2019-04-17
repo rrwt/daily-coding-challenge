@@ -10,5 +10,5 @@ installation: pip install -r requirement.txt
 # execute
 ```
 tests: pytest .
-code: python <filename>
+code: python problems/<filename>
 ```
