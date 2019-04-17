@@ -1,5 +1,5 @@
 
-
+# naive solution O(n*n)
 def verify_sum(arr, k):
     for i in range(len(arr)):
         for j in range(i+1, len(arr)):
