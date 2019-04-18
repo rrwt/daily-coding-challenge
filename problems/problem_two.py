@@ -10,4 +10,7 @@ Follow-up: what if you can't use division?
 
 
 def get_product_array(arr):
-    return []
+    if len(arr) < 2:
+        return []
+
+    return list(reversed(arr))

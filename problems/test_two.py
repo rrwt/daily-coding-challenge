@@ -20,3 +20,11 @@ class TestProduct:
     ])
     def test_one_element_should_return_null_array(self, input_arr, expected_output):
         assert get_product_array(input_arr) == expected_output
+
+    @pytest.mark.parametrize("input_arr,expected_output", [
+        ([1, 2], [2, 1]),
+        ([5, 10], [10, 5])
+    ])
+    def test_two_elements_should_return_array_elements_with_positions_exchanged(
+            self, input_arr, expected_output):
+        assert get_product_array(input_arr) == expected_output
