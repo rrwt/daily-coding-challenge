@@ -11,6 +11,7 @@ import operator
 import functools
 
 
+# naive solution with / operation: O(n)
 def get_product_array(arr):
     if len(arr) < 2:
         return []
