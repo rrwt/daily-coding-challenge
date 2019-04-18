@@ -9,7 +9,7 @@ Follow-up: what if you can't use division?
 """
 import pytest
 
-from .problem_two import get_product_array_without_division
+from .problem_two import get_product_array_without_div_and_constant_extra_space
 
 
 class TestProduct:
@@ -19,7 +19,7 @@ class TestProduct:
         ([5], [])
     ])
     def test_one_element_should_return_null_array(self, input_arr, expected_output):
-        assert get_product_array_without_division(input_arr) == expected_output
+        assert get_product_array_without_div_and_constant_extra_space(input_arr) == expected_output
 
     @pytest.mark.parametrize("input_arr,expected_output", [
         ([1, 2], [2, 1]),
@@ -27,7 +27,7 @@ class TestProduct:
     ])
     def test_two_elements_should_return_array_elements_with_positions_exchanged(
             self, input_arr, expected_output):
-        assert get_product_array_without_division(input_arr) == expected_output
+        assert get_product_array_without_div_and_constant_extra_space(input_arr) == expected_output
 
     @pytest.mark.parametrize("input_arr,expected_output", [
         ([1, 5, 2], [10, 2, 5]),
@@ -35,4 +35,4 @@ class TestProduct:
         ([10, 12, 25], [300, 250, 120])
     ])
     def test_three_element_arrays(self, input_arr, expected_output):
-        assert get_product_array_without_division(input_arr) == expected_output
+        assert get_product_array_without_div_and_constant_extra_space(input_arr) == expected_output

@@ -26,14 +26,36 @@ def get_product_array_without_division(arr):
     if len(arr) < 2:
         return []
 
-    l = len(arr)
-    left_product = [1] * l
-    right_product = [1] * l
+    arr_len = len(arr)
+    left_product = [1] * arr_len
+    right_product = [1] * arr_len
 
     for i in range(1, l):
         left_product[i] = left_product[i-1] * arr[i-1]
 
-    for i in range(l-2, -1, -1):
+    for i in range(arr_len-2, -1, -1):
         right_product[i] = right_product[i+1] * arr[i+1]
 
-    return [left_product[i]*right_product[i] for i in range(l)]
+    return [left_product[i]*right_product[i] for i in range(arr_len)]
+
+
+# even more restrictive: without / and O(1) extra space
+def get_product_array_without_div_and_constant_extra_space(arr):
+    if len(arr) < 2:
+        return []
+
+    arr_len = len(arr)
+    res = [1]*arr_len
+    temp = 1
+
+    for i in range(arr_len):
+        res[i] *= temp
+        temp *= arr[i]
+
+    temp = 1
+
+    for i in range(arr_len-1, -1, -1):
+        res[i] *= temp
+        temp *= arr[i]
+
+    return res
