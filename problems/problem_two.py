@@ -19,3 +19,21 @@ def get_product_array(arr):
     prod = functools.reduce(operator.mul, arr)
 
     return [prod / n for n in arr]
+
+
+# more restrictive solution: without / operation: O(n)
+def get_product_array_without_division(arr):
+    if len(arr) < 2:
+        return []
+
+    l = len(arr)
+    left_product = [1] * l
+    right_product = [1] * l
+
+    for i in range(1, l):
+        left_product[i] = left_product[i-1] * arr[i-1]
+
+    for i in range(l-2, -1, -1):
+        right_product[i] = right_product[i+1] * arr[i+1]
+
+    return [left_product[i]*right_product[i] for i in range(l)]
