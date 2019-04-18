@@ -28,3 +28,11 @@ class TestProduct:
     def test_two_elements_should_return_array_elements_with_positions_exchanged(
             self, input_arr, expected_output):
         assert get_product_array(input_arr) == expected_output
+
+    @pytest.mark.parametrize("input_arr,expected_output", [
+        ([1, 5, 2], [10, 2, 5]),
+        ([50, 10, 1], [10, 50, 500]),
+        ([10, 12, 25], [300, 250, 120])
+    ])
+    def test_three_element_arrays(self, input_arr, expected_output):
+        assert get_product_array(input_arr) == expected_output

@@ -7,10 +7,14 @@ would be [2, 3, 6].
 
 Follow-up: what if you can't use division?
 """
+import operator
+import functools
 
 
 def get_product_array(arr):
     if len(arr) < 2:
         return []
 
-    return list(reversed(arr))
+    prod = functools.reduce(operator.mul, arr)
+
+    return [prod / n for n in arr]
