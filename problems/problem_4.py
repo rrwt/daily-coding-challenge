@@ -12,3 +12,18 @@ def first_missing_positive_integer(arr):
     for i in range(1, len(arr)+2):
         if i not in arr:
             return i
+
+
+def first_missing_positive_integer_using_on_extra_space(arr):
+    arr_2 = [-1] * (len(arr)+2)  # in case there is no missing element, return n+1
+
+    for key, val in enumerate(arr):
+        # taking advantage of the fact that any value cannot be greater than len(arr)
+        if val >= 0:
+            arr_2[val] = 1
+
+    for i in range(1, len(arr_2)):
+        if arr_2[i] < 0:
+            return i
+
+    return None
