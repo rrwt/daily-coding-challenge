@@ -27,8 +27,26 @@ class Node:
 
 
 # serialize using in-order traversal
-def serialize(root):
+def serialize(root: Node) -> str:
     if not root:
         return "None"
 
     return f"{str(root.val)} {serialize(root.left)} {serialize(root.right)}"
+
+
+def deserialize(string: str) -> Node:
+    ptr = 0
+
+    def deserializer(str_arr: list):
+        nonlocal ptr
+        root = Node(str_arr[ptr]) if str_arr[ptr] != "None" else None
+
+        if root:
+            ptr += 1
+            root.left = deserializer(str_arr)
+            ptr += 1
+            root.right = deserializer(str_arr)
+
+        return root
+
+    return deserializer(string.split(" "))

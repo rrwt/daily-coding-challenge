@@ -17,7 +17,7 @@ assert deserialize(serialize(node)).left.left.val == 'left.left'
 
 """
 
-from .problem_three import Node, serialize
+from .problem_three import Node, serialize, deserialize
 
 
 class TestSerializeDeserializeTree:
@@ -46,3 +46,18 @@ class TestSerializeDeserializeTree:
 
         root = Node('root', Node('left', Node('left.left')), Node('right'))
         assert serialize(root) == "root left left.left None None None right None None"
+
+    def test_can_deserialize_a_serialized_node(self):
+        root = Node('root')
+
+        serialized_str = serialize(root)
+        deserialized_tree = deserialize(serialized_str)
+
+        assert serialized_str == "root None None"
+        assert deserialized_tree.val == root.val
+        assert deserialized_tree.left == root.left
+        assert deserialized_tree.right == root.right
+
+    def test_can_deserialize_a_serialized_binary_tree(self):
+        node = Node("root", Node("left", Node("left.left")), Node("right"))
+        assert deserialize(serialize(node)).left.left.val == "left.left"
