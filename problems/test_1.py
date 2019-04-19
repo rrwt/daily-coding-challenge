@@ -5,7 +5,7 @@ Bonus: Can you do this in one pass?
 """
 import pytest
 
-from .problem_one import verify_sum, verify_sum_2
+from .problem_1 import verify_sum, verify_sum_2
 
 
 class TestSum:

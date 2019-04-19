@@ -9,7 +9,7 @@ Follow-up: what if you can't use division?
 """
 import pytest
 
-from .problem_two import get_product_array_without_div_and_constant_extra_space
+from .problem_2 import get_product_array_without_div_and_constant_extra_space
 
 
 class TestProduct:

@@ -17,7 +17,7 @@ assert deserialize(serialize(node)).left.left.val == 'left.left'
 
 """
 
-from .problem_three import Node, serialize, deserialize
+from .problem_3 import Node, serialize, deserialize
 
 
 class TestSerializeDeserializeTree:
