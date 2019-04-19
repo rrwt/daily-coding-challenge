@@ -17,7 +17,7 @@ assert deserialize(serialize(node)).left.left.val == 'left.left'
 
 """
 
-from .problem_three import Node
+from .problem_three import Node, serialize
 
 
 class TestSerializeDeserializeTree:
@@ -35,3 +35,14 @@ class TestSerializeDeserializeTree:
         assert root.val == 'root'
         assert root.left.val == 'left'
         assert root.right.val == 'right'
+
+    def test_can_serialize_tree_with_only_root_element(self):
+        root = Node('root')
+        assert serialize(root) == "root None None"
+
+    def test_can_serialize_tree_with_children(self):
+        root = Node('root', Node('left'), Node('right'))
+        assert serialize(root) == "root left None None right None None"
+
+        root = Node('root', Node('left', Node('left.left')), Node('right'))
+        assert serialize(root) == "root left left.left None None None right None None"

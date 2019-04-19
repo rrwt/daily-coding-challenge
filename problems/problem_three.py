@@ -20,6 +20,15 @@ assert deserialize(serialize(node)).left.left.val == 'left.left'
 
 class Node:
     def __init__(self, val: str, left=None, right=None):
+        # space characters are not allowed as value
         self.val = val
         self.left = left
         self.right = right
+
+
+# serialize using in-order traversal
+def serialize(root):
+    if not root:
+        return "None"
+
+    return f"{str(root.val)} {serialize(root.left)} {serialize(root.right)}"
