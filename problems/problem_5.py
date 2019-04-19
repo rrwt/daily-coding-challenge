@@ -18,3 +18,11 @@ def car(func):
 
 def cdr(func):
     return func.__closure__[1].cell_contents
+
+
+def car2(func):
+    return func(lambda a, b: a)
+
+
+def cdr2(func):
+    return func(lambda a, b: b)
