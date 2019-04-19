@@ -26,3 +26,12 @@ class TestSerializeDeserializeTree:
         assert node.val == 'root'
         assert node.left is None
         assert node.right is None
+
+    def test_can_attach_right_and_left_children_to_tree(self):
+        left = Node('left')
+        right = Node('right')
+        root = Node('root', left, right)
+
+        assert root.val == 'root'
+        assert root.left.val == 'left'
+        assert root.right.val == 'right'

@@ -19,7 +19,7 @@ assert deserialize(serialize(node)).left.left.val == 'left.left'
 
 
 class Node:
-    def __init__(self, val):
+    def __init__(self, val: str, left=None, right=None):
         self.val = val
-        self.left = None
-        self.right = None
+        self.left = left
+        self.right = right
