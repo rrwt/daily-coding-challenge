@@ -41,6 +41,7 @@ def merge_sorted_lists_min_heap(arrays):
     Returns:
         list: flattened and sorted list
     """
+    # TODO: Resolve without using built in heap
     return list(heapq.merge(*arrays))
 
 
