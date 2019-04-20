@@ -30,7 +30,7 @@ def merge_sorted_lists_min_heap(arrays):
     This approach takes advantage of the fact that all the arrays
     are sorted.
 
-    Time complexity: Kn
+    Time complexity: O(Kn)
     Time taken to create and merge a min heap is proportional to number of elements
 
     Args:
