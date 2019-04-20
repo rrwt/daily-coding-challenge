@@ -15,7 +15,6 @@ class TestCountMapping:
 
     @pytest.mark.parametrize("input_str", ['1', '2', '3', '4', '5', '6', '7', '8', '9'])
     def test_single_digit_returns_one(self, input_str):
-        print(input_str)
         assert count_mapping(input_str) == 1
 
     def test_given_ten_twenty_returns_one(self):
@@ -44,3 +43,9 @@ class TestCountMapping:
 
     def test_given_101_should_return_1(self):
         assert count_mapping("101") == 1
+
+    def test_111_should_return_3(self):
+        assert count_mapping("111") == 3
+
+    def test_1111_should_return_5(self):
+        assert count_mapping("1111") == 5
