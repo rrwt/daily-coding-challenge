@@ -22,9 +22,8 @@ class TestCountMapping:
         assert count_mapping('10') == 1
         assert count_mapping('20') == 1
 
-    @pytest.mark.parametrize("input_str", ["11", "12", "13", "14", "15", "16", "17",
-                                           "18", "19", "21", "22", "23", "24", "25", "26"])
+    @pytest.mark.parametrize("input_str", ["11", "12", "13", "14", "15", "16", "17", "18",
+                                           "19", "21", "22", "23", "24", "25", "26"])
     def test_given_valid_two_digit_between_11_and_26_should_return_two(self, input_str):
-        """All but 10 & 20
-        """
+        """All but 10 & 20"""
         assert count_mapping(input_str) == 2
