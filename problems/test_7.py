@@ -28,8 +28,19 @@ class TestCountMapping:
         """All but 10 & 20"""
         assert count_mapping(input_str) == 2
 
-    def test_given_valid_two_digit_greater_than_26_should_return_one(self):
+    def test_given_valid_two_digit_greater_than_26(self):
         import random
 
         for _ in range(10):
-            assert count_mapping(str(random.randint(27, 99))) == 1
+            num = random.randint(27, 99)
+
+            if num % 10 == 0:
+                assert count_mapping(str(num)) == 0
+            else:
+                assert count_mapping(str(num)) == 1
+
+    def test_given_100_should_return_0(self):
+        assert count_mapping("100") == 0
+
+    def test_given_101_should_return_1(self):
+        assert count_mapping("101") == 1

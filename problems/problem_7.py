@@ -18,4 +18,8 @@ def count_mapping(str_arr: str):
         return 0
 
     count = 1 if int(str_arr) in code else 0
-    return count + count_mapping(str_arr[1:])
+
+    for i in range(1, len(str_arr)):
+        count += count_mapping(str_arr[0:i]) * count_mapping(str_arr[i:])
+
+    return count
