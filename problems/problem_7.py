@@ -8,6 +8,8 @@ You can assume that the messages are decodable. For example, '001' is not allowe
 
 def count_mapping(str_arr: str):
     if str_arr == '0':
-        return None
+        return 0
+    elif len(str_arr) == 1 or str_arr in ("10", "20"):
+        return 1
 
-    return 1
+    return 2
