@@ -13,10 +13,36 @@ def cons(a, b):
 
 
 def car(func):
+    """Extract the first pointer of cons
+
+    >>> car(cons(1, 2))
+    1
+    >>> car(cons(5, 3))
+    5
+
+    Args:
+        func (functon): Function returned by higher order function cons
+
+    Returns:
+        int: value of first array element.
+    """
     return func.__closure__[0].cell_contents
 
 
 def cdr(func):
+    """Extrac the second pointer of cons
+
+    >>> cdr(cons(1, 2))
+    2
+    >>> cdr(cons(5, 3))
+    3
+
+    Args:
+        func (function): Function returned by cons
+
+    Returns:
+        int: value of second array element.
+    """
     return func.__closure__[1].cell_contents
 
 
