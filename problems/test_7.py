@@ -27,3 +27,9 @@ class TestCountMapping:
     def test_given_valid_two_digit_between_11_and_26_should_return_two(self, input_str):
         """All but 10 & 20"""
         assert count_mapping(input_str) == 2
+
+    def test_given_valid_two_digit_greater_than_26_should_return_one(self):
+        import random
+
+        for _ in range(10):
+            assert count_mapping(str(random.randint(27, 99))) == 1
