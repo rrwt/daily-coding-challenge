@@ -8,11 +8,11 @@ def merge_sorted_lists(arrays, k):
     """Merge k arrays 
 
     Args:
-        arrays ([type]): [description]
-        k ([type]): [description]
+        arrays (list): A list of list
+        k (integer): Number of lists
 
     Returns:
-        [type]: [description]
+        list: flattened and sorted list
     """
     res = []
 
