@@ -1,4 +1,5 @@
 import heapq
+from typing import functools
 
 
 """
@@ -41,3 +42,42 @@ def merge_sorted_lists_min_heap(arrays):
         list: flattened and sorted list
     """
     return list(heapq.merge(*arrays))
+
+
+def merge_sorted_merge_sort_algorithm(arrays):
+    """Merge the sorted arrays using merge part of merge sort.
+    time complexity: O(kn)
+    space complexity: O(nk)
+
+    Args:
+        arrays (list): A list of list
+        k (integer): Number of lists
+
+    Returns:
+        list: flattened and sorted list
+    """
+    arr_len = len(arrays[0])
+
+    def merge(a, b):
+        a_len = len(a)
+        i = 0
+        j = 0
+        res = []
+
+        while i < a_len and j < arr_len:
+            if a[i] <= b[j]:
+                res.append(a[i])
+                i += 1
+            else:
+                res.append(b[j])
+                j += 1
+
+        if i < a_len:
+            res.extend(a[i:])
+
+        if j < arr_len:
+            res.extend(b[j:])
+
+        return res
+
+    return functools.reduce(merge, arrays)
