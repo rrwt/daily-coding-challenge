@@ -11,6 +11,8 @@ from problems.problem_9 import largest_non_adjacent_sum
 
 
 class TestLargestSum:
+    def test_empty_list_should_return_null(self):
+        assert largest_non_adjacent_sum([]) is None
 
     @pytest.mark.parametrize("input_list,expected", [
         ([1], 1), ([2], 2), ([3], 3), ([-10], -10), ([-20], -20), ([40], 40)

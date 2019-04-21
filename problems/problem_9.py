@@ -8,4 +8,7 @@ should return 10, since we pick 5 and 5.
 
 
 def largest_non_adjacent_sum(input_list):
+    if not input_list:
+        return None
+
     return max(input_list)
