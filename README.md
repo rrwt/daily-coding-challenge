@@ -16,6 +16,7 @@ code: python problems/<filename>
 
 # TODO
 ```
-Problem 6
-Problem 7: Efficient method
+Problem 6: Tree
+Problem 7: Efficient method (Dynamic Programming)
+Problem 8: Tree
 ```
