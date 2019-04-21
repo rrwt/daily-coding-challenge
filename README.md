@@ -12,3 +12,10 @@ installation: pip install -r requirement.txt
 tests: pytest .
 code: python problems/<filename>
 ```
+
+
+# TODO
+```
+Problem 6
+Problem 7: Efficient method
+```
