@@ -19,4 +19,5 @@ code: python problems/<filename>
 Problem 6: Tree
 Problem 7: Efficient method (Dynamic Programming)
 Problem 8: Tree
+Problem 11: Trie
 ```

@@ -24,6 +24,7 @@ words = ["ADOXOGRAPHY", "ADUMBRATE", "AEIPATHY", "AEONIAN", "AESTHETE", "AFFABLE
          "HAPPY HEARTED", "HAPPYHEARTED", "HAR", "HARBINGER", "HARMONY"]
 
 
+# O(n) for search. Naive algorithm
 def complete_me(prefix: str, word_list: str):
     res = []
 
