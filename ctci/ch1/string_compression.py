@@ -11,7 +11,7 @@ You can assume the string has only uppercase and lowercase letters (a - z).
 def compress(str_in):
     l = len(str_in)
     i = 0
-    res = ""
+    res = []
 
     while i < l:
         count = 1
@@ -24,7 +24,9 @@ def compress(str_in):
             count += 1
             i += 1
 
-        res = f'{res}{cur}{count}'
+        res.extend([cur, count])
+
+    res = ''.join(res)
 
     return res if len(res) < l else str_in
 
