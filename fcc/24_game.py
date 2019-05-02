@@ -30,6 +30,10 @@ op = {sym: ch for sym, ch in zip(operators, '+-*/')}
 def game(num_str):
     digits = [int(s) for s in num_str]
 
+    if digits[0] * digits[1] * digits[2] * digits[4] < 24:
+        print('no solution')
+        return None
+
     for a, b, c, d in permutations(digits):
         for p, q, r in product(operators, repeat=3):
             if int(r(q(p(a, b), c), d)) == 24:
