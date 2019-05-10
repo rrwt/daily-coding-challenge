@@ -25,29 +25,29 @@ class LL:
         if l < k or l == 2*k-1:
             return None
 
-        kn, pk = self.head, None
-        lkn, lpk = self.head, None
+        kth_node, prev_kth_node = self.head, None
+        kth_node_from_l, prev_node_from_l = self.head, None
 
         for i in range(1, l):
             if i < k:
-                pk = kn
-                kn = kn.next
+                prev_kth_node = kth_node
+                kth_node = kth_node.next
             if i < l-k+1:
-                lpk = lkn
-                lkn = lkn.next
+                prev_node_from_l = kth_node_from_l
+                kth_node_from_l = kth_node_from_l.next
 
-        if pk:
-            pk.next = lkn
+        if prev_kth_node:
+            prev_kth_node.next = kth_node_from_l
 
-        if lpk:
-            lpk.next = kn
+        if prev_node_from_l:
+            prev_node_from_l.next = kth_node
 
-        kn.next, lkn.next = lkn.next, kn.next
+        kth_node.next, kth_node_from_l.next = kth_node_from_l.next, kth_node.next
 
         if k == 1:
-            self.head = lkn
+            self.head = kth_node_from_l
         elif k == l:
-            self.head = kn
+            self.head = kth_node
 
 
 if __name__ == '__main__':
