@@ -22,3 +22,13 @@ class LinkedList:
             h.next = node
 
         return self
+
+    def __len__(self):
+        head: Node = self.head
+        count: int = 0
+
+        while head:
+            count += 1
+            head = head.next
+
+        return count
