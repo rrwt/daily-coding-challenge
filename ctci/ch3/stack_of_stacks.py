@@ -14,6 +14,7 @@ from random import randint
 from stack import Node  # type: ignore
 
 
+# TODO: implement pop_at(index) to pop element on a specific substack
 class SetOfStacks:
     def __init__(self, head: Node = None, number_of_stacks: int = 3, stack_size: int = 3):
         self.head: list = [head] + [None] * (number_of_stacks-1)
