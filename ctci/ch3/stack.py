@@ -39,3 +39,9 @@ class Stack:
             head = head.next
 
         return count
+
+    def peek(self) -> Optional[Union[int, str]]:
+        return self.head.data if self.head else None
+
+    def is_empty(self) -> bool:
+        return self.head is None
