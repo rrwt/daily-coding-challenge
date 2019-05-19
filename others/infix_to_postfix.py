@@ -42,7 +42,6 @@ def infix_to_postfix(infix: str):
 
 
 if __name__ == "__main__":
-    print(infix_to_postfix("a+b*c+d"))
     assert infix_to_postfix("a+b*c+d") == "abc*+d+"
-    print(infix_to_postfix("A*(B+C*D)+E"))
     assert infix_to_postfix("A*(B+C*D)+E") == "ABCD*+*E+"
+    assert infix_to_postfix("(A+B)*(C-D)") == "AB+CD-*"
