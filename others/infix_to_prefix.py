@@ -1,5 +1,5 @@
 """
-Given a Prefix expression, convert it into a Infix expression.
+Given a Prefix expression, convert it into a Infix expression and vice-versa
 """
 
 

@@ -1,6 +1,7 @@
 """
-Given an infix expression, convert it into a postfix one
+Given an infix expression, convert it into a postfix one and vice-versa
 e.g. a+b*c+d => abc*+d+
+e.g. abc*+d+ => ((a+(b*c))+d)
 """
 
 
