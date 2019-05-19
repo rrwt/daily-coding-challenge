@@ -33,17 +33,17 @@ if __name__ == "__main__":
 
     head = ss.head
 
-    print('Original Data', end=': ')
+    print("Original Data", end=": ")
     while head.next:
-        print(head.data, end='->')
+        print(head.data, end="->")
         head = head.next
     print(head.data)
 
     ss.sort()
     head = ss.head
 
-    print('Sorted Data', end=': ')
+    print("Sorted Data", end=": ")
     while head.next:
-        print(head.data, end='->')
+        print(head.data, end="->")
         head = head.next
     print(head.data)

@@ -23,7 +23,7 @@ class Stack:
 
     def pop(self) -> Node:
         if not self.head:
-            raise Exception('Stack Underflow')
+            raise Exception("Stack Underflow")
 
         head: Node = self.head
         self.head = self.head.next

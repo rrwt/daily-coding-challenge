@@ -26,11 +26,11 @@ def compress(str_in):
 
         res.extend([cur, count])
 
-    res = ''.join(res)
+    res = "".join(res)
 
     return res if len(res) < l else str_in
 
 
-if __name__ == '__main__':
-    assert compress('aabcccccaaa') == 'a2b1c5a3'
+if __name__ == "__main__":
+    assert compress("aabcccccaaa") == "a2b1c5a3"
     test()

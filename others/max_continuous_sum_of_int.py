@@ -18,5 +18,5 @@ def continuous_sum(arr):
     return max(max_, 0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(continuous_sum([-2, 11, -4, 13, -5, -2]))

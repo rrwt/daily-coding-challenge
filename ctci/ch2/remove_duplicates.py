@@ -30,7 +30,7 @@ def remove_duplicates_without_buffer(llist):
     """
     i = 0
     while i < len(llist):
-        j = i+1
+        j = i + 1
 
         while j < len(llist):
             if llist[j] == llist[i]:

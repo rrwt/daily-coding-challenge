@@ -30,20 +30,20 @@ def sum_reverse(ll1: LinkedList, ll2: LinkedList) -> LinkedList:
 
     while head1 and head2:
         data = head1.data + head2.data + carry
-        data, carry = data % 10, int(data/10)
+        data, carry = data % 10, int(data / 10)
         result.push(data)
         head1 = head1.next
         head2 = head2.next
 
     while head1:
         data = head1.data + carry
-        data, carry = data % 10, int(data/10)
+        data, carry = data % 10, int(data / 10)
         result.push(data)
         head1 = head1.next
 
     while head2:
         data = head2.data + carry
-        data, carry = data % 10, int(data/10)
+        data, carry = data % 10, int(data / 10)
         result.push(data)
         head2 = head2.next
 
@@ -58,6 +58,7 @@ def sum_forward(ll1: LinkedList, ll2: LinkedList) -> LinkedList:
     Recursive solution would work here better as we need to traverse the singly list in reverse.
     We can pad the smaller list to get accurate result
     """
+
     def get_recursive_sum(h1: Node, h2: Node, carry: int = 0):
         if not h1:
             return None, 0
@@ -67,7 +68,7 @@ def sum_forward(ll1: LinkedList, ll2: LinkedList) -> LinkedList:
         returned_node, carry = get_recursive_sum(h1.next, h2next, 0)
 
         data: int = h1.data + h2data + carry
-        data, carry = data % 10, int(data/10)
+        data, carry = data % 10, int(data / 10)
         node = Node(data)
         node.next = returned_node
         return node, carry
@@ -78,7 +79,7 @@ def sum_forward(ll1: LinkedList, ll2: LinkedList) -> LinkedList:
     l1 = len(ll1)
     l2 = len(ll2)
 
-    diff: int = l1-l2
+    diff: int = l1 - l2
 
     if diff:
         if diff > 0:
@@ -115,7 +116,7 @@ if __name__ == "__main__":
     h: Node = result.head
 
     while h.next:
-        print(h.data, end='->')
+        print(h.data, end="->")
         h = h.next
     print(h.data)
 
@@ -123,6 +124,6 @@ if __name__ == "__main__":
     h: Node = result.head
 
     while h.next:
-        print(h.data, end='->')
+        print(h.data, end="->")
         h = h.next
     print(h.data)

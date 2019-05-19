@@ -7,9 +7,10 @@ additional characters,and that you are given the "true" length of the string.
 
 # O(n)
 
+
 def urlify(str_in):
-    return '%20'.join(str_in.strip().split())
+    return "%20".join(str_in.strip().split())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(urlify("     he  is    a     brave   knight    "))

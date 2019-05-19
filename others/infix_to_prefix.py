@@ -43,6 +43,7 @@ def infix_to_prefix(infix: str) -> str:
 
 
 if __name__ == "__main__":
+    print(infix_to_prefix("A+(B*C)+D"))
     print(prefix_to_infix("*+AB-CD"))
     print(infix_to_prefix("((A+B)*(C-D))"))
     assert infix_to_prefix(prefix_to_infix("*+AB-CD")) == "*+AB-CD"

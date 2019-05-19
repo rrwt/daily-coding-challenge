@@ -16,18 +16,20 @@ from stack import Node  # type: ignore
 
 # TODO: implement pop_at(index) to pop element on a specific substack
 class SetOfStacks:
-    def __init__(self, head: Node = None, number_of_stacks: int = 3, stack_size: int = 3):
-        self.head: list = [head] + [None] * (number_of_stacks-1)
+    def __init__(
+        self, head: Node = None, number_of_stacks: int = 3, stack_size: int = 3
+    ):
+        self.head: list = [head] + [None] * (number_of_stacks - 1)
         self.number_of_stacks: int = number_of_stacks
         self.stack_size: int = stack_size
         self.count_current: int = 1 if head else 0
-        self.current_stack: int = number_of_stacks-1
+        self.current_stack: int = number_of_stacks - 1
 
     def push(self, data: int) -> Optional[SetOfStacks]:
-        print(data, end=' ')
+        print(data, end=" ")
         if self.count_current == self.stack_size:
             if self.current_stack == 0:
-                print('Stack Overflow')
+                print("Stack Overflow")
                 return None
             else:
                 self.count_current = 1
@@ -46,14 +48,14 @@ class SetOfStacks:
 
     def pop(self) -> Optional[Node]:
         if self.count_current == 0:
-            print('stack underflow')
+            print("stack underflow")
             return None
         else:
             head: Node = self.head[self.current_stack]
             self.head[self.current_stack] = head.next if head else None
 
             if self.count_current == 1:
-                if self.current_stack == self.number_of_stacks-1:
+                if self.current_stack == self.number_of_stacks - 1:
                     self.count_current = 0
                 else:
                     self.count_current = self.stack_size
@@ -73,5 +75,5 @@ if __name__ == "__main__":
     for i in range(10):
         node: Node = sos.pop()
         if node:
-            print(node.data, end=' ')
+            print(node.data, end=" ")
     print()

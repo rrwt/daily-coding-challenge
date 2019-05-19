@@ -21,7 +21,7 @@ class Queue:
 
     def pop(self) -> Optional[Node]:
         if not self.head:
-            print('empty queue')
+            print("empty queue")
             return None
         else:
             node = self.head

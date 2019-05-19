@@ -29,8 +29,8 @@ class Stack:
             self.head = self.head.next
             return temp.data
         else:
-            print('stack underflow')
-            raise ValueError('Stack UnderFlow')
+            print("stack underflow")
+            raise ValueError("Stack UnderFlow")
 
 
 class Queue:
@@ -61,7 +61,7 @@ class Queue:
         return data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     q = Queue()
 
     q.push(1)

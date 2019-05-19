@@ -31,7 +31,7 @@ class MyQueue:
         if self.stack_1.head:
             return self.stack_1.pop()
 
-        print('queue underflow')
+        print("queue underflow")
         return None
 
 
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     h = q.pop()
 
     while h:
-        print(h.data, end=' ')
+        print(h.data, end=" ")
         h = q.pop()
 
     print()

@@ -8,7 +8,7 @@ import collections
 
 
 def is_permutation_palindrome(str_in):
-    str_in = ''.join(str_in.strip().split())
+    str_in = "".join(str_in.strip().split())
     d = collections.defaultdict(int)
     l = len(str_in)
 

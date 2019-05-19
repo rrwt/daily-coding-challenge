@@ -8,15 +8,15 @@ class Stack:
         """
         self.nos = k
         self.size = n
-        self.array = array('b', (0 for i in range(n)))
+        self.array = array("b", (0 for i in range(n)))
         self.tos = [-1] * self.nos  # top of kth stack
 
         """
         when stack is empty: point to the next available index (for push)
         when stack has values: point to the previous element of the stack (for pop)
         """
-        self.next_index = array('b', (i+1 for i in range(n)))
-        self.next_index[n-1] = -1  # stack overflow
+        self.next_index = array("b", (i + 1 for i in range(n)))
+        self.next_index[n - 1] = -1  # stack overflow
         self.next_available = 0  # which index to push to
 
     def is_full(self):
@@ -40,7 +40,7 @@ class Stack:
         pop out an element from the kth stack
         """
         if self.is_empty(k):
-            return ValueError('Stack Underflow')
+            return ValueError("Stack Underflow")
 
         tos = self.tos[k]
         self.tos[k] = self.next_index[tos]

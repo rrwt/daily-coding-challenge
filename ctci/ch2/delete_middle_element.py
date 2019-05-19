@@ -51,8 +51,8 @@ if __name__ == "__main__":
     ll.push(2)
     ll.push(3)
 
-    print('expected', 2, sep=' ')
-    print('result:', ll.delete_middle(ll.head.next), sep=' ')
+    print("expected", 2, sep=" ")
+    print("result:", ll.delete_middle(ll.head.next), sep=" ")
 
     h = ll.head
 

@@ -101,7 +101,7 @@ if __name__ == "__main__":
     h = dll.head
 
     while h.next:
-        print(h.data, end='->')
+        print(h.data, end="->")
         h = h.next
 
     print(h.data)
@@ -110,7 +110,7 @@ if __name__ == "__main__":
     h = dll.head
 
     while h.next:
-        print(h.data, end='->')
+        print(h.data, end="->")
         h = h.next
 
     print(h.data)
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     h = reverse_in_groups(dll.head, 2)
 
     while h.next:
-        print(h.data, end='->')
+        print(h.data, end="->")
         h = h.next
 
     print(h.data)

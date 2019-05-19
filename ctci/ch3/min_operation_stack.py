@@ -41,7 +41,7 @@ if __name__ == "__main__":
     head: Node = stack.head
 
     while head.next:
-        print(head.data, end='->')
+        print(head.data, end="->")
         head = head.next
 
     print(head.data)
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     h_min = stack.min_stack.head
 
     while h_min.next:
-        print(h_min.data, end='->')
+        print(h_min.data, end="->")
         h_min = h_min.next
 
     print(h_min.data)

@@ -8,6 +8,7 @@ def palindrome(ll: LinkedList) -> bool:
     """
     We can recursively call the list and it's reverse and check if they match
     """
+
     def palindrome_recursive(t: Node) -> bool:
         nonlocal head
 

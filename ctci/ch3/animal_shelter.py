@@ -14,8 +14,8 @@ from collections import deque
 
 
 class AnimalKind(Enum):
-    cat = 'cat'
-    dog = 'dog'
+    cat = "cat"
+    dog = "dog"
 
 
 class Animal:
@@ -66,12 +66,12 @@ class AnimalShelterQueue:
 
 if __name__ == "__main__":
     animals = AnimalShelterQueue()
-    animals.enqueue('perro', AnimalKind.dog)
-    animals.enqueue('gato', AnimalKind.cat)
+    animals.enqueue("perro", AnimalKind.dog)
+    animals.enqueue("gato", AnimalKind.cat)
 
     first = animals.dequeueAny()
     second = animals.dequeueCat()
 
-    assert first is not None and first.name == 'perro'
+    assert first is not None and first.name == "perro"
     assert animals.dequeueDog() is None
-    assert second is not None and second.name == 'gato'
+    assert second is not None and second.name == "gato"

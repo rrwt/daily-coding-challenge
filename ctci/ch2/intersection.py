@@ -103,7 +103,7 @@ if __name__ == "__main__":
     ll1.head.next.next.next = node
 
     node = intersect(ll1, ll2)
-    print('intersecting node is', node.data, sep=' ')
+    print("intersecting node is", node.data, sep=" ")
 
     ll3: LinkedList = LinkedList(Node(11))
     ll3.push(13).push(15).push(17)
@@ -112,7 +112,7 @@ if __name__ == "__main__":
     assert intersect(ll2, ll3) == False
 
     node = intersect_without_extra_space(ll1, ll2)
-    print('interseting node is', node.data, sep=' ')
+    print("interseting node is", node.data, sep=" ")
 
     assert intersect_without_extra_space(ll1, ll3) == False
     assert intersect_without_extra_space(ll2, ll3) == False
