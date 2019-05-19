@@ -8,6 +8,7 @@ authors = ["Rohit Rawat <rohitrawat@protonmail.com>"]
 python = "^3.7"
 mypy = "^0.701.0"
 pytest = "^4.5"
+pylint = "^2.3"
 
 [tool.poetry.dev-dependencies]
 
