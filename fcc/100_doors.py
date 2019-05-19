@@ -20,7 +20,7 @@ def count_factors(num):
 
     count = 1
 
-    for i in range(2, num+1):
+    for i in range(2, num + 1):
         if num % i == 0:
             count += 1
 
@@ -33,18 +33,19 @@ def is_open(num):
 
 # This can be solved by taking factors of the given number
 def get_state(numDoors):
-    return [i for i in range(1, numDoors+1) if is_open(i)]
+    return [i for i in range(1, numDoors + 1) if is_open(i)]
 
 
 def is_perfect_square(num):
     sq_root = math.sqrt(num)
     return math.floor(sq_root) == math.ceil(sq_root)
 
+
 # after testing, i realized that only perfect squares will be open
 
 
 def get_state_efficient(numDoors):
-    return [i for i in range(1, numDoors+1) if is_perfect_square(i)]
+    return [i for i in range(1, numDoors + 1) if is_perfect_square(i)]
 
 
 if __name__ == "__main__":
