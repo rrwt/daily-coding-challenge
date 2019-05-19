@@ -4,7 +4,7 @@ e.g. a+b*c+d => abc*+d+
 """
 
 
-def precedence(operator: str):
+def precedence(operator: str) -> int:
     if operator == "^":
         return 3
     elif operator in ("*", "/"):
@@ -14,7 +14,7 @@ def precedence(operator: str):
     return 0
 
 
-def infix_to_postfix(infix: str):
+def infix_to_postfix(infix: str) -> str:
     result: str = ""
     stack: list = []
 
