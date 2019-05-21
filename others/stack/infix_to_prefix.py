@@ -1,7 +1,7 @@
 """
 Given a Prefix expression, convert it into a Infix expression and vice-versa
 """
-from infix_to_postfix import infix_to_postfix
+from infix_to_postfix import infix_to_postfix  # type: ignore
 
 
 def prefix_to_infix(prefix: str) -> str:
@@ -30,15 +30,15 @@ def infix_to_prefix(infix: str) -> str:
     apply prefix to postfix
     reverse the output and return
     """
-    infix = list(infix[::-1])
+    new_infix: list = list(infix[::-1])
 
     for i, c in enumerate(infix):
         if c == "(":
-            infix[i] = ")"
+            new_infix[i] = ")"
         elif c == ")":
-            infix[i] = "("
+            new_infix[i] = "("
 
-    res: str = infix_to_postfix("".join(infix))
+    res: str = infix_to_postfix("".join(new_infix))
     return res[::-1]
 
 
