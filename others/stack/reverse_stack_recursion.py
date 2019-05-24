@@ -3,7 +3,7 @@ Reverse a stack using recursion
 """
 from typing import Optional
 
-from stack import Stack, Node  # typing: ignore
+from stack import Stack, Node  # type: ignore
 
 
 def insert_reversed_node(stack: Stack, node: Node) -> Stack:
@@ -14,12 +14,12 @@ def insert_reversed_node(stack: Stack, node: Node) -> Stack:
     """
     if not stack.head:
         stack.head = node
-        return stack
     else:
         temp = stack.pop()
         insert_reversed_node(stack, node)
         stack.push(temp.data)
-        return stack
+
+    return stack
 
 
 def reverse_stack_recursive(stack: Stack) -> Stack:
