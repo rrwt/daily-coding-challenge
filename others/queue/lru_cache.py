@@ -1,8 +1,9 @@
 """
 Implement an lru (Least recently used) cache.
 """
-from typing import Optional
-from collections import deque
+from typing import Optional, Union
+
+from others.queue.queue import Deque, DNode  # type: ignore
 
 
 class LRUCache:
@@ -12,79 +13,94 @@ class LRUCache:
     In case of overflow, pop out the lru element from the back.
     Use a dictionary/hash-table to keep track of existing cached elements.
     Using a deque for the queue implementation as it is easy to move around.
-    Using a set to store reference to existing elements.
-
-    Assumption: There is no key-value pair to be set/unset. In that case we'd need
-        to implement a hash-table instead of a set
     """
 
-    def __init__(self, maxlength: int):
-        self.queue: deque = deque([], maxlength)
-        self.set: set = set()
+    def __init__(self, size: int):
+        self.queue: Deque = Deque(size)
+        self.hash_table: dict = {}  # store item and it's pointer (for faster movements)
 
-    def move_to_front(self, element: int):
+    def move_to_front(self, key: int, value: int):
         """
         Move the most recently accessed element to the front of the queue.
-        time complexity: O(n) (because of remove operation)
-        In my opinion, this can be improved if we store the pointer to value in the hash table
+        time complexity: O(1)
         """
-        self.delete(element)
-        self.push(element)
+        self.delete(key)
+        self.push(key, value)  # value can be different than original
 
-    def push(self, element: int):
+    def push(self, key: int, value: int):
         """
         Push a new/existing element to the front of the queue
+        time complexity: O(1)
         """
-        if element in self.set:
-            self.move_to_front(element)
+        if key in self.hash_table:
+            self.move_to_front(key, value)
         else:
-            self.set.add(element)
-            self.queue.appendleft(element)
+            try:
+                self.queue.insert_front(key)
+            except Exception:
+                self.queue.remove_last()
+                self.queue.enqueue(key)
+            finally:
+                self.hash_table[key] = {"value": value, "pointer": self.queue.front}
 
-    def delete(self, element: int):
+    def delete(self, key: int):
         """
         Delete an element from the queue
-        time complexity: O(n)
+        time complexity: O(1)
         """
-        try:
-            self.queue.remove(element)
-            self.set.remove(element)
-        except (ValueError, KeyError):
-            print(f"element {element} not found")
+        pointer: DNode = self.hash_table[key]["pointer"]
 
-    def getFirst(self) -> Optional[int]:
+        if pointer == self.queue.front:
+            self.queue.dequeue()
+        else:
+            previous, next_ = pointer.previous, pointer.next
+            if previous:
+                previous.next = next_
+            if next_:
+                next_.previous = previous
+
+        self.queue.count -= 1
+        del self.hash_table[key]
+
+    def get_first(self) -> Optional[Union[int, str]]:
         """
         Get the first item from the cache
         time complexity: O(1)
         """
-        return self.queue[0] if len(self.queue) else None
+        return self.queue.front.data if self.queue.front else None
 
-    def get(self, element: int):
+    def get(self, key: int) -> Optional[Union[int, str]]:
         """
         Access some element from the list
-        time complexity: O(n)
+        time complexity: O(1)
         """
-        if element not in self.set:
-            return False
-        else:
-            self.move_to_front(element)
-            return True
+        return self.hash_table[key]["value"] if key in self.hash_table else None
 
     def print_queue(self):
-        print("->".join(map(str, self.queue)))
+        """
+        Print the entire queue
+        time complexity: O(n)
+        """
+        head = self.queue.front
+
+        if head:
+            while head.next:
+                print(head.data, end="->")
+                head = head.next
+            print(head.data)
 
 
 if __name__ == "__main__":
     lru = LRUCache(3)
-    lru.push(1)
-    lru.push(2)
-    lru.push(3)
+    lru.push(1, 1)
+    lru.push(2, 2)
+    lru.push(3, 3)
     lru.print_queue()
-    lru.push(2)
+    lru.push(2, 2)
     lru.print_queue()
-    lru.push(4)
+    lru.push(4, 4)
     lru.print_queue()
     lru.delete(2)
     lru.print_queue()
-    lru.push(9)
+    lru.push(9, 9)
     lru.print_queue()

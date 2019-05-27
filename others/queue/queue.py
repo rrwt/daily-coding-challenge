@@ -194,3 +194,37 @@ class Deque:
 
         self.count -= 1
         return node
+
+    def remove_last(self):
+        """
+        Remove the last element from a queue
+        """
+        if self.is_empty():
+            raise Exception("Queue Underflow")
+        elif self.count == 1:
+            self.front = self.rear = None
+        else:
+            self.rear = self.rear.previous
+            self.rear.next = None
+        self.count -= 1
+
+    def insert_front(self, data: Union[int, str]):
+        """
+        insert an element to the front of the queue
+        :return: None
+        """
+        if self.count == self.size:
+            raise Exception('Queue Overflow')
+
+        node = DNode(data)
+        node.next = self.front
+
+        if self.front:
+            self.front.previous = node
+
+        self.front = node
+
+        if not self.rear:
+            self.rear = node
+
+        self.count += 1
