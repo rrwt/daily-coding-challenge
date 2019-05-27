@@ -15,30 +15,32 @@ class Node:
         self.next: Optional[Node] = None
 
 
-class DNode(Node):
+class DNode:
     """
     A deque node with data and next and previous pointer
     """
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, data: Union[int, str]):
+        self.data = data
+        self.next: Optional[DNode] = None
         self.previous: Optional[DNode] = None
 
 
-class PNode(Node):
+class PNode:
     """
     A Priority queue node with data, next pointer and priority
     """
 
     def __init__(self, data: Union[int, str], priority: int):
-        super().__init__(data)
+        self.data = data
+        self.next: Optional[PNode] = None
         self.priority = priority
 
 
 class Queue:
     def __init__(self, size: Optional[int]):
-        self.front: Optional[Union[DNode, Node]] = None
-        self.rear: Optional[Union[DNode, Node]] = None
+        self.front: Optional[Node] = None
+        self.rear: Optional[Node] = None
         self.size: int = size or int(math.pow(2, 64))
         self.count = 0
 
@@ -73,6 +75,25 @@ class Queue:
             self.rear = None
 
         self.count -= 1
+        return node
+
+
+class CircularQueue(Queue):
+    """
+    A queue with the next of last pointer pointing to the first one
+    """
+
+    def enqueue(self, data: Union[int, str]):
+        super().enqueue(data)
+        if self.rear:
+            self.rear.next = self.front
+
+    def dequeue(self):
+        node = super().dequeue()
+
+        if self.count():
+            self.rear.next = self.front
+
         return node
 
 
@@ -108,8 +129,8 @@ class PriorityQueue:
             else:
                 head = self.front
 
-                while head.next and head.next.priority > node.priority:  # type: ignore
-                    head = head.next  # type: ignore
+                while head.next and head.next.priority > node.priority:
+                    head = head.next
 
                 head.next, node.next = node, head.next
 
@@ -129,46 +150,22 @@ class PriorityQueue:
         return node
 
 
-class CircularQueue(Queue):
-    """
-    A queue with the next of last pointer pointing to the first one
-    """
-
-    def enqueue(self, data: Union[int, str]):
-        if self.is_full():
-            raise Exception("Queue Overflow")
-
-        node = Node(data)
-
-        if self.is_empty():
-            self.front = node
-        elif self.rear:
-            self.rear.next = node
-
-        node.next = self.front
-        self.rear = node
-        self.count += 1
-
-    def dequeue(self):
-        if self.is_empty():
-            raise Exception("Queue Underflow")
-
-        node = self.front
-
-        if self.count > 1:
-            self.front = self.front.next
-            self.rear.next = self.front
-        else:
-            self.front = self.rear = None
-
-        self.count -= 1
-        return node
-
-
-class Deque(Queue):
+class Deque:
     """
     Double ended queue with both previous and next pointers
     """
+
+    def __init__(self, size: Optional[int]):
+        self.front: Optional[DNode] = None
+        self.rear: Optional[DNode] = None
+        self.size: int = size or int(math.pow(2, 64))
+        self.count = 0
+
+    def is_full(self):
+        return self.count >= self.size
+
+    def is_empty(self):
+        return self.count == 0
 
     def enqueue(self, data: Union[int, str]):
         if self.is_full():
@@ -180,7 +177,7 @@ class Deque(Queue):
             self.front = node
         elif self.rear:
             self.rear.next = node
-            node.previous = self.rear  # type: ignore
+            node.previous = self.rear
 
         self.rear = node
         self.count += 1
