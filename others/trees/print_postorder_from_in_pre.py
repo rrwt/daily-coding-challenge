@@ -10,6 +10,9 @@ def print_postorder(inorder: list, preorder: list, length: int):
         1. First element of preorder and last of postorder is root. Print it last.
         2. Find the first element in preorder in inorder to get left and right subtree from that.
         3. Repeat
+    
+    time: O(n*n). getting root index is O(n). rest of the algorithm is O(n)
+    space: O(n). Stack size for recursion depends on n.
     """
     root = preorder[0]
     root_index = inorder.index(root)  # guaranteed to exist in both
