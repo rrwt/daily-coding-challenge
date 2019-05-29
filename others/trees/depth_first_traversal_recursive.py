@@ -6,7 +6,7 @@ Depth first traversal includes 3 traversing methods:
 """
 from typing import Optional
 
-from binary_tree_node import Node
+from binary_tree_node import Node  # type: ignore
 
 
 def inorder(root: Optional[Node]) -> None:

@@ -2,7 +2,7 @@
 To iteeratively traverse a tree in an inorder manner
 """
 from typing import Optional
-from binary_tree_node import Node
+from binary_tree_node import Node  # type: ignore
 
 
 def inorder_iterative(root: Optional[Node]):
