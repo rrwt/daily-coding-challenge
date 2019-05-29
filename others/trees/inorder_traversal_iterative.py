@@ -27,6 +27,34 @@ def inorder_iterative(root: Optional[Node]):
     print()
 
 
+def inorder_iterative_with_constant_space(root: Node):
+    """
+    Morris Traversal
+    Instead of using a stack to traverse back we can use the right node of the
+    rightmost child of left child of ccurrent node to traverse back to root.
+    Time Complexity: O(n)
+    """
+    while root:
+        if root.left:
+            head = root.left
+
+            while head.right and head.right != root:
+                head = head.right
+
+            if head.right == root:
+                head.right = None
+                print(root.data, end=" ")
+                root = root.right
+            else:
+                head.right = root
+                root = root.left
+        else:
+            print(root.data, end=" ")
+            root = root.right
+
+    print()
+
+
 if __name__ == "__main__":
     """
     Constructed binary tree is 
@@ -42,3 +70,4 @@ if __name__ == "__main__":
     root.left.left = Node(4)
     root.left.right = Node(5)
     inorder_iterative(root)
+    inorder_iterative_with_constant_space(root)
