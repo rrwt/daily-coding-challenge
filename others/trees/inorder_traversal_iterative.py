@@ -1,17 +1,18 @@
 """
 To iteeratively traverse a tree in an inorder manner
 """
+from typing import Optional
 from binary_tree_node import Node
 
 
-def inorder_iterative(root: Node):
+def inorder_iterative(root: Optional[Node]):
     """
     Using temporary stack to store the current root
     while left child is being traversed
     space: O(n)
     time: O(n)
     """
-    stack = []
+    stack: list = []
 
     while root or stack:
         while root:
@@ -19,8 +20,10 @@ def inorder_iterative(root: Node):
             root = root.left
 
         root = stack.pop()
-        print(root.data, end=" ")
-        root = root.right
+
+        if root:
+            print(root.data, end=" ")
+            root = root.right
     print()
 
 
