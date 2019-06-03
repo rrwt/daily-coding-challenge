@@ -43,6 +43,10 @@ def get_nodes_at_height(root: Node, height: int):
 
 
 def level_order_recursive(root: Node):
+    """
+    time complexity: O(n*n)
+    space complexity: O(n)  # recursive stack
+    """
     height: int = get_height(root)
 
     for i in range(1, height + 1):
