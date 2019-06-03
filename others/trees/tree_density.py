@@ -1,11 +1,13 @@
 """
 Get density of a binary tree in one traversal
 """
+from typing import Optional
+
 from binary_tree_node import Node  # type: ignore
 
 
 def density(root: Node) -> float:
-    def inorder(root: Node, height: int = 1):
+    def inorder(root: Optional[Node], height: int = 1):
         nonlocal nodes
         nonlocal max_height
         if root:
