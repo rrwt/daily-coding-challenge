@@ -80,6 +80,8 @@ class BST:
         1. Node has no children: delete the node
         2. Node has right child: Copy inorder data into the node and delete inorder successor
         3. Node has only left child: replace node with it's left child
+
+        Expected Time complexity: O(h)
         """
         if root:
             if data < root.data:
