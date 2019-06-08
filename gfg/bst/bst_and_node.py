@@ -15,6 +15,9 @@ class BST:
     """BST
     Data less than that of node goes in the left subtree and data more than that
     of node goes in the right subtree recursively. No two nodes can have same data.
+    h: height of tree
+    n: total number of nodes
+    in worst cast the height of binary search tree becomes n
     """
 
     def __init__(self):
@@ -22,7 +25,7 @@ class BST:
 
     def insert(self, data: int):
         """
-        time complexity: O(log(n)). Iterative.
+        time complexity: O(h). Iterative.
         """
         if self.head:
             head = self.head
@@ -51,7 +54,7 @@ class BST:
 
     def search(self, data: int) -> str:
         """
-        time complexity: O(log(n)). Iterative.
+        time complexity: O(h). Iterative.
         """
         head = self.head
 
