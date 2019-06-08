@@ -21,34 +21,34 @@ class BST:
     """
 
     def __init__(self):
-        self.head: Optional[Node] = None
+        self.root: Optional[Node] = None
 
     def insert(self, data: int):
         """
         time complexity: O(h). Iterative.
         """
-        if self.head:
-            head = self.head
+        if self.root:
+            root = self.root
             node = Node(data)
 
-            while head.data != data:
-                if head.data > data:
-                    if head.left:
-                        head = head.left
+            while root.data != data:
+                if root.data > data:
+                    if root.left:
+                        root = root.left
                     else:
                         break
-                elif head.data < data:
-                    if head.right:
-                        head = head.right
+                elif root.data < data:
+                    if root.right:
+                        root = root.right
                     else:
                         break
 
-            if head.data > data:
-                head.left = node
+            if root.data > data:
+                root.left = node
             else:
-                head.right = node
+                root.right = node
         else:
-            self.head = Node(data)
+            self.root = Node(data)
 
         return self
 
@@ -56,17 +56,44 @@ class BST:
         """
         time complexity: O(h). Iterative.
         """
-        head = self.head
+        root = self.root
 
-        if head:
-            while head and head.data != data:
-                if head.data > data:
-                    head = head.left
-                elif head.data < data:
-                    head = head.right
+        if root:
+            while root and root.data != data:
+                if root.data > data:
+                    root = root.left
+                elif root.data < data:
+                    root = root.right
 
-            return "Found" if head else "Not Found"
+            return "Found" if root else "Not Found"
         return "Not Found"
+
+    def min_value_node(self, node) -> int:
+        if node:
+            while node.left:
+                node = node.left
+
+        return node.data if node else -1
+
+    def delete(self, root, data: int):
+        """3 cases
+        1. Node has no children: delete the node
+        2. Node has right child: Copy inorder data into the node and delete inorder successor
+        3. Node has only left child: replace node with it's left child
+        """
+        if root:
+            if data < root.data:
+                root.left = self.delete(root.left, data)
+            elif data > root.data:
+                root.right = self.delete(root.right, data)
+            elif root.right:  # data = root.data
+                root.data = self.min_value_node(root.right)
+                root.right = self.delete(root.right, root.data)
+                return root
+            else:  # data = root.data and root.right is None
+                return root.left
+
+        return root
 
 
 def inorder(root: Optional[Node]):
@@ -79,6 +106,10 @@ def inorder(root: Optional[Node]):
 if __name__ == "__main__":
     bst = BST()
     bst.insert(50).insert(30).insert(20).insert(40).insert(70).insert(60).insert(80)
-    inorder(bst.head)
+    inorder(bst.root)
     print()
     print(bst.search(20))
+    print("Deleting 50")
+    bst.delete(bst.root, 50)
+    inorder(bst.root)
+    print()
