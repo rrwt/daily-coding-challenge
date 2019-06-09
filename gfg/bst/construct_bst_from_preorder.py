@@ -45,5 +45,37 @@ def get_bst(preorder: list) -> Node:
     return construct_tree(preorder)
 
 
+def get_bst_using_min_and_max_value(preorder: list) -> Node:
+    """
+    time complexity: O(n)
+    space complexity: O(n)
+    """
+
+    def construct_tree(min_: int, max_: int) -> Optional[Node]:
+        nonlocal pre_index
+        nonlocal l
+
+        if pre_index >= l:
+            return None
+
+        value = preorder[pre_index]
+
+        if min_ < value < max_:
+            node = Node(value)
+            pre_index += 1
+
+            node.left = construct_tree(min_, value)
+            node.right = construct_tree(value, max_)
+
+            return node
+
+        return None
+
+    pre_index: int = 0
+    l: int = len(preorder)
+    return construct_tree(-1_000_000, 1_000_000)
+
+
 if __name__ == "__main__":
     print(inorder(get_bst([10, 5, 1, 7, 40, 50])))
+    print(inorder(get_bst_using_min_and_max_value([10, 5, 1, 7, 40, 50])))
