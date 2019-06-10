@@ -17,6 +17,11 @@ def create_balanced_bst(ll: list) -> Node:
     """
 
     def balanced_bst(n: int) -> Optional[Node]:
+        """
+        This implementation constructs the tree in bottom up fashion.
+        In case it's sorted array, part arrays could be sent to balanced_bst
+        recursive function to create the tree, still in bottom up fashion
+        """
         nonlocal index
 
         if n <= 0:
