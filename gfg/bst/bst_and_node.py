@@ -10,6 +10,9 @@ class Node:
         self.left: Optional[Node] = None
         self.right: Optional[Node] = None
 
+    def __repr__(self):
+        return f"{self.__class__} {self.data}"
+
 
 class BST:
     """BST
