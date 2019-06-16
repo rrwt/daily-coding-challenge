@@ -9,6 +9,8 @@ from bst_and_node import Node, inorder  # type: ignore
 
 def sorted_arr_to_bst(arr: list) -> Node:
     """
+    time complexity: O(n)
+    space complexity: O(n)  # array and stack
     """
 
     def construct_bst(elements) -> Optional[Node]:
