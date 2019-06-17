@@ -23,7 +23,7 @@ def max_shortest_dist(arr: list, k: int) -> int:
         if e in d:
             d[e] = min(d[e], i + 1)
         else:
-            d[e] = min(i, l - i)
+            d[e] = min(i + 1, l - i)
 
     min_max = 10 ** 10
 
@@ -36,3 +36,5 @@ def max_shortest_dist(arr: list, k: int) -> int:
 
 if __name__ == "__main__":
     print(max_shortest_dist([3, 5, 8, 6, 7], 11))
+    print(max_shortest_dist([2, 4, 1, 9, 5], 3))
+    print(max_shortest_dist([2, 4, 3, 2, 1], 5))
