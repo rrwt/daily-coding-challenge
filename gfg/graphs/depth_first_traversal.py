@@ -8,7 +8,7 @@ from ds import GraphM  # type: ignore
 
 def depth_first_traversal(g: list, first_node: int) -> None:
     """
-    Time complexity: O(V)
+    Time complexity: O(V+E)
     Space complexity: O(V)
     """
     if g:

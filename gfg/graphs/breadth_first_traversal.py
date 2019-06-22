@@ -10,6 +10,8 @@ from ds import GraphM  # type: ignore
 def breadth_first_travel(g: list, first_node: int):
     """
     Similar to level order traversal for tree
+    Time complexity: O(E+V)
+    Space complexity: O(V)
     """
     if g:
         visited = set()
