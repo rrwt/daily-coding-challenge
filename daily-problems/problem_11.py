@@ -25,6 +25,7 @@ words = ["ADOXOGRAPHY", "ADUMBRATE", "AEIPATHY", "AEONIAN", "AESTHETE", "AFFABLE
 
 
 # O(n) for search. Naive algorithm
+# TODO: Using Trie
 def complete_me(prefix: str, word_list: str):
     return [w for w in word_list if w.startswith(prefix)]
 
