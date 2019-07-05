@@ -53,6 +53,7 @@ def is_cyclic(graph: list, vertices: int) -> bool:
                 if pu == pv:
                     return True
                 union(pu, pv, subsets)
+    return False
 
 
 if __name__ == "__main__":
