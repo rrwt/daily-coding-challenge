@@ -1,5 +1,5 @@
 """
-Union-Find algorithm to detect circles in a graph
+Union-Find algorithm to detect cycles in an undirected graph
 
 Union: Join two subsets.  O(n)
 Find: Detect if two nodes have same parent node.  O(n)
