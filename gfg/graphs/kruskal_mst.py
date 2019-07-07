@@ -1,6 +1,9 @@
 """
 Kruskal's Minimum spanning tree
 Note: for any MST: E = V-1
+
+Prefer this when the graph is sparse and/or the weight matrix is already sorted or
+    can be sorted in linear time.
 """
 import math
 from collections import defaultdict

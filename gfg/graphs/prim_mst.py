@@ -1,5 +1,6 @@
 """
 Prim's Minimum Spanning Tree algorithm.
+Prefer this when the graph is dense.
 """
 import math
 
