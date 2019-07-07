@@ -27,4 +27,3 @@ def insertion_sort(arr: array) -> array:
 
 if __name__ == "__main__":
     print(*insertion_sort(array("H", [12, 11, 13, 5, 6])))
-
