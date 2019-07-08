@@ -38,7 +38,8 @@ def counting_sort(arr: list) -> list:
 
     res = [None] * length
 
-    for el in arr:
+    for el in arr[::-1]:
+        # reversing is important for stability (here it doesn't matter)
         res[count_arr[el - min_el] - 1] = el
         count_arr[el - min_el] -= 1
 
