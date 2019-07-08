@@ -8,7 +8,7 @@ Stable: Yes
 """
 
 
-def counting_sort(arr: list, exp: int, base: int = 10) -> None:
+def counting_sort(arr: list, exp: int, base: int = 10) -> list:
     """
     Modified counting sort, where k = base
     """
