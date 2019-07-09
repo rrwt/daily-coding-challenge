@@ -2,9 +2,10 @@
 Given two integers x and n, write a function to compute x^n.
 We may assume that x and n are small and overflow doesn’t happen.
 """
+from typing import Union
 
 
-def power(x: int, n: int) -> int:
+def power(x: int, n: int) -> Union[int, float]:
     if n == 0:
         return 1
     if n == 1:
