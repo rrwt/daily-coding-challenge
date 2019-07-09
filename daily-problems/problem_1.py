@@ -8,7 +8,7 @@ Bonus: Can you do this in one pass?
 # naive solution O(n*n)
 def verify_sum(ar, value):
     for i in range(len(ar)):
-        for j in range(i+1, len(ar)):
+        for j in range(i + 1, len(ar)):
             if ar[i] + ar[j] == value:
                 return True
 
@@ -27,20 +27,22 @@ def verify_sum_2(ar, value):
         if sum_ == value:
             return True
         elif sum_ > value:
-            j = j-1
+            j = j - 1
         else:
-            i = i+1
+            i = i + 1
 
     return False
 
 
 # Using sets. most efficient O(n)
 def verify_sum_3(ar, value):
-    ar = set(ar)
+    s = set()
 
-    for _ in ar:
-        if value - _ in ar:
+    for el in ar:
+        if value - el in s:
             return True
+        else:
+            s.add(el)
 
     return False
 
