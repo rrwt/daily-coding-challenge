@@ -9,13 +9,13 @@ The array can contain duplicates and negative numbers as well.
 def first_missing_positive_integer(arr):
     arr = set(arr)
 
-    for i in range(1, len(arr)+2):
+    for i in range(1, len(arr) + 2):
         if i not in arr:
             return i
 
 
-def first_missing_positive_integer_using_on_extra_space(arr):
-    arr_2 = [-1] * (len(arr)+2)  # in case there is no missing element, return n+1
+def first_missing_positive_integer_using_extra_space(arr):
+    arr_2 = [-1] * (len(arr) + 2)  # in case there is no missing element, return n+1
 
     for key, val in enumerate(arr):
         # taking advantage of the fact that any value cannot be greater than len(arr)

@@ -23,16 +23,16 @@ def count_mapping(str_arr: str):
         else:
             for w1 in first:
                 for w2 in second:
-                    res.add(w1+w2)
+                    res.add(w1 + w2)
 
         return res
 
     def get_mappings(arr):
-        if arr.startswith('0'):
+        if arr.startswith("0"):
             return None
         elif len(arr) == 1 or arr in ("10", "20"):
             return code[int(arr)]
-        elif len(arr) == 2 and arr.endswith('0') and arr not in ("10", "20"):
+        elif len(arr) == 2 and arr.endswith("0") and arr not in ("10", "20"):
             return None
 
         res = set()
@@ -49,7 +49,7 @@ def count_mapping(str_arr: str):
 
         return res
 
-    result = set()
+    result: set = set()
     str_len = len(str_arr)
 
     for i in range(1, str_len + 1):

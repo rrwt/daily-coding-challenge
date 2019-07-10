@@ -25,20 +25,18 @@ def count_unival(root: Optional[Node]) -> Tuple[int, bool]:
     if root is None:
         return 0, True
 
-    left_unival, is_left = count_unival(root.left)
-    right_unival, is_right = count_unival(root.right)
+    count_left, is_left_unival = count_unival(root.left)
+    count_right, is_right_unival = count_unival(root.right)
+    total_count = count_left + count_right
 
-    count = left_unival + right_unival
+    if is_left_unival and is_right_unival:
+        if (root.left and root.data != root.left.data) or (
+            root.righ and root.data != root.right.data
+        ):
+            return total_count, False
+        return total_count + 1, True
 
-    if is_left and is_right:
-        if root.left and root.data != root.left.data:
-            return count, False
-        if root.right and root.data != root.right.data:
-            return count, False
-
-        return count + 1, True
-
-    return count, False
+    return total_count, False
 
 
 if __name__ == "__main__":
