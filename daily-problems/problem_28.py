@@ -25,16 +25,25 @@ def get_spaced_string(string_list: List[str], string_len: int, k: int) -> str:
     if string_len == k:
         return " ".join(string_list)
 
+    length_list: int = len(string_list)
+
+    if length_list == 1:
+        return string_list[0].ljust(k, " ")
+
     spaces_required: int = k - string_len
+    new_space_list: List[int] = [0] * length_list
     i: int = 0
 
     while spaces_required:
-        string_list[i] = string_list[i] + " "
+        new_space_list[i] += 1
         i += 1
         spaces_required -= 1
 
-        if i == len(string_list):
+        if i == length_list - 1:
             i = 0
+
+    for i in range(length_list):
+        string_list[i] = string_list[i] + " " * new_space_list[i]
 
     return " ".join(string_list)
 
