@@ -18,7 +18,7 @@ def right_child_index(index: int) -> int:
     return 2 * (index + 1)
 
 
-class kthSmallestMinHeap:
+class KthSmallestMinHeap:
     """
     A min heap can be built to get the value fast.
     O(n) to build the heap and log(n) per element to extract the element.
@@ -76,7 +76,7 @@ class kthSmallestMinHeap:
         return self.arr[0]
 
 
-class kthSmallestMaxHeap:
+class KthSmallestMaxHeap:
     """
     We can build a max heap of first k elements.
     Afterwards we can compare the topmost element with incoming elements.
@@ -130,12 +130,12 @@ class kthSmallestMaxHeap:
 
 if __name__ == "__main__":
     arr: list = [7, 10, 4, 3, 20, 15]
-    kth_min = kthSmallestMinHeap(arr)
+    kth_min = KthSmallestMinHeap(arr)
     assert kth_min.get_kth_smallest_element(3) == 7
-    kth_min = kthSmallestMinHeap(arr)
+    kth_min = KthSmallestMinHeap(arr)
     assert kth_min.get_kth_smallest_element(4) == 10
 
-    kth_max = kthSmallestMaxHeap(arr)
+    kth_max = KthSmallestMaxHeap(arr)
     assert kth_max.kth_element_max_heap(3) == 7
-    kth_max = kthSmallestMaxHeap(arr)
+    kth_max = KthSmallestMaxHeap(arr)
     assert kth_max.kth_element_max_heap(4) == 10
