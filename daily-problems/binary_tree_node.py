@@ -12,3 +12,10 @@ class Node:
         self.data = data
         self.left: Optional[Node] = None
         self.right: Optional[Node] = None
+
+
+def inorder_traversal(root: Optional[Node]) -> None:
+    if root:
+        inorder_traversal(root.left)
+        print(root.data)
+        inorder_traversal(root.right)
