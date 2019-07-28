@@ -7,7 +7,6 @@ example: a file, an array of integers, input stream etc.
 """
 import sys
 from typing import Union
-from collections import deque
 
 from kth_smallest_element import (
     left_child_index,
@@ -42,9 +41,9 @@ class RunningMedian:
     """
 
     def __init__(self):
-        self.max_heap: deque = deque()
+        self.max_heap: list = []]
         self.max_heap_size: int = 0
-        self.min_heap: deque = deque()
+        self.min_heap: list = []
         self.min_heap_size: int = 0
         self.current_median: Union[float, int] = 0
 
