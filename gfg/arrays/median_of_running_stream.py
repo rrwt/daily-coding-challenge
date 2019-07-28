@@ -7,12 +7,9 @@ example: a file, an array of integers, input stream etc.
 """
 import sys
 from typing import Union
+from heapq import heappushpop, heappush
 
-from kth_smallest_element import (
-    left_child_index,
-    right_child_index,
-    parent_index,
-)  # type: ignore
+from kth_smallest_element import left_child_index, parent_index  # type: ignore
 
 
 class RunningMedian:
@@ -51,14 +48,14 @@ class RunningMedian:
         """
         Time Complexity: O(log(n))
         """
-        while index < self.max_heap_size:
-            left, right = left_child_index(index), right_child_index(index)
+        left = left_child_index(index)
+        element: int = self.min_heap[index]
+
+        while left < self.max_heap_size:
+            right = left + 1
             min_index = index
 
-            if (
-                left < self.min_heap_size
-                and self.min_heap[left] < self.min_heap[min_index]
-            ):
+            if self.min_heap[left] < self.min_heap[min_index]:
                 min_index = left
             if (
                 right < self.min_heap_size
@@ -72,8 +69,11 @@ class RunningMedian:
                     self.min_heap[index],
                 )
                 index = min_index
+                left = left_child_index(index)
             else:
                 break
+
+        self.min_heap[index] = element
 
     def min_heapify_bottom_up(self, index: int = -1) -> None:
         """
@@ -82,17 +82,18 @@ class RunningMedian:
         if index == -1:
             index = self.min_heap_size - 1
 
+        element: int = self.min_heap[index]
+
         while index > 0:
             parent = parent_index(index)
 
             if 0 <= parent < index and self.min_heap[parent] > self.min_heap[index]:
-                self.min_heap[parent], self.min_heap[index] = (
-                    self.min_heap[index],
-                    self.min_heap[parent],
-                )
+                self.min_heap[index] = self.min_heap[parent]
                 index = parent
             else:
                 break
+
+        self.min_heap[index] = element
 
     def _add_to_min_heap(self, element: int):
         self.min_heap_size += 1
@@ -103,14 +104,14 @@ class RunningMedian:
         """
         Time Complexity: O(log(n))
         """
-        while index < self.max_heap_size:
-            left, right = left_child_index(index), right_child_index(index)
+        left = left_child_index(index)
+        element: int = self.max_heap[index]
+
+        while left < self.max_heap_size:
+            right = left + 1
             max_index = index
 
-            if (
-                left < self.max_heap_size
-                and self.max_heap[left] > self.max_heap[max_index]
-            ):
+            if self.max_heap[left] > self.max_heap[max_index]:
                 max_index = left
             if (
                 right < self.max_heap_size
@@ -119,13 +120,13 @@ class RunningMedian:
                 max_index = right
 
             if index != max_index:
-                self.max_heap[index], self.max_heap[max_index] = (
-                    self.max_heap[max_index],
-                    self.max_heap[index],
-                )
+                self.max_heap[index] = self.max_heap[max_index]
                 index = max_index
+                left = left_child_index(index)
             else:
                 break
+
+        self.max_heap[index] = element
 
     def max_heapify_bottom_up(self, index: int = -1) -> None:
         """
@@ -134,17 +135,18 @@ class RunningMedian:
         if index == -1:
             index = self.max_heap_size - 1
 
+        element: int = self.max_heap[index]
+
         while index > 0:
             parent = parent_index(index)
 
             if 0 <= parent < index and self.max_heap[parent] < self.max_heap[index]:
-                self.max_heap[parent], self.max_heap[index] = (
-                    self.max_heap[index],
-                    self.max_heap[parent],
-                )
+                self.max_heap[index] = self.max_heap[parent]
                 index = parent
             else:
                 break
+
+        self.max_heap[index] = element
 
     def _add_to_max_heap(self, element: int):
         self.max_heap_size += 1
@@ -189,24 +191,43 @@ class RunningMedian:
         return self.current_median
 
 
+class RunningMedianUsingInbuiltHeapq:
+    def __init__(self):
+        self.min_heap, self.max_heap = [], []
+
+    def add_num(self, num: int) -> None:
+        """
+        The negative signs are to represent a max heap using min heap
+        """
+        if len(self.min_heap) == len(self.max_heap):
+            heappush(self.max_heap, -heappushpop(self.min_heap, -num))
+        else:
+            heappush(self.min_heap, -heappushpop(self.max_heap, num))
+
+    def find_median(self) -> float:
+        if len(self.max_heap) > len(self.min_heap):
+            return float(self.max_heap[0])
+        return (self.max_heap[0] - self.min_heap[0]) / 2.0
+
+
 if __name__ == "__main__":
-    arr: list = [5, 15, 10, 20, 3]
-    print(arr)
-    run_med = RunningMedian()
+    arr1: list = [5, 15, 10, 20, 3]
+    arr2: list = [2, 1, 5, 7, 2, 0, 5]
+    arr3: list = list(range(1, 11))
 
-    for element in arr:
-        print(run_med.get_median(element))
+    for arr in [arr1, arr2, arr3]:
+        print("current array:", arr)
+        run_med = RunningMedian()
 
-    arr: list = [2, 1, 5, 7, 2, 0, 5]
-    print(arr)
-    run_med = RunningMedian()
+        for element in arr:
+            print(run_med.get_median(element))
 
-    for element in arr:
-        print(run_med.get_median(element))
+    print("method 2")
 
-    arr: list = list(range(1, 11))
-    print(arr)
-    run_med = RunningMedian()
+    for arr in [arr1, arr2, arr3]:
+        print("current array:", arr)
+        run_med = RunningMedianUsingInbuiltHeapq()
 
-    for element in arr:
-        print(run_med.get_median(element))
+        for element in arr:
+            run_med.add_num(element)
+            print(run_med.find_median())
