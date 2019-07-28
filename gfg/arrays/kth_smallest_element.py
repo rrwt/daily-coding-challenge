@@ -7,15 +7,15 @@ from copy import deepcopy
 
 
 def parent_index(index: int) -> int:
-    return int((index - 1) / 2)
+    return (index - 1) >> 1
 
 
 def left_child_index(index: int) -> int:
-    return 2 * index + 1
+    return (index << 1) + 1
 
 
 def right_child_index(index: int) -> int:
-    return 2 * (index + 1)
+    return (index + 1) << 1
 
 
 class KthSmallestMinHeap:
