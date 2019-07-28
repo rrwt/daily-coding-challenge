@@ -87,7 +87,7 @@ class RunningMedian:
         while index > 0:
             parent = parent_index(index)
 
-            if 0 <= parent < index and self.min_heap[parent] > self.min_heap[index]:
+            if self.min_heap[parent] > element:
                 self.min_heap[index] = self.min_heap[parent]
                 index = parent
             else:
@@ -140,7 +140,7 @@ class RunningMedian:
         while index > 0:
             parent = parent_index(index)
 
-            if 0 <= parent < index and self.max_heap[parent] < self.max_heap[index]:
+            if self.max_heap[parent] < element:
                 self.max_heap[index] = self.max_heap[parent]
                 index = parent
             else:
@@ -164,30 +164,29 @@ class RunningMedian:
         else:
             self.current_median = self.max_heap[0]
 
-    def get_median(self, new_element: int = None) -> Union[float, int]:
-        if new_element is not None:
-            if self.max_heap_size > self.min_heap_size:
-                if new_element > self.current_median:
-                    self._add_to_min_heap(new_element)
-                else:
-                    self._add_to_min_heap(self.max_heap[0])
-                    self.max_heap[0] = new_element
-                    self.max_heapify_top_down()
-
-            elif self.max_heap_size == self.min_heap_size:
-                if new_element > self.current_median:
-                    self._add_to_min_heap(new_element)
-                else:
-                    self._add_to_max_heap(new_element)
+    def get_median(self, new_element: int) -> Union[float, int]:
+        if self.max_heap_size > self.min_heap_size:
+            if new_element > self.current_median:
+                self._add_to_min_heap(new_element)
             else:
-                if new_element > self.current_median:
-                    self._add_to_max_heap(self.min_heap[0])
-                    self.min_heap[0] = new_element
-                    self.min_heapify_top_down()
-                else:
-                    self._add_to_max_heap(new_element)
+                self._add_to_min_heap(self.max_heap[0])
+                self.max_heap[0] = new_element
+                self.max_heapify_top_down()
 
-            self._set_median()
+        elif self.max_heap_size == self.min_heap_size:
+            if new_element > self.current_median:
+                self._add_to_min_heap(new_element)
+            else:
+                self._add_to_max_heap(new_element)
+        else:
+            if new_element > self.current_median:
+                self._add_to_max_heap(self.min_heap[0])
+                self.min_heap[0] = new_element
+                self.min_heapify_top_down()
+            else:
+                self._add_to_max_heap(new_element)
+
+        self._set_median()
         return self.current_median
 
 
@@ -211,11 +210,15 @@ class RunningMedianUsingInbuiltHeapq:
 
 
 if __name__ == "__main__":
-    arr1: list = [5, 15, 10, 20, 3]
-    arr2: list = [2, 1, 5, 7, 2, 0, 5]
-    arr3: list = list(range(1, 11))
+    matrix: list = [
+        [5, 15, 10, 20, 3],
+        [2, 1, 5, 7, 2, 0, 5],
+        list(range(1, 11)),
+        list(range(-1, -6, -1)),
+        [6, 10, 2, 6, 5, 0, 6, 3, 1, 0, 0],
+    ]
 
-    for arr in [arr1, arr2, arr3]:
+    for arr in matrix:
         print("current array:", arr)
         run_med = RunningMedian()
 
@@ -224,7 +227,7 @@ if __name__ == "__main__":
 
     print("method 2")
 
-    for arr in [arr1, arr2, arr3]:
+    for arr in matrix:
         print("current array:", arr)
         run_med = RunningMedianUsingInbuiltHeapq()
 
