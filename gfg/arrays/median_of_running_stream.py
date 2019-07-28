@@ -41,7 +41,7 @@ class RunningMedian:
     """
 
     def __init__(self):
-        self.max_heap: list = []]
+        self.max_heap: list = []
         self.max_heap_size: int = 0
         self.min_heap: list = []
         self.min_heap_size: int = 0
