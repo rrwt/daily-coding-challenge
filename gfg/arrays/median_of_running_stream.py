@@ -6,6 +6,7 @@ The data stream can be any source of data,
 example: a file, an array of integers, input stream etc.
 """
 from typing import Union
+from collections import deque
 
 from kth_smallest_element import (
     parent_index,
@@ -40,9 +41,9 @@ class RunningMedian:
     """
 
     def __init__(self):
-        self.max_heap: list = []
+        self.max_heap: deque = deque()
         self.max_heap_size: int = 0
-        self.min_heap: list = []
+        self.min_heap: deque = deque()
         self.min_heap_size: int = 0
         self.current_median: Union[float, int] = 0
 
@@ -72,10 +73,15 @@ class RunningMedian:
                 break
 
     def _add_to_min_heap(self, element: int):
+        """
+        Time Complexity: O(n)
+        """
         self.min_heap_size += 1
         self.min_heap.append(element)
         self.min_heap[0], self.min_heap[-1] = self.min_heap[-1], self.min_heap[0]
-        self.min_heapify()
+
+        for i in range(self.min_heap_size - 1, -1, -1):
+            self.min_heapify(i)
 
     def max_heapify(self, index: int = 0) -> None:
         while index < self.max_heap_size:
@@ -103,10 +109,15 @@ class RunningMedian:
                 break
 
     def _add_to_max_heap(self, element: int):
+        """
+        Time Complexity: O(n)
+        """
         self.max_heap_size += 1
         self.max_heap.append(element)
         self.max_heap[0], self.max_heap[-1] = self.max_heap[-1], self.max_heap[0]
-        self.max_heapify()
+
+        for i in range(self.max_heap_size - 1, -1, -1):
+            self.max_heapify(i)
 
     def _set_median(self):
         if self.max_heap_size == self.min_heap_size:
@@ -122,9 +133,9 @@ class RunningMedian:
                 if new_element > self.current_median:
                     self._add_to_min_heap(new_element)
                 else:
-                    self._add_to_min_heap(self.max_heap[0])
-                    self.max_heap[0] = new_element
-                    self.max_heapify()
+                    self._add_to_min_heap(self.max_heap.popleft())
+                    self.max_heap_size -= 1
+                    self._add_to_max_heap(new_element)
 
             elif self.max_heap_size == self.min_heap_size:
                 if new_element > self.current_median:
@@ -133,9 +144,9 @@ class RunningMedian:
                     self._add_to_max_heap(new_element)
             else:
                 if new_element > self.current_median:
-                    self._add_to_max_heap(self.min_heap[0])
-                    self.min_heap[0] = new_element
-                    self.min_heapify()
+                    self._add_to_max_heap(self.min_heap.popleft())
+                    self.min_heap_size -= 1
+                    self._add_to_min_heap(new_element)
                 else:
                     self._add_to_max_heap(new_element)
 
@@ -151,3 +162,9 @@ if __name__ == "__main__":
     for element in arr:
         print(run_med.get_median(element))
 
+    arr: list = [2, 1, 5, 7, 2, 0, 5]
+    print(arr)
+    run_med = RunningMedian()
+
+    for element in arr:
+        print(run_med.get_median(element))
