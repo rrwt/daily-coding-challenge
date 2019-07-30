@@ -9,6 +9,7 @@ def smallest_missing(arr: list) -> int:
     A modified version of binary search can be applied.
     If the number mid index == value, then the missing value
     is on the right, else on the left side.
+    Time Complexity: O(log(n))
     """
     beg, end = 0, len(arr) - 1
 
