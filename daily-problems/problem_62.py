@@ -46,6 +46,34 @@ def count_ways_dp(n: int, m: int) -> int:
     return count_arr[n][m]
 
 
+def count_ways_print_all_paths(n: int, m: int) -> int:
+    def print_paths(x: int, y: int, ways: list) -> int:
+        if x == 0 or y == 0:
+            print(ways)
+            return 0
+        elif x == 1 or y == 1:
+            if y > 1:
+                z = y
+                while z > 1:
+                    ways = [(x, z - 1)] + ways
+                    z -= 1
+            elif x > 1:
+                z = x
+                while z > 1:
+                    ways = [(z - 1, y)] + ways
+                    z -= 1
+
+            print(*ways, (n, m), sep=", ")
+            return 1
+        else:
+            return print_paths(x - 1, y, [(x - 1, y)] + ways) + print_paths(
+                x, y - 1, [(x, y - 1)] + ways
+            )
+
+    print("printing paths for", n, "X", m, "matrix")
+    return print_paths(n, m, [])
+
+
 def count_ways_combinatorics(n: int, m: int) -> int:
     """
     (m-1 + n-1)!/(m-1)!(n-1)!
@@ -65,5 +93,6 @@ if __name__ == "__main__":
 
     for (n, m), res in zip(n_m_arr, res_arr):
         assert count_ways_recursive(n, m) == res
+        assert count_ways_print_all_paths(n, m) == res
         assert count_ways_dp(n, m) == res
         assert count_ways_combinatorics(n, m) == res
