@@ -21,7 +21,7 @@ def subarray(a: list, b: list) -> int:
         if diff == 0:
             length = i + 1
         elif diff in hash_table:
-            length = max(length, i + 1 - hash_table[diff])
+            length = max(length, i - hash_table[diff])
         else:
             hash_table[diff] = i
 
