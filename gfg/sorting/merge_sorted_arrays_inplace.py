@@ -5,7 +5,7 @@ first array of size m+n such that the output is sorted.
 """
 
 
-def move_to_end(arr: list, m: int) -> list:
+def move_to_end(arr: list, m: int) -> None:
     """
     Move all elements to end
     """
