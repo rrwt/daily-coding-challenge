@@ -6,6 +6,9 @@ from typing import Tuple
 
 
 def unsorted_array(arr: list) -> Tuple[list, int, Tuple[int, int]]:
+    """
+    Time Complexity: O(n)
+    """
     start, end = 0, len(arr) - 1
 
     while start < end and arr[start] < arr[start + 1]:
@@ -15,6 +18,8 @@ def unsorted_array(arr: list) -> Tuple[list, int, Tuple[int, int]]:
         end -= 1
 
     for el in arr[start : end + 1]:
+        # another way of implementing this part would be to find the min and
+        # max of the subarray and keep on decrementing start/incrementing end
         while el < arr[start]:
             start -= 1
         while el > arr[end]:
