@@ -11,8 +11,7 @@ def search(arr: list, elem: int) -> int:
     while i < l:
         if arr[i] == elem:
             return i
-        else:
-            i += abs(arr[i] - elem)
+        i += abs(arr[i] - elem)
 
     return -1
 

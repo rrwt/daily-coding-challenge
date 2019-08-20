@@ -11,9 +11,8 @@ def search(arr: list, elem: int, max_diff: int) -> int:
     while i < l:
         if arr[i] == elem:
             return i
-        else:
-            j = abs((elem - arr[i]) // max_diff)
-            i += j or 1
+
+        i += max(1, abs((elem - arr[i]) // max_diff))
 
     return -1
 
