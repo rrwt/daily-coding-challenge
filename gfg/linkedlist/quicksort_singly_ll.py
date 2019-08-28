@@ -10,7 +10,7 @@ class Node:
         self.next: Optional[Node] = None
 
 
-def partition(head: Node, tail: Node) -> Tuple[Node, Node]:
+def partition(head: Node, tail: Node) -> Tuple[Node, Optional[Node]]:
     prev, runner = None, head
 
     while runner != tail:
@@ -21,25 +21,32 @@ def partition(head: Node, tail: Node) -> Tuple[Node, Node]:
                 prev = head
             prev.data, runner.data = runner.data, prev.data
 
-        runner = runner.next
+        if runner.next:
+            runner = runner.next
+        else:
+            break
 
     if not prev:
-        prev = head
         head.data, tail.data = tail.data, head.data
-    else:
+        return head, head
+
+    if prev.next:
         tail.data, prev.next.data = prev.next.data, tail.data
+
     return prev, prev.next
 
 
-def quicksort(head: Optional[Node], tail: Optional[Node]) -> Optional[Node]:
-    if head is not None and tail != head and head.next != tail:
-        pivot, prev = partition(head, tail)
+def quicksort(head: Optional[Node], tail: Optional[Node]) -> None:
+    if head is not None and tail is not None and tail != head:
+        prev, pivot = partition(head, tail)
         quicksort(head, prev)
-        quicksort(pivot.next, tail)
+
+        if pivot:
+            quicksort(pivot.next, tail)
 
 
 if __name__ == "__main__":
-    head = Node(3)
+    head: Node = Node(3)
     tail = head
     tail.next = Node(2)
     tail = tail.next
@@ -55,4 +62,8 @@ if __name__ == "__main__":
     print("sorted data")
     while head:
         print(head.data)
-        head = head.next
+
+        if head.next:
+            head = head.next
+        else:
+            break
