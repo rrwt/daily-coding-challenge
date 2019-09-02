@@ -12,31 +12,23 @@ def next_greater_freq_element(elements: list) -> list:
     using a dictionary to count frequency.
     using a stack to keep track of next greater
     """
-    result: list = [None] * len(elements)
+    result: list = [-1] * len(elements)
     freq: dict = defaultdict(int)
     stack: list = []
-    top = -1
 
-    for element in elements:  # get freq per element
+    for element in elements:
         freq[element] += 1
 
-    stack.append(0)
-    top += 1
+    for i, element in enumerate(elements):
+        while stack and freq[elements[stack[-1]]] < freq[element]:
+            result[stack[-1]] = element
+            stack.pop()
 
-    for i, element in enumerate(elements[1:]):
-        if freq[elements[stack[top]]] < freq[element]:
-            while freq[elements[stack[top]]] < freq[element]:
-                result[stack.pop()] = element
-                top -= 1
-
-        stack.append(i + 1)
-        top += 1
-
-    while stack:
-        result[stack.pop()] = -1
+        stack.append(i)
 
     return result
 
 
 if __name__ == "__main__":
     print(next_greater_freq_element([1, 1, 2, 3, 4, 2, 1]))
+    print(next_greater_freq_element([1, 1, 1, 2, 2, 2, 2, 11, 3, 3]))
