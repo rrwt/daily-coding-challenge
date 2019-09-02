@@ -1,7 +1,28 @@
 """
 Solve tower of hanoi iteratively
+
+Fact: Number oof moves: 2^n - 1
 """
 import math
+
+
+def toh_recursive(n: int, source: list, destination: list, aux: list) -> None:
+    """
+    1) Only one disk can be moved at a time.
+    2) Each move consists of taking the upper disk from one of the stacks
+        and placing it on top of another stack i.e. a disk can only be moved
+        if it is the uppermost disk on a stack.
+    3) No disk may be placed on top of a smaller disk.
+    """
+    if n == 1:
+        print(f"Move disk 1 from {source} to {destination}")
+    else:
+        # move the stack of n-1 disks from source to aux using dest as aux
+        toh_recursive(n - 1, source, aux, destination)
+        # move nth disk to it's destination
+        print(f"move disk {n} from {source} to {destination}")
+        # move the stack of n-1 disks from aux to destination using source as aux
+        toh_recursive(n - 1, aux, destination, source)
 
 
 def toh(source: list) -> None:
@@ -45,3 +66,4 @@ if __name__ == "__main__":
     from random import randint
 
     toh(list(range(3))[::-1])
+    toh_recursive(3, "source", "destination", "auxilliary")
