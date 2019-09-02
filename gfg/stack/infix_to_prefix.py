@@ -32,7 +32,7 @@ def infix_to_prefix(infix: str) -> str:
     """
     new_infix: list = list(infix[::-1])
 
-    for i, c in enumerate(infix):
+    for i, c in enumerate(new_infix):
         if c == "(":
             new_infix[i] = ")"
         elif c == ")":
