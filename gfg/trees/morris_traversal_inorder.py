@@ -9,7 +9,7 @@ class Node:
 
 
 def morris_inorder(root: Node) -> None:
-    while root:
+    while root is not None:
         if root.left:
             left = root.left
 
