@@ -9,6 +9,11 @@ from tree_traversal import inorder  # type: ignore
 
 
 def create_tree(expression: str) -> Optional[Node]:
+    """
+    Time Complexity: O(n)
+    Space Complexity: O(n)  # stack
+    """
+
     def construct():
         nonlocal index, length
 
