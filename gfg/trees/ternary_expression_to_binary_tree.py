@@ -8,11 +8,6 @@ from binary_tree_node import Node  # type: ignore
 from tree_traversal import inorder  # type: ignore
 
 
-def get_left_ending(expression, start, end) -> int:
-    for index in range(start, end + 1):
-        pass
-
-
 def create_tree(expression: str) -> Optional[Node]:
     def construct():
         nonlocal index, length
