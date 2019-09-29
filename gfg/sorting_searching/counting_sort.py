@@ -5,6 +5,10 @@ It works by counting the number of objects having distinct key values (kind of h
 
 
 def counting_sort(arr: list) -> list:
+    """
+    Time Complexity: O(n+k), where k is the range of values
+    Space Complexity: O(k)
+    """
     first, last = min(arr), max(arr)
     count_arr: list = [0] * (last - first + 1)
 
