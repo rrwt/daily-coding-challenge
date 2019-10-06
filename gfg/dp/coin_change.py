@@ -40,7 +40,7 @@ def change_coin_tabulated(amount: int, denominations: Sequence[int]) -> int:
         for b in range(len_denoms):
             if denominations[b] <= a:
                 matrix[a][b + 1] = matrix[a - denominations[b]][b + 1]  # include
-            matrix[a][b + 1] += matrix[a][b]  # excludee
+            matrix[a][b + 1] += matrix[a][b]  # exclude
 
     return matrix[amount][len_denoms]
 
