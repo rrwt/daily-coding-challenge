@@ -6,6 +6,7 @@ from ds import GraphM  # type: ignore
 
 def topological_sort_using_dfs(graph: list, vertices: int) -> list:
     """
+    Graph must be a DAG. No need to verify for existing elements
     Time complexity: O(V+E)
     Space complexity: O(V)
     """
@@ -23,6 +24,7 @@ def topological_sort_using_dfs(graph: list, vertices: int) -> list:
 
     visited: set = set()
     stack: list = []
+
     for index in range(vertices):
         if index not in visited:
             dfs(index)
@@ -35,6 +37,14 @@ def topological_sort_kahn_algorithm(graph: list, vertices: int) -> list:
     time complexity: O(V+E)
 
     1. Get in-degree of every node
+    2. Pick all the vertices with in-degree as 0 and add them into a queue
+    3. Remove a vertex from the queue (Dequeue operation) and then.
+        Increment count of visited nodes by 1.
+        Decrease in-degree by 1 for all its neighboring nodes.
+        If in-degree of a neighboring nodes is reduced to zero, then add it to the queue.
+    4. Repeat Step 3 until the queue is empty.
+    5.  If count of visited nodes is not equal to the number of nodes in the graph then the
+        topological sort is not possible for the given graph.
     """
 
     def get_indegrees():
