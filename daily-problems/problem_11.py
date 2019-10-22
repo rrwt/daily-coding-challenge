@@ -6,6 +6,8 @@ return [deer, deal].
 Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
 """
 
+from typing import List
+
 words = [
     "ADOXOGRAPHY",
     "ADUMBRATE",
@@ -108,15 +110,75 @@ words = [
 
 # O(n) for search. Naive algorithm
 # TODO: Using Trie
-def complete_me(prefix: str, word_list: str):
+def complete_me(prefix: str, word_list: str) -> list:
     return [w for w in word_list if w.startswith(prefix)]
+
+
+class Node:
+    def __init__(self, char: str) -> None:
+        self.char = char
+        self.is_complete: bool = False
+        self.children: List[Node] = []
+        self.words: set = set()
+
+
+class Trie:
+    def __init__(self) -> None:
+        self.root = Node("")
+
+    def insert(self, word: str) -> None:
+        runner = self.root
+        index = 0
+        l = len(word)
+
+        while index < l and runner.children:
+            for child in runner.children:
+                if word[index] == child.char:
+                    runner.words.add(word)
+                    runner = child
+                    break
+            else:
+                break
+            index += 1
+
+        for j in range(index, l):
+            node = Node(word[j])
+            runner.children.append(node)
+            runner.words.add(word)
+            j += 1
+            runner = node
+
+        runner.is_complete = True
+
+    def delete(word: str) -> None:
+        pass
+
+
+def complete_me_trie(prefix: str, trie: Trie) -> list:
+    runner = trie.root
+    l = len(prefix)
+    index = 0
+
+    while index < l and runner.children:
+        for child in runner.children:
+            if child.char == prefix[index]:
+                runner = child
+                break
+        else:
+            return None
+        index += 1
+
+    return sorted(list(runner.words))
 
 
 if __name__ == "__main__":
     assert complete_me("AD", words) == ["ADOXOGRAPHY", "ADUMBRATE"]
-    assert complete_me("BE", words) == [
-        "BE EXTRAORDINARY",
-        "BE HAPPY",
-        "BEATHA",
-        "BEATIFY",
-    ]
+    assert complete_me("BE", words) == ["BE EXTRAORDINARY", "BE HAPPY", "BEATHA", "BEATIFY"]
+
+    trie = Trie()
+
+    for word in words:
+        trie.insert(word)
+
+    assert complete_me_trie("AD", trie) == ["ADOXOGRAPHY", "ADUMBRATE"]
+    assert complete_me_trie("BE", trie) == ["BE EXTRAORDINARY", "BE HAPPY", "BEATHA", "BEATIFY"]
