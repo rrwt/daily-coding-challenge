@@ -40,6 +40,9 @@ from typing import List, Tuple
 
 def longest_path(dir_str: str) -> str:
     """
+    To find the longest path to any dir/file. Can be easily modified to get the
+    longest path to just a file
+
     :param dir_str: Directory string containing the directory structure
     :return: longest directory path (number of characters) to any file
     """
