@@ -3,3 +3,4 @@ __pycache__
 *.pyc
 interview_cake
 practice.py
+!.python-version
