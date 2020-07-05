@@ -5,10 +5,10 @@ description = "Practice coding problems"
 authors = ["Rohit Rawat <rohitrawat@protonmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
-mypy = "^0.701.0"
-pytest = "^4.5"
-pylint = "^2.3"
+python = "^3.8"
+mypy = "^0.770"
+pytest = "^5.4.3"
+pylint = "^2.5.3"
 
 [tool.poetry.dev-dependencies]
 
