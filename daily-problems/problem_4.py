@@ -12,9 +12,9 @@ def first_missing_positive_integer_using_constant_space(arr):
     start, end = 0, length - 1
 
     while True:
-        while start < length and arr[start] >= 0:
+        while start < length and arr[start] > 0:
             start += 1
-        while end >= 0 and arr[end] < 0:
+        while end >= 0 and arr[end] <= 0:  # treat 0 as -ve value, ignore it.
             end -= 1
 
         if start >= end:
@@ -26,15 +26,15 @@ def first_missing_positive_integer_using_constant_space(arr):
     for index in range(start):
         value = abs(arr[index])
 
-        if value < start:
-            arr[value] = -abs(arr[value])
+        if value <= start:
+            arr[value - 1] = -(abs(arr[value - 1]))
 
     # part 3: find the missing value
-    for index in range(1, length):
+    for index in range(length):
         if arr[index] > 0:
-            return index
+            return index + 1
 
-    return length
+    return start + 1
 
 
 # using set in O(n) and constant extra space
@@ -59,3 +59,11 @@ def first_missing_positive_integer_using_extra_space(arr):
             return i
 
     return None
+
+
+if __name__ == "__main__":
+    assert first_missing_positive_integer_using_constant_space([1, 2, 3]) == 4
+    assert first_missing_positive_integer_using_constant_space([1, 2, 0]) == 3
+    assert first_missing_positive_integer_using_constant_space([1, -2, 3]) == 2
+    assert first_missing_positive_integer_using_constant_space([-1, -2, 3]) == 1
+    assert first_missing_positive_integer_using_constant_space([-1, -2, 0]) == 1
