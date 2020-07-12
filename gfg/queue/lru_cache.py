@@ -3,7 +3,7 @@ Implement an lru (Least recently used) cache.
 """
 from typing import Optional, Union
 
-from others.queue.queue import Deque, DNode  # type: ignore
+from .queue import Deque, DNode  # type: ignore
 
 
 class LRUCache:

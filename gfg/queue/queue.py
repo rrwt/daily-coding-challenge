@@ -38,7 +38,7 @@ class PNode:
 
 
 class Queue:
-    def __init__(self, size: Optional[int]):
+    def __init__(self, size: Optional[int] = 0):
         self.front: Optional[Node] = None
         self.rear: Optional[Node] = None
         self.size: int = size or int(math.pow(2, 64))
@@ -102,7 +102,7 @@ class PriorityQueue:
     Cannot be a subclass of queue: It violates liskoff substitution principle
     """
 
-    def __init__(self, size: Optional[int]):
+    def __init__(self, size: Optional[int] = 0):
         self.front: Optional[PNode] = None
         self.rear: Optional[PNode] = None
         self.size: int = size or int(math.pow(2, 64))
@@ -155,7 +155,7 @@ class Deque:
     Double ended queue with both previous and next pointers
     """
 
-    def __init__(self, size: Optional[int]):
+    def __init__(self, size: Optional[int] = 0):
         self.front: Optional[DNode] = None
         self.rear: Optional[DNode] = None
         self.size: int = size or int(math.pow(2, 64))

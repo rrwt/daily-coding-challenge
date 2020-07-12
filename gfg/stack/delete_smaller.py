@@ -5,7 +5,7 @@ e.g. input: [20, 10, 25, 30, 40], k = 2
 """
 from collections import deque
 
-from stack import Stack, Node  # type: ignore
+from .stack import Stack  # type: ignore
 
 
 def delete_smaller(elements: deque, k: int) -> deque:
