@@ -67,3 +67,31 @@ def count_mapping(str_arr: str):
                 result.add(f)
 
     return len(result)
+
+
+def get_cur_val(cur_val, next_val, dp, index) -> int:
+    plus_2 = dp[index + 2] or 1
+
+    if next_val == "0":
+        return plus_2
+    elif 10 < int(cur_val + next_val) < 27:
+        return dp[index + 1] + plus_2
+
+    return dp[index + 1]
+
+
+def count_mapping_dp(input_str: str) -> int:
+    length = len(input_str)
+    dp = [0] * (length + 1)
+    dp[-2] = int(input_str[-1] != "0")
+
+    for index in range(length - 2, -1, -1):
+        cur_val = input_str[index]
+        next_val = input_str[index + 1]
+
+        if (cur_val == "0" or int(cur_val) > 2) and next_val == "0":
+            return 0
+
+        dp[index] = get_cur_val(cur_val, next_val, dp, index)
+
+    return dp[0]

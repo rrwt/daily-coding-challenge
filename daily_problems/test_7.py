@@ -6,20 +6,24 @@ You can assume that the messages are decodable. For example, '001' is not allowe
 """
 import pytest
 
-from problems.problem_7 import count_mapping
+from daily_problems.problem_7 import count_mapping, count_mapping_dp
 
 
 class TestCountMapping:
     def test_zero_returns_zero(self):
         assert count_mapping("0") == 0
+        assert count_mapping_dp("0") == 0
 
     @pytest.mark.parametrize("input_str", ["1", "2", "3", "4", "5", "6", "7", "8", "9"])
     def test_single_digit_returns_one(self, input_str):
         assert count_mapping(input_str) == 1
+        assert count_mapping_dp(input_str) == 1
 
     def test_given_ten_twenty_returns_one(self):
         assert count_mapping("10") == 1
         assert count_mapping("20") == 1
+        assert count_mapping_dp("10") == 1
+        assert count_mapping_dp("20") == 1
 
     @pytest.mark.parametrize(
         "input_str",
@@ -44,6 +48,7 @@ class TestCountMapping:
     def test_given_valid_two_digit_between_11_and_26_should_return_two(self, input_str):
         """All but 10 & 20"""
         assert count_mapping(input_str) == 2
+        assert count_mapping_dp(input_str) == 2
 
     def test_given_valid_two_digit_greater_than_26(self):
         import random
@@ -53,17 +58,22 @@ class TestCountMapping:
 
             if num % 10 == 0:
                 assert count_mapping(str(num)) == 0
+                assert count_mapping_dp(str(num)) == 0
             else:
-                assert count_mapping(str(num)) == 1
+                assert count_mapping_dp(str(num)) == 1
 
     def test_given_100_should_return_0(self):
         assert count_mapping("100") == 0
+        assert count_mapping_dp("100") == 0
 
     def test_given_101_should_return_1(self):
         assert count_mapping("101") == 1
+        assert count_mapping_dp("101") == 1
 
     def test_111_should_return_3(self):
         assert count_mapping("111") == 3
+        assert count_mapping_dp("111") == 3
 
     def test_1111_should_return_5(self):
         assert count_mapping("1111") == 5
+        assert count_mapping_dp("1111") == 5
