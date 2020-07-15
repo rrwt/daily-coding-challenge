@@ -6,7 +6,7 @@ by cutting up the rod and selling the pieces
 from typing import List
 
 
-def cut_naive(length: int, prices: list) -> int:
+def cut_naive(length: int, prices: List[int]) -> int:
     if length <= 0:
         return 0
     if length == 1:
@@ -14,6 +14,8 @@ def cut_naive(length: int, prices: list) -> int:
 
     if length <= len(prices):
         max_amount = prices[length - 1]
+    else:
+        max_amount = 0
 
     for index in range(length):
         max_amount = max(max_amount, prices[index] + cut_naive(length - index - 1, prices))
@@ -21,19 +23,19 @@ def cut_naive(length: int, prices: list) -> int:
     return max_amount
 
 
-def cut_tabulated(prices: list) -> int:
-    length: int = len(prices)
-    values: List[int] = [0] * (length + 1)
+def cut_tabulated(prices: List[int]) -> int:
+    rod_length: int = len(prices)
+    values: List[int] = [0] * (rod_length + 1)
 
-    for l in range(1, length + 1):
+    for cur_length in range(1, rod_length + 1):
         max_val = 0
 
-        for c in range(l):
-            max_val = max(max_val, prices[c] + values[l - c - 1])
+        for c in range(cur_length):
+            max_val = max(max_val, prices[c] + values[cur_length - c - 1])
 
-        values[l] = max_val
+        values[cur_length] = max_val
 
-    return values[length]
+    return values[rod_length]
 
 
 if __name__ == "__main__":
