@@ -11,8 +11,6 @@ def edit_distance_naive(
     """
     Time Complexity: Exponential
     """
-    if index_f >= len_f and index_s >= len_s:
-        return 0
     if index_f >= len_f:
         return len_s - index_s
     if index_s >= len_s:
@@ -40,7 +38,7 @@ def edit_distance_dp(first: str, second: str) -> int:
                 matrix[f_ind][s_ind] = s_ind
                 continue
             if s_ind == 0:
-                matrix[f_ind][s_ind] == f_ind
+                matrix[f_ind][s_ind] = f_ind
                 continue
             if first[f_ind - 1] == second[s_ind - 1]:
                 matrix[f_ind][s_ind] = matrix[f_ind - 1][s_ind - 1]
