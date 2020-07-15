@@ -11,38 +11,38 @@ item, or don’t pick it (0-1 property).
 from typing import List
 
 
-def zero_one_knapsack_naive(W: int, weight: list, value: list, index: int) -> int:
+def zero_one_knapsack_naive(w: int, weights: list, values: list, index: int) -> int:
     """
     Either keep or leave the item
     """
-    if W == 0 or index < 0:
+    if w == 0 or index < 0:
         return 0
 
     max_value = 0
 
-    if W >= weight[index]:
-        max_value = value[index] + zero_one_knapsack_naive(
-            W - weight[index], weight, value, index - 1
+    if w >= weights[index]:
+        max_value = values[index] + zero_one_knapsack_naive(
+            w - weights[index], weights, values, index - 1
         )  # take
 
-    return max(max_value, zero_one_knapsack_naive(W, weight, value, index - 1))  # leave
+    return max(max_value, zero_one_knapsack_naive(w, weights, values, index - 1))  # leave
 
 
-def zero_one_knapsack_tabulated(W: int, weight: list, value: list) -> int:
-    length: int = len(weight)
-    matrix: List[List[int]] = [[0] * (W + 1) for _ in range(length + 1)]
+def zero_one_knapsack_tabulated(w: int, weights: list, values: list) -> int:
+    length: int = len(weights)
+    matrix: List[List[int]] = [[0] * (w + 1) for _ in range(length + 1)]
 
     for index in range(1, length + 1):
-        for cur_weight in range(1, W + 1):
-            if cur_weight >= weight[index - 1]:
+        for cur_weight in range(1, w + 1):
+            if cur_weight >= weights[index - 1]:
                 matrix[index][cur_weight] = max(
-                    value[index - 1] + matrix[index - 1][cur_weight - weight[index - 1]],
+                    values[index - 1] + matrix[index - 1][cur_weight - weights[index - 1]],
                     matrix[index - 1][cur_weight],
                 )
             else:
                 matrix[index][cur_weight] = matrix[index - 1][cur_weight]
 
-    return matrix[length][W]
+    return matrix[length][w]
 
 
 if __name__ == "__main__":
