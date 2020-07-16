@@ -1,7 +1,7 @@
 """
 Given a Prefix expression, convert it into a Infix expression and vice-versa
 """
-from infix_to_postfix import infix_to_postfix  # type: ignore
+from gfg.stack.infix_to_postfix import infix_to_postfix  # type: ignore
 
 
 def prefix_to_infix(prefix: str) -> str:
