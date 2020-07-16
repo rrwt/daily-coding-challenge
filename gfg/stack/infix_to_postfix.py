@@ -32,19 +32,15 @@ def infix_to_postfix(infix: str) -> str:
     for c in infix:
         if c.isalpha():
             result += c
+        elif c == ")":
+            while (op := stack.pop()) != "(":
+                result += op
+        elif c == "(":
+            stack.append(c)
         else:
-            if c == ")":
-                op: str = stack.pop()
-
-                while op != "(":
-                    result += op
-                    op = stack.pop()
-            elif c == "(":
-                stack.append(c)
-            else:
-                while stack and precedence(c) <= precedence(stack[-1]):
-                    result += stack.pop()
-                stack.append(c)
+            while stack and precedence(c) <= precedence(stack[-1]):
+                result += stack.pop()
+            stack.append(c)
 
     while stack:
         result += stack.pop()
