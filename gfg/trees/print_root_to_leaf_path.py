@@ -4,17 +4,20 @@ root-to-leaf paths one per line
 """
 from typing import Optional
 
-from binary_tree_node import Node  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
 
 
-def root_to_leaf_path(root: Optional[Node], stack: list = []) -> None:
-    if root is not None:
-        if root.left is None and root.right is None:
-            print(stack + [root.data], sep="->")
-            return
+def print_root_to_leaf(node: Optional[Node] = None, stack: Optional[list] = None) -> None:
+    if not node:
+        return None
+    if not stack:
+        stack = []
 
-        root_to_leaf_path(root.left, stack + [root.data])
-        root_to_leaf_path(root.right, stack + [root.data])
+    if node.left is None and node.right is None:
+        print(*(stack + [node.data]), sep="->")
+    else:
+        print_root_to_leaf(node.left, stack + [node.data])
+        print_root_to_leaf(node.right, stack + [node.data])
 
 
 if __name__ == "__main__":
@@ -23,4 +26,4 @@ if __name__ == "__main__":
     root.right = Node(3)
     root.left.left = Node(4)
     root.left.right = Node(5)
-    root_to_leaf_path(root)
+    print_root_to_leaf(root)
