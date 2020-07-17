@@ -3,23 +3,23 @@ Get density of a binary tree in one traversal
 """
 from typing import Optional
 
-from binary_tree_node import Node  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
 
 
-def density(root: Node) -> float:
-    def inorder(root: Optional[Node], height: int = 1):
+def density(root_node: Node) -> float:
+    def in_order(node: Optional[Node], height: int = 1):
         nonlocal nodes
         nonlocal max_height
-        if root:
-            inorder(root.left, height + 1)
+        if node:
+            in_order(node.left, height + 1)
             max_height = max(height, max_height)
             nodes += 1
-            inorder(root.right, height + 1)
+            in_order(node.right, height + 1)
 
     nodes: int = 0
     max_height: int = 0
 
-    inorder(root)
+    in_order(root_node)
     print("nodes:", nodes, "; max_height:", max_height)
 
     return nodes / max_height if max_height else 0
