@@ -5,42 +5,45 @@ Mother vertex: A vertex v such that all other vertices in G can be reached by a 
 import math
 from typing import Optional
 
-from ds import GraphM  # type: ignore
+from gfg.graphs.ds import GraphM  # type: ignore
 
 
-def mother_vertex(g: GraphM) -> Optional[int]:
+def dfs(graph: list, vertex: int, visited: set) -> set:
+    if vertex not in visited:
+        visited.add(vertex)
+
+        for neighbor, connected in enumerate(graph[vertex]):
+            if neighbor not in visited and connected < math.inf:
+                dfs(graph, neighbor, visited)
+
+    return visited
+
+
+def get_mother_vertex(graph: GraphM) -> Optional[int]:
     """
-    This solution works by elimination. If all the nodes can be visited by starting from a node i,
-    then it means i is the mother vertex, if not, then neither i nor any of it's children can be
-    a mother vertex.
+    This solution works by elimination. If all the nodes can be visited
+    by starting from a node i, then it means i is the mother vertex,
+    if not, then neither i nor any of it's children can be a mother vertex.
     Using Kosaraju's Strongly connected component (SCC) algorithm
     time complexity: O(V+E)
     space complexity: O(V)
     """
 
-    def dfs(vertex: int):
-        nonlocal visited
-        visited.add(vertex)
+    visited = set()
+    graph_list = graph.graph
+    mother = None
 
-        for neighbor, _ in enumerate(g.graph[vertex]):
-            if neighbor not in visited and _ < math.inf:
-                dfs(neighbor)
-
-    visited: set = set()
-    v: int = 0
-
-    for i in range(g.num_vertices):
-        if i not in visited:
-            dfs(i)
-            v = i
+    for vertex in range(graph.num_vertices):
+        if vertex not in visited:
+            visited = dfs(graph_list, vertex, visited)
+            mother = vertex
 
     visited = set()
-    dfs(v)
+    dfs(graph_list, mother, visited)  # check if all others can reach from here
 
-    if any(i not in visited for i in range(g.num_vertices)):
+    if any(vertex not in visited for vertex in range(graph.num_vertices)):
         return None
-
-    return v
+    return mother
 
 
 if __name__ == "__main__":
@@ -53,4 +56,4 @@ if __name__ == "__main__":
     g.add_edge(5, 6)
     g.add_edge(5, 2)
     g.add_edge(6, 0)
-    print("A mother vertex is", mother_vertex(g))
+    print("A mother vertex is", get_mother_vertex(g))

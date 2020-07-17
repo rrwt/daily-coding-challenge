@@ -4,7 +4,7 @@ Traverse a graph in a breadth first manner
 import math
 from collections import deque
 
-from ds import GraphM  # type: ignore
+from gfg.graphs.ds import GraphM  # type: ignore
 
 
 def breadth_first_travel(g: list, first_node: int):
