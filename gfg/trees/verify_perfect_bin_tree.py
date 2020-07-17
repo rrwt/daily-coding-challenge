@@ -7,7 +7,7 @@ A perfect binary tree is full and complete
 """
 from typing import Optional
 
-from binary_tree_node import Node  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
 
 
 def is_perfect(root: Optional[Node]) -> bool:

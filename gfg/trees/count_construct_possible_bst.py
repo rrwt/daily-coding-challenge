@@ -3,8 +3,8 @@ Construct and count all possible bst for keys 1 to N
 """
 from typing import Optional, Sequence
 
-from binary_tree_node import Node  # type: ignore
-from tree_traversal import preorder  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
+from gfg.trees.tree_traversal import preorder  # type: ignore
 
 
 def fact(n: int) -> int:
@@ -15,7 +15,7 @@ def fact(n: int) -> int:
 
 
 def count_bst(n: int) -> int:
-    return (fact(2 * n) / fact(n)) / fact(n + 1)
+    return int((fact(2 * n) / fact(n)) / fact(n + 1))
 
 
 def construct_bst(min_value: int = 0, max_value: int = 0) -> Sequence[Optional[Node]]:
@@ -26,11 +26,10 @@ def construct_bst(min_value: int = 0, max_value: int = 0) -> Sequence[Optional[N
 
     for i in range(min_value, max_value + 1):
         left_subtrees = construct_bst(min_value, i - 1)
-        right_subtres = construct_bst(i + 1, max_value)
+        right_subtrees = construct_bst(i + 1, max_value)
 
-        for l in left_subtrees:
-            left = l
-            for r in right_subtres:
+        for left in left_subtrees:
+            for r in right_subtrees:
                 right = r
                 root = Node(i)
                 root.left = left

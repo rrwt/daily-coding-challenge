@@ -5,8 +5,8 @@ Children Sum Property. You can only increment data values in any node
 """
 from typing import Optional
 
-from binary_tree_node import Node  # type: ignore
-from tree_traversal import inorder  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
+from gfg.trees.tree_traversal import inorder  # type: ignore
 
 
 def increment_children_data(root: Node, diff: int) -> None:
@@ -18,21 +18,21 @@ def increment_children_data(root: Node, diff: int) -> None:
         increment_children_data(root.right, diff)
 
 
-def children_sum(root: Optional[Node]) -> int:
-    if root is None:
+def children_sum(node: Optional[Node]) -> int:
+    if node is None:
         return 0
 
-    if root.left is not None or root.right is not None:
-        left_sum = children_sum(root.left)
-        right_sum = children_sum(root.right)
-        diff = left_sum + right_sum - root.data
+    if node.left is not None or node.right is not None:
+        left_sum = children_sum(node.left)
+        right_sum = children_sum(node.right)
+        diff = left_sum + right_sum - node.data
 
         if diff > 0:
-            root.data += diff
+            node.data += diff
         elif diff < 0:
-            increment_children_data(root, -diff)
+            increment_children_data(node, -diff)
 
-    return root.data
+    return node.data
 
 
 if __name__ == "__main__":

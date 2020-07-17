@@ -8,7 +8,7 @@ binary tree nodes for creating DLL i.e. only change of pointers is allowed
 from collections import deque
 from typing import Optional
 
-from binary_tree_node import Node  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
 
 
 def convert_to_dll(root: Optional[Node]) -> Optional[Node]:

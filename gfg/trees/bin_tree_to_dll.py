@@ -7,7 +7,7 @@ The first node of Inorder traversal (left most node in BT) must be head node of 
 """
 from typing import Optional
 
-from binary_tree_node import Node  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
 
 
 def inorder_dll(tree: Optional[Node]) -> Optional[Node]:

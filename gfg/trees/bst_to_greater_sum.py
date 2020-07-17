@@ -4,29 +4,29 @@ each node contains sum of all nodes greater than that node.
 """
 from typing import Optional
 
-from binary_tree_node import Node  # type: ignore
-from tree_traversal import inorder  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
+from gfg.trees.tree_traversal import inorder  # type: ignore
 
 
-def greater_sum(root: Optional[Node]) -> None:
+def greater_sum(root_node: Optional[Node]) -> None:
     """
     Time Complexity: O(n)
     Using reverse inorder traversal
     """
 
-    def construct(root: Optional[Node]) -> None:
+    def construct(node: Optional[Node]) -> None:
         nonlocal node_sum
 
-        if root is not None:
-            construct(root.right)
+        if node is not None:
+            construct(node.right)
 
-            node_sum = node_sum + root.data
-            root.data = node_sum - root.data
+            node_sum = node_sum + node.data
+            node.data = node_sum - node.data
 
-            construct(root.left)
+            construct(node.left)
 
     node_sum: int = 0
-    construct(root)
+    construct(root_node)
 
 
 if __name__ == "__main__":

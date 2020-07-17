@@ -3,7 +3,7 @@ Insert, search and Delete in a BST
 """
 from typing import Optional, Tuple
 
-from tree_traversal import inorder  # type: ignore
+from gfg.trees.tree_traversal import inorder, Node  # type: ignore
 
 
 class BST:

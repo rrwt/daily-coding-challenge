@@ -7,8 +7,8 @@ Always start to construct the left child node of the parent first if it exists.
 """
 from typing import Optional
 
-from binary_tree_node import Node  # type: ignore
-from tree_traversal import inorder  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
+from gfg.trees.tree_traversal import inorder  # type: ignore
 
 
 def get_subtree_string(string, start: int, end: int) -> int:
@@ -37,7 +37,7 @@ def construct_bin_tree(string: str) -> Optional[Node]:
         root.left = construct_bin_tree(string[2:left_end_index])
 
         if left_end_index < length - 2:
-            root.right = construct_bin_tree(string[left_end_index + 2 : length - 1])
+            root.right = construct_bin_tree(string[left_end_index + 2: length - 1])
 
     return root
 

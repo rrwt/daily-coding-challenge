@@ -3,8 +3,8 @@ bst from preorder traversal
 """
 from typing import Optional
 
-from binary_tree_node import Node  # type: ignore
-from tree_traversal import inorder  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
+from gfg.trees.tree_traversal import inorder  # type: ignore
 
 
 def construct_bst(preorder: list) -> Optional[Node]:
@@ -12,7 +12,7 @@ def construct_bst(preorder: list) -> Optional[Node]:
     Time Complexity: O(n)
     Space Complexity: O(n)  # stack
 
-    Using static index variable alongwith min and max values
+    Using static index variable along with min and max values
     """
 
     def construct(min_val: int, max_val: int) -> Optional[Node]:
@@ -33,7 +33,7 @@ def construct_bst(preorder: list) -> Optional[Node]:
 
 
 if __name__ == "__main__":
-    preorder: list = [10, 5, 1, 7, 40, 50]
-    root = construct_bst(preorder)
+    preorder_list: list = [10, 5, 1, 7, 40, 50]
+    root = construct_bst(preorder_list)
     inorder(root)
     print()

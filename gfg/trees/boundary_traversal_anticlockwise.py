@@ -1,7 +1,7 @@
 """
 Traverse the boundaries of a binary tree in anticlockwise fashion
 """
-from binary_tree_node import Node  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
 
 
 def left_boundary(root: Node):
@@ -48,11 +48,11 @@ def boundary_traverse(root: Node):
 
 
 if __name__ == "__main__":
-    root = Node(1)
-    root.left = Node(2)
-    root.right = Node(3)
-    root.left.left = Node(4)
-    root.left.right = Node(5)
-    root.right.left = Node(6)
-    root.right.right = Node(7)
-    boundary_traverse(root)
+    root_node = Node(1)
+    root_node.left = Node(2)
+    root_node.right = Node(3)
+    root_node.left.left = Node(4)
+    root_node.left.right = Node(5)
+    root_node.right.left = Node(6)
+    root_node.right.right = Node(7)
+    boundary_traverse(root_node)

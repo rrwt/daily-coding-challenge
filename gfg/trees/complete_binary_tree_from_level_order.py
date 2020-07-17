@@ -3,8 +3,8 @@ Construct a complete binary tree from given array in level order fashion
 """
 from typing import Optional
 
-from binary_tree_node import Node  # type: ignore
-from depth_first_traversal_recursive import inorder  # type: ignore
+from gfg.trees.binary_tree_node import Node  # type: ignore
+from gfg.trees.depth_first_traversal_recursive import inorder  # type: ignore
 
 
 def complete_binary_tree(level_order: list) -> Optional[Node]:
