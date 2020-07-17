@@ -6,7 +6,7 @@ Balanced BST: A bst with max height difference between the left and the
 """
 from typing import Optional
 
-from bst_and_node import Node, inorder  # type: ignore
+from gfg.bst.bst_and_node import Node, inorder  # type: ignore
 
 
 def create_balanced_bst(ll: list) -> Node:

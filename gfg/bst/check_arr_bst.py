@@ -4,7 +4,7 @@ Check given array of size n can represent BST of n levels or not
 import math
 
 
-def is_bst(arr: list) -> bool:
+def is_bst(values: list) -> bool:
     """
     time complexity: O(n)
     space complexity: O(1)
@@ -14,10 +14,10 @@ def is_bst(arr: list) -> bool:
     min_ = -math.pow(2, 64)
     max_ = math.pow(2, 64)
 
-    for i, el in enumerate(arr[:-1]):
+    for i, el in enumerate(values[:-1]):
         if not min_ < el < max_:
             return False
-        elif arr[i + 1] < el:
+        elif values[i + 1] < el:
             max_ = el
         else:
             min_ = el
@@ -27,8 +27,6 @@ def is_bst(arr: list) -> bool:
 
 if __name__ == "__main__":
     arr = [500, 200, 90, 250, 100]
-    print(arr)
-    print(is_bst(arr))
+    print(arr, is_bst(arr))
     arr = [5123, 3300, 783, 1111, 890]
-    print(arr)
-    print(is_bst(arr))
+    print(arr, is_bst(arr))

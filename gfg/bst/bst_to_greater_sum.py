@@ -4,10 +4,10 @@ all nodes greater than that node.
 """
 from typing import Optional
 
-from bst_and_node import Node, inorder  # type: ignore
+from gfg.bst.bst_and_node import Node, inorder  # type: ignore
 
 
-def greater_sum_bst(root: Node) -> Node:
+def greater_sum_bst(root_node: Node) -> Node:
     """
     time complexity: O(n)
     space complexity: O(n)
@@ -26,7 +26,7 @@ def greater_sum_bst(root: Node) -> Node:
         return node
 
     total: int = 0
-    return construct(root)
+    return construct(root_node)
 
 
 if __name__ == "__main__":

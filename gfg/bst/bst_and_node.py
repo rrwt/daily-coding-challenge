@@ -71,7 +71,8 @@ class BST:
             return "Found" if root else "Not Found"
         return "Not Found"
 
-    def min_value_node(self, node) -> int:
+    @staticmethod
+    def min_value_node(node) -> int:
         if node:
             while node.left:
                 node = node.left

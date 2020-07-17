@@ -11,7 +11,7 @@ then the output should be root of following tree.
 """
 from typing import Optional
 
-from bst_and_node import Node, inorder  # type: ignore
+from gfg.bst.bst_and_node import Node, inorder  # type: ignore
 
 
 def find_greater(elements: list, data: int) -> int:

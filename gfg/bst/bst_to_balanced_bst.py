@@ -3,10 +3,10 @@ Given a bst, convert it to a balanced bst
 """
 from typing import Optional
 
-from bst_and_node import Node, inorder  # type: ignore
-from check_if_bst_is_balanced import is_balanced  # type: ignore
-from check_if_bin_tree_is_bst import is_bst  # type: ignore
-from sorted_arr_to_bst import sorted_arr_to_bst  # type: ignore
+from gfg.bst.bst_and_node import Node, inorder  # type: ignore
+from gfg.bst.check_if_bst_is_balanced import is_balanced  # type: ignore
+from gfg.bst.check_if_bin_tree_is_bst import is_bst  # type: ignore
+from gfg.bst.sorted_arr_to_bst import sorted_arr_to_bst  # type: ignore
 
 
 def bst_to_balanced_bst(root: Node) -> Node:

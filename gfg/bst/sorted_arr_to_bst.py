@@ -4,7 +4,7 @@ Balanced Binary Search Tree using array elements.
 """
 from typing import Optional
 
-from bst_and_node import Node, inorder  # type: ignore
+from gfg.bst.bst_and_node import Node, inorder  # type: ignore
 
 
 def sorted_arr_to_bst(arr: list) -> Node:

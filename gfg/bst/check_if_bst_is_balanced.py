@@ -4,7 +4,8 @@ given a bst, check if it is balanced
 from typing import Optional
 from functools import lru_cache
 
-from bst_and_node import Node  # type: ignore
+from gfg.bst.bst_and_node import Node  # type: ignore
+
 
 @lru_cache(128)
 def height(root: Optional[Node]) -> int:

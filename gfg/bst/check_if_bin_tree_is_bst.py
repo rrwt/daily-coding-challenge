@@ -6,7 +6,7 @@ A program to check if a binary tree is BST or not
 """
 from typing import Optional
 
-from bst_and_node import Node  # type: ignore
+from gfg.bst.bst_and_node import Node  # type: ignore
 
 
 def is_bst(root: Node) -> bool:
