@@ -1,15 +1,17 @@
 """
 Union-Find algorithm to detect cycles in an undirected graph
 
-Union: Join two subsets.  O(n)
-Find: Detect if two nodes have same parent node.  O(n)
+O(n) & O(n)
+Union: Join two subsets.
+Find: Detect if two nodes have same parent node.
 
-Union by rank: Attach tree with smaller depth as a subtree of one with larger. O(log(n))
-Find by path compression: At every find recursion, mark parent of all as parent of current. O(log(n))
+O(log(n)) & O(log(n))
+Union by rank: Attach tree with smaller depth as a subtree of one with larger.
+Find by path compression: At every find recursion, mark parent of all as parent of current.
 """
 from dataclasses import dataclass
 
-from ds import GraphM  # type: ignore
+from gfg.graphs.ds import GraphM  # type: ignore
 
 
 def union(v1: int, v2: int, subsets: list):
@@ -53,11 +55,12 @@ def is_cyclic(graph: list, vertices: int) -> bool:
                 if pu == pv:
                     return True
                 union(pu, pv, subsets)
+
     return False
 
 
 if __name__ == "__main__":
-    g = GraphM(3, "directed")
+    g = GraphM(3)
     g.add_edge(0, 1)
     g.add_edge(1, 2)
     g.add_edge(0, 2)
