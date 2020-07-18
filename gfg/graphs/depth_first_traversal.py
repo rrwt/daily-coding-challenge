@@ -1,17 +1,17 @@
 """
-Depth first search treaversal of an undirected graph
+Depth first search traversal of an undirected graph
 """
 import math
 
-from ds import GraphM  # type: ignore
+from gfg.graphs.ds import GraphM  # type: ignore
 
 
-def depth_first_traversal(g: list, first_node: int) -> None:
+def depth_first_traversal(graph: list, first_node: int) -> None:
     """
     Time complexity: O(V+E)
     Space complexity: O(V)
     """
-    if g:
+    if graph:
         stack: list = []
         visited: set = set()
         stack.append(first_node)
@@ -21,7 +21,7 @@ def depth_first_traversal(g: list, first_node: int) -> None:
             node = stack.pop()
             print(node, end=" ")
 
-            for element, connection in enumerate(g[node]):
+            for element, connection in enumerate(graph[node]):
                 if connection and element not in visited and connection < math.inf:
                     stack.append(element)
                     visited.add(element)
