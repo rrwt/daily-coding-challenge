@@ -1,5 +1,5 @@
 import heapq
-from typing import functools
+import functools
 
 
 """
@@ -13,7 +13,6 @@ def merge_sorted_lists(arrays):
 
     Args:
         arrays (list): A list of list
-        k (integer): Number of lists
 
     Returns:
         list: flattened and sorted list

@@ -14,24 +14,24 @@ For example, the following tree has 5 unival subtrees:
 """
 from typing import Tuple, Optional
 
-from binary_tree_node import Node  # type: ignore
+from daily_problems.binary_tree_node import Node  # type: ignore
 
 
-def count_unival(root: Optional[Node]) -> Tuple[int, bool]:
+def count_unival(root_node: Optional[Node] = None) -> Tuple[int, bool]:
     """
     time complexity: O(n)
     space complexity: O(n)  # stack
     """
-    if root is None:
+    if root_node is None:
         return 0, True
 
-    count_left, is_left_unival = count_unival(root.left)
-    count_right, is_right_unival = count_unival(root.right)
+    count_left, is_left_unival = count_unival(root_node.left)
+    count_right, is_right_unival = count_unival(root_node.right)
     total_count = count_left + count_right
 
     if is_left_unival and is_right_unival:
-        if (root.left and root.data != root.left.data) or (
-            root.righ and root.data != root.right.data
+        if (root_node.left and root_node.data != root_node.left.data) or (
+                root_node.right and root_node.data != root_node.right.data
         ):
             return total_count, False
         return total_count + 1, True
