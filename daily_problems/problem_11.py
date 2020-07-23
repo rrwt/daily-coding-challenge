@@ -6,7 +6,7 @@ return [deer, deal].
 Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.
 """
 
-from typing import List
+from typing import List, Optional
 
 words = [
     "ADOXOGRAPHY",
@@ -110,7 +110,7 @@ words = [
 
 # O(n) for search. Naive algorithm
 # TODO: Using Trie
-def complete_me(prefix: str, word_list: str) -> list:
+def complete_me(prefix: str, word_list: List[str]) -> list:
     return [w for w in word_list if w.startswith(prefix)]
 
 
@@ -150,11 +150,11 @@ class Trie:
 
         runner.is_complete = True
 
-    def delete(word: str) -> None:
+    def delete(self, word: str) -> None:
         pass
 
 
-def complete_me_trie(prefix: str, trie: Trie) -> list:
+def complete_me_trie(prefix: str, trie: Trie) -> Optional[list]:
     runner = trie.root
     l = len(prefix)
     index = 0
