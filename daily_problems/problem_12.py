@@ -32,17 +32,17 @@ def staircase_1_2(n: int) -> int:
     return b
 
 
-def staircase(n: int, x: list) -> int:
+def staircase(n: int, choices: set) -> int:
     """case 2
     Generalized situation. In this case the sum would be f(n) = f(n-x1) + f(n-x2) + ...
     time complexity: O(n*|x|)
     space complexity: O(n)
     """
-    cache = [0 for _ in range(n + 1)]
+    cache = [0] * (n + 1)
     cache[0] = 1
 
     for i in range(1, n + 1):
-        cache[i] = sum(cache[i - v] for v in x if v <= i)
+        cache[i] = sum(cache[i - v] for v in choices if v <= i)
 
     return cache[n]
 
