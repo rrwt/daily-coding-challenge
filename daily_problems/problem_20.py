@@ -23,24 +23,24 @@ def get_count(head):
     return count
 
 
-def intersecting_point(ll1: Node, ll2: Node) -> int:
+def intersecting_point(linked_list_1: Node, linked_list_2: Node) -> int:
     """
     Time complexity: O(m+n)
     """
-    head1, head2 = ll1, ll2
+    head1, head2 = linked_list_1, linked_list_2
     count_1 = get_count(head1)
     count_2 = get_count(head2)
 
     while count_1 > count_2:
-        ll1 = ll1.next
+        linked_list_1 = linked_list_1.next
     while count_2 > count_1:
-        ll2 = ll2.next
+        linked_list_2 = linked_list_2.next
 
-    while ll1 and ll2:
-        if ll1 == ll2:
-            return ll1.data
-        ll1 = ll1.next
-        ll2 = ll2.next
+    while linked_list_1 and linked_list_2:
+        if linked_list_1 == linked_list_2:
+            return linked_list_1.data
+        linked_list_1 = linked_list_1.next
+        linked_list_2 = linked_list_2.next
 
     return -1
 
