@@ -14,8 +14,8 @@ def color_houses_backtrack(house_colors: List[List[int]], n: int, k: int) -> int
     Using backtracking solution. 2^n
     """
 
-    def util_backtrack(house: int) -> int:
-        nonlocal n, k, color_dict, house_colors
+    def util_backtrack(house: int, previous_color: int) -> int:
+        nonlocal n, k, house_colors
 
         if house >= n:
             return 0
@@ -25,17 +25,15 @@ def color_houses_backtrack(house_colors: List[List[int]], n: int, k: int) -> int
         for color in range(k):
             cost = house_colors[house][color]
 
-            if house == 0 or color_dict[house - 1] != color:
-                color_dict[house] = color
-                cost += util_backtrack(house + 1)
+            if house == 0 or previous_color != color:
+                cost += util_backtrack(house + 1, color)
 
                 if cost < min_cost:
                     min_cost = cost
 
         return min_cost
 
-    color_dict = [None] * n
-    return util_backtrack(0)
+    return util_backtrack(0, -1)
 
 
 def color_houses_dp(house_colors: List[List[int]], n: int, k: int) -> int:
@@ -64,7 +62,6 @@ def color_houses_dp(house_colors: List[List[int]], n: int, k: int) -> int:
                 index1, index2 = i, index1
             elif colors[i] < min2:
                 min2 = colors[i]
-                index2 = i
 
         for color in range(k):
             if color != index1:
@@ -75,7 +72,36 @@ def color_houses_dp(house_colors: List[List[int]], n: int, k: int) -> int:
     return min(colors)
 
 
+def color_houses_dp_alt(house_colors: List[List[int]], n: int, k: int) -> int:
+    """
+    Let's say we want to paint house number h,
+    To get min cost so far, we need to make sure that
+        sum(previously painted houses + cur paint cost) is min.
+    """
+    def get_min(cur_color, previous_house):
+        # get min so far where we don't paint last house with cur_color
+        return_value = sys.maxsize
+
+        for index, color_cost in enumerate(cost[previous_house]):
+            if index != cur_color:
+                return_value = min(return_value, color_cost)
+
+        return return_value
+
+    cost = [[sys.maxsize] * k for _ in range(n)]
+
+    for color in range(k):
+        cost[0][color] = house_colors[0][color]
+
+    for house in range(1, n):
+        for color in range(k):
+            cost[house][color] = house_colors[house][color] + get_min(color, house-1)
+
+    return min(cost[-1])
+
+
 if __name__ == "__main__":
-    house_colors = [[1, 2, 3], [3, 2, 1], [2, 3, 1], [2, 1, 3]]
-    print(color_houses_backtrack(house_colors, 4, 3))
-    print(color_houses_dp(house_colors, 4, 3))
+    house_colors_cost = [[1, 2, 3], [3, 2, 1], [2, 3, 1], [2, 1, 3]]
+    print(color_houses_backtrack(house_colors_cost, 4, 3))
+    print(color_houses_dp(house_colors_cost, 4, 3))
+    print(color_houses_dp_alt(house_colors_cost, 4, 3))
