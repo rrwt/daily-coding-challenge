@@ -20,7 +20,7 @@ def max_subarray(arr: list, k: int) -> None:
     Remove elements
         1. from beginning i-k >= element's index
         2. from end (while inserting a new) if new element's value is greater
-    
+
     Time Complexity: O(n)
     Space Complexity: O(k)
     """

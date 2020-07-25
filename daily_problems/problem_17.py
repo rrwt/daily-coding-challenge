@@ -40,8 +40,8 @@ from typing import List, Tuple
 
 def longest_path(dir_str: str) -> str:
     """
-    To find the longest path to any dir/file. Can be easily modified to get the
-    longest path to just a file
+    To find the longest path to any dir/file.
+    Can be easily modified to get the longest path to just a file
 
     :param dir_str: Directory string containing the directory structure
     :return: longest directory path (number of characters) to any file
@@ -79,11 +79,11 @@ def longest_path(dir_str: str) -> str:
     if not dir_str:
         return ""
 
-    dirs = dir_str.split("\n")
+    all_dirs = dir_str.split("\n")
     index: int = 0
-    l: int = len(dirs)
+    l: int = len(all_dirs)
 
-    return util(dirs, "")[0]
+    return util(all_dirs, "")[0]
 
 
 if __name__ == "__main__":
@@ -91,10 +91,6 @@ if __name__ == "__main__":
     assert longest_path("dir") == "dir"
     assert longest_path("d\n\ts") == "d/s"
     assert longest_path("dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext") == "dir/subdir2/file.ext"
-    assert (
-        longest_path(
-            "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"
-        )
-        == "dir/subdir2/subsubdir2/file2.ext"
-    )
+    assert longest_path("dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2"
+                        "\n\t\t\tfile2.ext") == "dir/subdir2/subsubdir2/file2.ext"
 
