@@ -11,20 +11,20 @@ from collections import deque
 
 class OrderDeque:
     """Using deque
-    Time complexity: O(1) to append and O(n) to retrieve.
+    Time complexity: O(1) to append and O(1) to retrieve.
     """
 
     def __init__(self, n: int):
         self.log: deque = deque(maxlen=n)
+        self.len = 0
+        self.max_len = n
 
     def record(self, order_id: int):
         self.log.append(order_id)
+        self.len = min(self.len + 1, self.max_len)
 
     def get_last(self, i: int) -> int:
-        for index, element in enumerate(reversed(self.log)):
-            if index == i - 1:
-                return element
-        return -1
+        return self.log[i-1] if i < self.len else -1
 
 
 class OrderCircularBuffer:
