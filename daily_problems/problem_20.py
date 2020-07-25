@@ -33,8 +33,10 @@ def intersecting_point(linked_list_1: Node, linked_list_2: Node) -> int:
 
     while count_1 > count_2:
         linked_list_1 = linked_list_1.next
+        count_1 -= 1
     while count_2 > count_1:
         linked_list_2 = linked_list_2.next
+        count_2 -= 1
 
     while linked_list_1 and linked_list_2:
         if linked_list_1 == linked_list_2:
@@ -53,6 +55,7 @@ if __name__ == "__main__":
 
     ll2: Node = Node(99)
     ll2.next = Node(1)
-    ll2.next.next = ll1.next.next
+    ll2.next.next = Node(2)
+    ll2.next.next.next = ll1.next
 
     print("intersecting point:", intersecting_point(ll1, ll2))
