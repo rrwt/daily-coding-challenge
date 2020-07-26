@@ -45,7 +45,7 @@ class LockingBinaryTree:
     def __init__(self, root: Node = None):
         self.root = root
 
-    def _is_subtree_locked(self, node: Optional[Node]) -> bool:
+    def _is_subtree_locked(self, node: Optional[Node] = None) -> bool:
         if node is None:
             return False
 
@@ -54,18 +54,18 @@ class LockingBinaryTree:
 
         return self._is_subtree_locked(node.left) or self._is_subtree_locked(node.right)
 
-    def _is_parent_tree_locked(self, node: Optional[Node]) -> bool:
+    def _is_parent_tree_locked(self, node: Optional[Node] = None) -> bool:
         if not node:
             return False
 
         return node.locked or self._is_parent_tree_locked(node.parent)
 
-    def incr_parent_lock_count(self, node: Optional[Node]) -> None:
+    def incr_parent_lock_count(self, node: Optional[Node] = None) -> None:
         while node:
             node.locked_desc += 1
             node = node.parent
 
-    def decr_parent_lock_count(self, node: Optional[Node]) -> None:
+    def decr_parent_lock_count(self, node: Optional[Node] = None) -> None:
         while node:
             if node.locked_desc > 0:
                 node.locked_desc -= 1
@@ -73,7 +73,7 @@ class LockingBinaryTree:
             else:
                 break
 
-    def lock(self, node: Optional[Node]) -> bool:
+    def lock(self, node: Optional[Node] = None) -> bool:
         """
         Lock a node if possible
         Time Complexity: O(h)
@@ -88,7 +88,7 @@ class LockingBinaryTree:
 
         return False
 
-    def unlock(self, node: Optional[Node]) -> bool:
+    def unlock(self, node: Optional[Node] = None) -> bool:
         """
         UnLock a node if possible
         Time Complexity: O(h)
@@ -100,7 +100,7 @@ class LockingBinaryTree:
 
         return False
 
-    def is_locked(self, node: Optional[Node]) -> bool:
+    def is_locked(self, node: Optional[Node] = None) -> bool:
         """
         Check if the node is locked
         Time complexity: O(1)
