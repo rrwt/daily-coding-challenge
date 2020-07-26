@@ -7,6 +7,9 @@ from typing import List
 
 
 def min_rooms(intervals: List[tuple]) -> int:
+    if not intervals:
+        return 0
+
     intervals.sort(key=lambda x: x[1])  # sort by end time
     rooms: int = 1
     j: int = 0
@@ -49,3 +52,5 @@ if __name__ == "__main__":
     ]
     print("min room for", second, "are:", min_rooms(second))
     print("min room for", second, "are:", min_rooms_alt(second))
+
+    assert min_rooms([]) == min_rooms_alt([]) == 0
