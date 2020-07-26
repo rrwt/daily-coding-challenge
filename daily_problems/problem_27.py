@@ -10,14 +10,14 @@ OPENING = {"(", "[", "{"}
 OPEN_CLOSE = {"(": ")", "[": "]", "{": "}"}
 
 
-def balanced_paranthesis(paranthesis: str) -> bool:
+def balanced_parenthesis(parenthesis: str) -> bool:
     """
-    A stack can be used to keep the unbalanced paranthesis while matching paranthesis has not
-    been found
+    A stack can be used to keep the unbalanced parenthesis
+    while matching parenthesis has not been found
     """
     stack: list = []
 
-    for p in paranthesis:
+    for p in parenthesis:
         if p in OPENING:
             stack.append(p)
         elif not stack:
@@ -35,6 +35,6 @@ if __name__ == "__main__":
     p1: str = "([])[]({})"
     p2: str = "([)]"
     p3: str = "((()"
-    assert balanced_paranthesis(p1) == True
-    assert balanced_paranthesis(p2) == False
-    assert balanced_paranthesis(p3) == False
+    assert balanced_parenthesis(p1) is True
+    assert balanced_parenthesis(p2) is False
+    assert balanced_parenthesis(p3) is False
