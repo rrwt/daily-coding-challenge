@@ -13,14 +13,14 @@ class Node:
         self.next: Optional[Node] = None
 
 
-def kth_last_element(ll: Node, k: int) -> Optional[int]:
+def kth_last_element(linked_list: Node, k: int) -> Optional[int]:
     """
     Using 2 pointers
     Time complexity: O(n)
     Space Complexity: O(1)
     """
-    first_pointer: Optional[Node] = ll
-    second_pointer: Optional[Node] = ll
+    first_pointer: Optional[Node] = linked_list
+    second_pointer: Optional[Node] = linked_list
 
     while k and first_pointer:
         first_pointer = first_pointer.next
