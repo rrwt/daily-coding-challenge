@@ -20,9 +20,24 @@ def min_rooms(intervals: List[tuple]) -> int:
     return rooms
 
 
+def min_rooms_alt(intervals: List[tuple]) -> int:
+    # alternative solution.
+    intervals.sort(key=lambda tup: tup[1])  # sort by end time
+    count = 0
+    previous = -1
+
+    for (start, end) in intervals:
+        if start >= previous:
+            count += 1
+            previous = end
+
+    return count
+
+
 if __name__ == "__main__":
     first: List[tuple] = [(30, 75), (0, 50), (60, 150)]
     print("min rooms for", first, "are:", min_rooms(first))
+    print("min rooms for", first, "are:", min_rooms_alt(first))
 
     second: List[tuple] = [
         (900, 910),
@@ -33,3 +48,4 @@ if __name__ == "__main__":
         (1800, 2000),
     ]
     print("min room for", second, "are:", min_rooms(second))
+    print("min room for", second, "are:", min_rooms_alt(second))
