@@ -150,9 +150,6 @@ class Trie:
 
         runner.is_complete = True
 
-    def delete(self, word: str) -> None:
-        pass
-
 
 def complete_me_trie(prefix: str, trie: Trie) -> Optional[list]:
     runner = trie.root
