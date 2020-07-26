@@ -18,6 +18,7 @@ since we would need to go through (1, 2) because there is a
 wall everywhere else on the second row.
 """
 import sys
+from collections import deque
 from typing import List
 
 step_x = 1, -1, 0, 0
@@ -49,6 +50,7 @@ def shortest_path(
 ) -> int:
     """
     Using backtracking. Check all the possible next steps (Depth first search)
+    Sub optimal solution.
     """
     if start_x == end_x and start_y == end_y:
         return steps
@@ -72,6 +74,41 @@ def shortest_path(
     return min_steps
 
 
+def is_legal_bfs(x, y, len_x, len_y, matrix, distance_bfs):
+    return (-1 < x < len_x and -1 < y < len_y and matrix[x][y] is False
+            and distance_bfs[x][y] == sys.maxsize)
+
+
+def shortest_path_bfs(matrix, len_x, len_y, start_x, start_y, end_x, end_y) -> int:
+    """
+    Using BFS. BFS generates shortest path from point 1 to point 2 in a matrix/graph.
+    Optimal Solution.
+    Time Complexity: O(len_x * len_y)
+    Space Complexity: O(len_x * len_y)
+    """
+
+    distance_bfs = [[sys.maxsize] * len_x for _ in range(len_y)]
+    distance_bfs[start_x][start_y] = 0
+    neighbors = deque([(start_x, start_y, 1)])
+
+    while neighbors:
+        cur_x, cur_y, distance = neighbors.popleft()
+
+        for x, y in zip(step_x, step_y):
+            new_x = cur_x + x
+            new_y = cur_y + y
+
+            if is_legal_bfs(new_x, new_y, len_x, len_y, matrix, distance_bfs):
+                distance_bfs[new_x][new_y] = distance
+
+                if new_x == end_x and new_y == end_y:
+                    return distance
+
+                neighbors.append((new_x, new_y, distance+1))
+
+    return sys.maxsize
+
+
 if __name__ == "__main__":
     board: List[List[bool]] = [
         [False, False, False, False],
@@ -83,4 +120,5 @@ if __name__ == "__main__":
     board[3][0] = True
 
     print(shortest_path(board, len(board), len(board[0]), 3, 0, 0, 0, 0))
+    print(shortest_path_bfs(board, len(board), len(board[0]), 3, 0, 0, 0))
 
