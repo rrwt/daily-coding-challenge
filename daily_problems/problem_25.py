@@ -11,66 +11,69 @@ your function should return true. The same regular expression on the string
 Given the regular expression ".*at" and the string "chat", your function should return true.
 The same regular expression on the string "chats" should return false.
 """
-from typing import Tuple
 
 
-def match(string: str, ind_str: int, len_str: int, regex: str, ind_reg: int, len_reg: int) -> bool:
-    """
-    Match everything but asterisk
-    """
-    if ind_reg >= len_reg:
-        return ind_str >= len_str
-    if ind_str >= len_str:
-        return regex[ind_reg:] == "*"
-    if string[ind_str] == regex[ind_reg] or regex[ind_reg] == ".":
-        return True
+def regex_match_naive(text: str, pattern: str) -> bool:
+    # recursive solution
+    if not pattern:
+        return not text
 
-    return False
+    first_match = bool(text) and pattern[0] in {text[0], '.'}
 
-
-def match_asterisk(
-        string: str, ind_str: int, len_str: int, regex: str, ind_reg: int, len_reg: int
-) -> Tuple[int, int]:
-    """
-    Match asterisk. Try to gobble everything.
-    """
-    while ind_str < len_str and (string[ind_str] == regex[ind_reg-1] or regex[ind_reg-1] == "."):
-        ind_str += 1
-
-        if len_str - ind_str == len_reg - ind_reg - 1:
-            break
-
-    return ind_str, ind_reg + 1
+    if len(pattern) >= 2 and pattern[1] == '*':
+        # 0 match or 1+ match using *
+        return (regex_match_naive(text, pattern[2:]) or
+                (first_match and regex_match_naive(text[1:], pattern)))
+    else:  # there is no asterisk
+        return first_match and regex_match_naive(text[1:], pattern[1:])
 
 
-def regex_match(input_string: str, regex: str) -> bool:
-    def util(ind_str: int, ind_reg: int) -> bool:
-        nonlocal len_str, len_reg
+def regex_match_dp(text: str, pattern: str) -> bool:
+    # dynamic programming solution
+    len_t = len(text)
+    len_p = len(pattern)
+    dp = [[False] * (len_p + 1) for _ in range(len_t + 1)]
 
-        # while both present and equal (.)
-        while match(input_string, ind_str, len_str, regex, ind_reg, len_reg):
-            if ind_reg >= len_reg or ind_str >= len_str:
-                break
+    dp[0][0] = True  # both empty
 
-            ind_str += 1
-            ind_reg += 1
+    for index in range(2, len_p+1):
+        if pattern[index-1] == "*":
+            dp[0][index] = dp[0][index-2]
 
-        if ind_reg < len_reg and regex[ind_reg] == "*":
-            # while match
-            return util(*match_asterisk(input_string, ind_str, len_str, regex, ind_reg, len_reg))
+    for i_t in range(0, len_t):
+        for i_p in range(0, len_p):
+            if pattern[i_p] == "*" and i_p > 0:
+                # 0 occurrence or 1+ occurrence
+                # 0 occurrence: res = do not consider * and previous char
+                # 1+ occurrences: res = curr text char = previous pattern char and
+                # there was a match of current pattern with previous text char
+                dp[i_t+1][i_p+1] = (dp[i_t+1][i_p-1] or
+                                    (pattern[i_p-1] in (text[i_t], ".") and dp[i_t][i_p+1]))
+            else:
+                # current text char matches with curr pattern char and
+                # there was a match until previous char
+                dp[i_t + 1][i_p + 1] = pattern[i_p] in (".", text[i_t]) and dp[i_t][i_p]
 
-        if ind_str >= len_str and ind_reg >= len_reg:
-            return True
-
-        return False
-
-    len_str = len(input_string)
-    len_reg = len(regex)
-    return util(0, 0)
+    return dp[len_t][len_p]
 
 
 if __name__ == "__main__":
-    assert regex_match("ray", "ra.") is True
-    assert regex_match("raymond", "ra.") is False
-    assert regex_match("chat", ".*at") is True
-    assert regex_match("chats", ".*at") is False
+    assert regex_match_naive("", ".*") is True
+    assert regex_match_naive("ray", "ra.") is True
+    assert regex_match_naive("raymond", "ra.") is False
+    assert regex_match_naive("chat", ".*at") is True
+    assert regex_match_naive("chats", ".*at") is False
+    assert regex_match_naive("aab", "c*a*b") is True
+    assert regex_match_naive("aaa", "ab*ac*a") is True
+    assert regex_match_naive("aaa", "ab*a*c*a") is True
+    assert regex_match_naive("bbbba", ".*a*a") is True
+
+    # assert regex_match_dp("", ".*") is True
+    assert regex_match_dp("ray", "ra.") is True
+    assert regex_match_dp("raymond", "ra.") is False
+    assert regex_match_dp("chat", ".*at") is True
+    assert regex_match_dp("chats", ".*at") is False
+    assert regex_match_dp("aab", "c*a*b") is True
+    assert regex_match_dp("aaa", "ab*ac*a") is True
+    assert regex_match_dp("aaa", "ab*a*c*a") is True
+    assert regex_match_dp("bbbba", ".*a*a") is True  # Not working
