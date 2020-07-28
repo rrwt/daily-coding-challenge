@@ -15,6 +15,9 @@ from typing import List
 
 def trapped_water(elevations: List[int]) -> int:
     """
+    An element of the array can store water if there are higher bars on left and right.
+    The amount of water to be stored in every element can be found out by finding the
+    heights of bars on the left and right sides.
     Time Complexity: O(n)
     Space Complexity: O(n)
     """
