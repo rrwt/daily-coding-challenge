@@ -8,31 +8,31 @@ You can assume the string to be decoded is valid.
 """
 
 
-def encode(string: str) -> str:
-    i = 0
-    l = len(string)
-    res: str = ""
+def encode(text: str) -> str:
+    if not text:
+        return ""
 
-    while i < l:
-        char: str = string[i]
-        length: int = 1
-        i += 1
+    char_count = 1
+    char = text[0]
+    index = 1
+    res = []
 
-        while i < l and char == string[i]:
-            length += 1
-            i += 1
+    while index < len(text):
+        if text[index] == char:
+            char_count += 1
+        else:
+            res.append(f"{char}{char_count}")
+            char = text[index]
+            char_count = 1
 
-        res += str(length) + char
+        index += 1
 
-    return res
+    res.append(f"{char}{char_count}")
+    return "".join(res)
 
 
-def decode(string: str) -> str:
-    res = ""
-    for i in range(0, len(string), 2):
-        res += string[i + 1] * int(string[i])
-
-    return res
+def decode(text: str) -> str:
+    return "".join([text[index] * int(text[index+1]) for index in range(0, len(text), 2)])
 
 
 if __name__ == "__main__":
