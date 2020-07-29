@@ -26,7 +26,7 @@ def flight_itinerary(flights: list, itinerary: list, num_flights: int) -> None:
 
         if itinerary[-1] == origin:
             itinerary.append(dest)
-            flight_itinerary(flights[:i] + flights[i + 1 :], itinerary, num_flights)
+            flight_itinerary(flights[:i] + flights[i + 1:], itinerary, num_flights)
 
             if 1 + num_flights == len(itinerary):
                 return
