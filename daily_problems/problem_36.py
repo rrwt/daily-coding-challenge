@@ -1,12 +1,12 @@
 """
 Given the root to a binary search tree, find the second largest node in the tree.
 """
-from typing import Optional, Union
+from typing import Optional, Union, Tuple
 
-from binary_tree_node import Node  # type: ignore
+from daily_problems.binary_tree_node import Node  # type: ignore
 
 
-def get_second_largest(root: Optional[Node]) -> Optional[Union[int, str]]:
+def get_second_largest(root_node: Optional[Node]) -> Optional[Union[int, str]]:
     """
     Time Complexity: O(n)
     Space Complexity: O(1)
@@ -15,21 +15,47 @@ def get_second_largest(root: Optional[Node]) -> Optional[Union[int, str]]:
     If root doesn't have a right child, then the second largest node will be the largest element of
     left subtree
     """
-    if not root:
+    if not root_node:
         return None
 
-    while root.right and (root.right.left or root.right.right):
-        root = root.right
+    while root_node.right and (root_node.right.left or root_node.right.right):
+        root_node = root_node.right
 
-    if root.right:
-        return root.data
+    if root_node.right:
+        return root_node.data
 
-    root = root.left
+    root_node = root_node.left
 
-    while root and root.right:
-        root = root.right
+    while root_node and root_node.right:
+        root_node = root_node.right
 
-    return root.data if root else None
+    return root_node.data if root_node else None
+
+
+def get_second_largest_alt(root_node: Node) -> Optional[int]:
+    def get_largest_child(node, parent_node) -> Tuple[Node, Node]:
+        while node and node.right:
+            parent_node = node
+            node = node.right
+        return node, parent_node
+
+    if root_node is None:
+        return None
+
+    if root_node.left is None and root_node.right is None:
+        return None
+
+    if root_node.right is None:
+        largest = root_node.data
+        parent = None
+    else:
+        parent = root_node
+        largest, parent = get_largest_child(root_node.right, parent)
+
+    if largest.left:
+        return get_largest_child(largest.left, parent)[0].data
+    else:  # parent node
+        return parent.data
 
 
 if __name__ == "__main__":
@@ -42,3 +68,4 @@ if __name__ == "__main__":
     root.right.right = Node(8)
 
     assert get_second_largest(root) == 7
+    assert get_second_largest_alt(root) == 7
