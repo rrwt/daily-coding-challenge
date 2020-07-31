@@ -30,6 +30,7 @@ def is_valid(board: list, n: int, x: int, y: int) -> bool:
 
 def n_queen(board: list, n: int, next_x: int) -> int:
     """
+    Backtrack
     Set a fixed x and try to find possible y for it.
     Time complexity: O(n!)
     """
@@ -52,9 +53,9 @@ def n_queen_count(n: int) -> int:
     if n == 1:
         return 1
 
-    return n_queen([[0] * n for i in range(n)], n, 0)
+    return n_queen([[0] * n for _ in range(n)], n, 0)
 
 
 if __name__ == "__main__":
-    for i in range(1, 10):
-        print(i, n_queen_count(i))
+    for _ in range(1, 11):
+        print(_, n_queen_count(_))
