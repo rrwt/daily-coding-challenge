@@ -6,10 +6,10 @@ that can be added to this DAG, after which new graph still remain
 a DAG that means the reformed graph should have maximal number of
 edges, adding even single edge will create a cycle in graph.
 """
-from typing import List, Union, Tuple
+from typing import List, Tuple
 
-from ds import GraphM  # type: ignore
-from topological_sort import topological_sort_kahn_algorithm  # type: ignore
+from gfg.graphs.ds import GraphM  # type: ignore
+from gfg.graphs.topological_sort import topological_sort_kahn_algorithm  # type: ignore
 
 
 def add_edges_safely(graph: List[list], vertices: int) -> Tuple[List, int]:
@@ -25,24 +25,23 @@ def add_edges_safely(graph: List[list], vertices: int) -> Tuple[List, int]:
     res: list = []
     visited: set = set()
 
-    for vertex in sorted_vertices:
-        for inner_vertex, connected in enumerate(graph[vertex]):
-            if connected not in (0, 1) and inner_vertex not in visited:
-                res.append((vertex, inner_vertex))
-                graph[vertex][inner_vertex] = 1
-        visited.add(vertex)
+    for src in sorted_vertices:
+        for dest, connected in enumerate(graph[src]):
+            if connected not in (0, 1) and dest not in visited:
+                res.append((src, dest))
+                graph[src][dest] = 1
+        visited.add(src)
 
     return res, len(res)
 
 
 if __name__ == "__main__":
-    graph = GraphM(6, "directed")
+    g = GraphM(6, "directed")
+    g.add_edge(4, 0)
+    g.add_edge(4, 1)
+    g.add_edge(5, 2)
+    g.add_edge(5, 0)
+    g.add_edge(2, 3)
+    g.add_edge(3, 1)
 
-    graph.add_edge(4, 0)
-    graph.add_edge(4, 1)
-    graph.add_edge(5, 2)
-    graph.add_edge(5, 0)
-    graph.add_edge(2, 3)
-    graph.add_edge(3, 1)
-
-    print(*add_edges_safely(graph.graph, graph.num_vertices))
+    print(*add_edges_safely(g.graph, g.num_vertices))
