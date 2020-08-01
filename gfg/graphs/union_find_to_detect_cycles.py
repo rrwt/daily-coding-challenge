@@ -45,7 +45,7 @@ class Subset:
 def is_cyclic(graph: list, vertices: int) -> bool:
     subsets: list = [Subset(v, 0) for v in range(vertices)]
 
-    for u in range(len(graph)):
+    for u in range(vertices):
         pu = find(u, subsets)
 
         for v, connection in enumerate(graph[u]):
