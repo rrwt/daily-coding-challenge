@@ -25,18 +25,13 @@ class Stack:
     def push(self, value: int) -> None:
         self.stack.append(value)
 
-        if self._max_stack:
-            if self._max_stack[-1] < value:
-                self._max_stack.append(value)
-            else:
-                self._max_stack.append(self._max_stack[-1])
+        if self._max_stack and self._max_stack[-1] > value:
+            self._max_stack.append(self._max_stack[-1])
         else:
             self._max_stack.append(value)
 
     def max(self) -> Optional[int]:
-        if self._max_stack:
-            return self._max_stack[-1]
-        return None
+        return self._max_stack[-1] if self._max_stack else None
 
 
 if __name__ == "__main__":
