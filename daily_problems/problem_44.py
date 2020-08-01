@@ -11,7 +11,7 @@ The array [5, 4, 3, 2, 1] has ten inversions: every distinct pair forms an inver
 from typing import Tuple
 
 
-def merge(left_arr: list, right_arr: list) -> int:
+def merge(left_arr: list, right_arr: list) -> Tuple[list, int]:
     inversions: int = 0
     res: list = []
     i, j, len_left, len_right = 0, 0, len(left_arr), len(right_arr)
@@ -52,5 +52,5 @@ def count_inversions(arr: list) -> Tuple[list, int]:
 
 
 if __name__ == "__main__":
-    print(count_inversions([2, 1, 4, 3, 5]))
+    print(count_inversions([2, 4, 1, 3, 5]))
     print(count_inversions([5, 4, 3, 2, 1]))
