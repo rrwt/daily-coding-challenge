@@ -10,7 +10,7 @@ d  e f  g
 """
 from typing import Optional
 
-from binary_tree_node import Node, inorder_traversal  # type: ignore
+from daily_problems.binary_tree_node import Node, inorder_traversal  # type: ignore
 
 
 def reconstruct_tree(preorder: list, inorder: list) -> Optional[Node]:
