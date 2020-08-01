@@ -33,7 +33,7 @@ def subset_sum(
     return res or None, total
 
 
-def subset_sum_dp(arr: list, k: int, arr_size: int) -> bool:
+def subset_sum_dp(arr: list, k: int, arr_size: int) -> Tuple[bool, Optional[list]]:
     """
     Time Complexity: O(sum * n)
     Space Complexity: O(sum * n)
@@ -44,7 +44,7 @@ def subset_sum_dp(arr: list, k: int, arr_size: int) -> bool:
         dp[_][0] = True
 
     for ind in range(1, arr_size+1):
-        for cur_sum in range(1, k + 1):
+        for cur_sum in range(1, k+1):
             if cur_sum >= arr[ind-1]:
                 # if current sum >= current element, then dp[ind][cur_sum] is true if
                 # dp[ind-1[cur_sum] is true - leave current element
@@ -53,9 +53,25 @@ def subset_sum_dp(arr: list, k: int, arr_size: int) -> bool:
             else:
                 dp[ind][cur_sum] = dp[ind-1][cur_sum]
 
-    return dp[arr_size][k]
+    if dp[arr_size][k] is False:
+        return False, None
+
+    # get the array
+    res = []
+    ind, cur_sum = arr_size, k
+
+    while cur_sum > 0:
+        # reverse the logic from dp construction
+        # leave the element part has no impact, therefore do not test for it
+        if cur_sum >= arr[ind-1] and dp[ind-1][cur_sum-arr[ind-1]] is True:
+            res.append(arr[ind-1])
+            cur_sum -= arr[ind-1]
+        ind -= 1
+
+    return True, res
 
 
 if __name__ == "__main__":
     print(*subset_sum([12, 1, 61, 5, 9, 2], 24, 6, []), sep=", ")
     print(subset_sum_dp([12, 1, 61, 5, 9, 2], 24, 6))
+    print(subset_sum_dp([2, 3, 7, 8, 10], 11, 5))
