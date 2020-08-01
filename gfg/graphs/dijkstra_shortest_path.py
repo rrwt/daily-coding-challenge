@@ -31,6 +31,7 @@ def dijsktra_sp(graph: list, source: int, vertices: int) -> list:
     Greedily pick connected elements with minimum distance/weight
     from the given set of unconnected vertices and add them to resulting tree.
     Time complexity: O(V*V)
+    Time complexity: O((E+V)*logV) for adjacency matrix using min heap for next_min
     """
     sp_set: set = set()
     distance: list = [sys.maxsize] * vertices
