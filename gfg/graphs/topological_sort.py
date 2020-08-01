@@ -1,7 +1,12 @@
-import math
-from collections import defaultdict, deque
+"""
+Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices
+such that for every directed edge uv, vertex u comes before v in the ordering.
+Topological Sorting for a graph is not possible if the graph is not a DAG.
+"""
 
-from ds import GraphM  # type: ignore
+from collections import deque
+
+from gfg.graphs.ds import GraphM  # type: ignore
 
 
 def topological_sort_using_dfs(graph: list, vertices: int) -> list:
@@ -11,16 +16,16 @@ def topological_sort_using_dfs(graph: list, vertices: int) -> list:
     Space complexity: O(V)
     """
 
-    def dfs(index):
+    def dfs(ind):
         nonlocal visited
 
-        visited.add(index)
+        visited.add(ind)
 
-        for vertex, connected in enumerate(graph[index]):
+        for vertex, connected in enumerate(graph[ind]):
             if connected == 1 and vertex not in visited:
                 dfs(vertex)
 
-        stack.append(index)
+        stack.append(ind)
 
     visited: set = set()
     stack: list = []
@@ -36,6 +41,8 @@ def topological_sort_kahn_algorithm(graph: list, vertices: int) -> list:
     """
     time complexity: O(V+E)
 
+    Fact: A DAG has at least one vertex with in-degree 0 and one vertex with out-degree 0
+
     1. Get in-degree of every node
     2. Pick all the vertices with in-degree as 0 and add them into a queue
     3. Remove a vertex from the queue (Dequeue operation) and then.
@@ -46,31 +53,30 @@ def topological_sort_kahn_algorithm(graph: list, vertices: int) -> list:
     5.  If count of visited nodes is not equal to the number of nodes in the graph then the
         topological sort is not possible for the given graph.
     """
-
     def get_indegrees():
         indegree: list = [0] * vertices
 
-        for i in range(vertices):
-            for vertex, connected in enumerate(graph[i]):
-                indegree[vertex] += 1 if connected == 1 else 0
+        for src in range(vertices):
+            for dest, connect in enumerate(graph[src]):
+                indegree[dest] += 1 if connect == 1 else 0
 
         return indegree
 
     def create_queue(indegree):
-        queue: deque = deque()
+        q: deque = deque()
 
-        for vertex, degree in enumerate(indegree):
+        for src, degree in enumerate(indegree):
             if degree == 0:
-                queue.append(vertex)
+                q.append(src)
 
-        return queue
+        return q
 
     indegree_list: list = get_indegrees()
     queue: deque = create_queue(indegree_list)
     visited: set = set()
     ts_list: list = []
 
-    while queue:
+    while queue:  # bfs
         element = queue.popleft()
         ts_list.append(element)
         visited.add(element)
@@ -95,5 +101,14 @@ if __name__ == "__main__":
     g.add_edge(4, 5)
     g.add_edge(5, 6)
 
+    print(topological_sort_using_dfs(g.graph, g.num_vertices))
+    print(topological_sort_kahn_algorithm(g.graph, g.num_vertices))
+
+    g = GraphM(6, "directed")
+    g.add_edge(5, 0)
+    g.add_edge(5, 2)
+    g.add_edge(2, 3)
+    g.add_edge(3, 1)
+    g.add_edge(4, 0)
     print(topological_sort_using_dfs(g.graph, g.num_vertices))
     print(topological_sort_kahn_algorithm(g.graph, g.num_vertices))
