@@ -9,11 +9,11 @@ from typing import Optional
 from gfg.bst.bst_and_node import Node  # type: ignore
 
 
-def is_bst(root: Node) -> bool:
+def is_bst(root_node: Node) -> bool:
     """
     time complexity: O(n)
     Space complexity: O(n)
-    :param root: Node
+    :param root_node: Node
     :return: bool
     """
     def check_bst(node: Optional[Node], min_: int, max_: int) -> bool:
@@ -25,14 +25,14 @@ def is_bst(root: Node) -> bool:
 
         return check_bst(node.left, min_, max_ - 1) and check_bst(node.right, min_ + 1, max_)
 
-    return check_bst(root, -1000_000, 1000_000)
+    return check_bst(root_node, -1000_000, 1000_000)
 
 
-def is_bst_using_in_order_traversal(root: Node) -> bool:
+def is_bst_using_in_order_traversal(root_node: Node) -> bool:
     """
     time complexity: O(n)
     Space complexity: O(n)
-    :param root: Node
+    :param root_node: Node
     :return: bool
     """
     def in_order(node: Optional[Node]):
@@ -43,7 +43,7 @@ def is_bst_using_in_order_traversal(root: Node) -> bool:
             in_order(node.right)
 
     elems: list = []
-    in_order(root)
+    in_order(root_node)
 
     for i in range(1, len(elems)):
         if elems[i-1] > elems[i]:

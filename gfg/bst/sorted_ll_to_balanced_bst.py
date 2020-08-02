@@ -2,7 +2,7 @@
 Given a Singly Linked List which has data members sorted in ascending order.
 Construct a Balanced Binary Search Tree which has same data members as the given Linked List. 
 Balanced BST: A bst with max height difference between the left and the
-    right subtree is 1 reecursively.
+    right subtree is 1 recursively.
 """
 from typing import Optional
 
@@ -41,5 +41,4 @@ def create_balanced_bst(ll: list) -> Node:
 
 
 if __name__ == "__main__":
-    ll = [1, 2, 3, 4, 5, 6, 7]
-    print(inorder(create_balanced_bst(ll)))
+    print(inorder(create_balanced_bst([1, 2, 3, 4, 5, 6, 7])))

@@ -8,28 +8,28 @@ from gfg.bst.bst_and_node import Node  # type: ignore
 
 
 @lru_cache(128)
-def height(root: Optional[Node]) -> int:
+def height(root_node: Optional[Node]) -> int:
     """
     LRU cache will help us with recursive calls
     """
-    if not root:
+    if not root_node:
         return 0
 
-    return max(height(root.left), height(root.right)) + 1
+    return max(height(root_node.left), height(root_node.right)) + 1
 
 
-def is_balanced(root: Optional[Node]) -> bool:
+def is_balanced(root_node: Optional[Node]) -> bool:
     """
     time complexity: O(n)
     space complexity: O(n)  # stack
     """
-    if not root:
+    if not root_node:
         return True
 
-    h_l = height(root.left)
-    h_r = height(root.right)
+    h_l = height(root_node.left)
+    h_r = height(root_node.right)
 
-    return abs(h_l - h_r) <= 1 and is_balanced(root.left) and is_balanced(root.right)
+    return abs(h_l - h_r) <= 1 and is_balanced(root_node.left) and is_balanced(root_node.right)
 
 
 if __name__ == "__main__":

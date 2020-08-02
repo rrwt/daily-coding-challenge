@@ -35,6 +35,5 @@ if __name__ == "__main__":
     from random import randint
 
     for _ in range(5):
-        arr = list(range(randint(2, 20)))
-        inorder(sorted_arr_to_bst(arr))
+        inorder(sorted_arr_to_bst(list(range(randint(2, 20)))))
         print()
