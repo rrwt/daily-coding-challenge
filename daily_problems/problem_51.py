@@ -1,49 +1,27 @@
 """
-Given a string, find the longest palindromic contiguous substring.
-If there are more than one with the maximum length, return any one.
+Given a function that generates perfectly random numbers between 1 and k (inclusive),
+where k is an input,
+write a function that shuffles a deck of cards represented as an array using only swaps.
 
-For example,
-    the longest palindromic substring of "aabcdcb" is "bcdcb".
-    The longest palindromic substring of "bananas" is "anana".
+It should run in O(N) time.
+Hint: Make sure each one of the 52! permutations of the deck is equally likely.
 """
+from random import randint
+from typing import List
 
 
-def longest_palindromic_substring(text: str) -> str:
+def shuffle(k: int) -> List[int]:
     """
-    Dynamic Programming.
-    Time Complexity: O(n*n)
-    Space Complexity: O(n*n)
+    fisher-yates shuffle algorithm can be applied to generate random sequence
     """
-    length = len(text)
-    if length < 2:
-        return text
+    deck = list(range(1, 53))
 
-    dp = [[1] * length for _ in range(length)]
-    max_start, max_end, max_len = 0, 0, 1
+    for card in range(52):
+        index = randint(1, k)
+        deck[index], deck[card] = deck[card], deck[index]
 
-    for str_len in range(1, length):
-        start = 0
-
-        for end in range(start+str_len, length):
-            if text[start] == text[end]:
-                if start == end-1:
-                    dp[start][end] = 2
-                else:
-                    dp[start][end] = dp[start+1][end-1] + 2
-
-                if dp[start][end] > max_len:
-                    max_len = end - start + 1
-                    max_start = start
-                    max_end = end
-
-            else:
-                dp[start][end] = max(dp[start+1][end], dp[start][end-1])
-
-            start += 1
-
-    return text[max_start: max_end+1]
+    return deck
 
 
 if __name__ == "__main__":
-    assert longest_palindromic_substring("aabcdcb") == "bcdcb"
-    assert longest_palindromic_substring("bananas") == "anana"
+    print(shuffle(randint(1, 52)))
