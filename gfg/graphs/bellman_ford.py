@@ -20,27 +20,28 @@ def bellman_ford_sp(graph: list, source: int, num_vertices: int) -> list:
     """
     Time Complexity: O(V*V*E)  (O(V*E) for adjacency list)
     """
-    distance = [sys.maxsize] * num_vertices
-    distance[source] = 0
+    min_dist = [sys.maxsize] * num_vertices
+    min_dist[source] = 0
 
-    # calculate distance. BFS
+    # calculate min_dist. BFS
+    # do it V-1 times. V-1 = number of edges in a graph with shortest path and no cycle
     for _ in range(num_vertices-1):
         for src in range(num_vertices):
-            if distance[src] < sys.maxsize:
+            if min_dist[src] < sys.maxsize:
                 for dest, weight in enumerate(graph[src]):
                     if weight < sys.maxsize:
-                        distance[dest] = min(distance[dest], weight + distance[src])
+                        min_dist[dest] = min(min_dist[dest], weight + min_dist[src])
 
     # check for -ve cycle
     for src in range(num_vertices):
-        for dest, dist in enumerate(graph[src]):
+        for dest, weight in enumerate(graph[src]):
             if src == dest:
                 continue
-            if graph[src][dest] < sys.maxsize and distance[dest] > distance[src] + dist:
+            if graph[src][dest] < sys.maxsize and min_dist[dest] > min_dist[src] + weight:
                 print("-ve cycle found")
                 return []
 
-    return distance
+    return min_dist
 
 
 if __name__ == "__main__":
