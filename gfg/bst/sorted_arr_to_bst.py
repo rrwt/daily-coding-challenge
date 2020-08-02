@@ -14,15 +14,15 @@ def sorted_arr_to_bst(arr: list) -> Node:
     """
 
     def construct_bst(elements) -> Optional[Node]:
-        l = len(elements)
+        length = len(elements)
 
-        if l <= 0:
+        if length <= 0:
             return None
 
-        if l == 1:
+        if length == 1:
             return Node(elements[0])
 
-        root_position = int(l / 2)
+        root_position = int(length / 2)
         root = Node(elements[root_position])
         root.left = construct_bst(elements[:root_position])
         root.right = construct_bst(elements[root_position + 1 :])
