@@ -9,7 +9,7 @@ from hashlib import md5
 
 class MerkleTree:
     """
-    Merke tree: A tree in which every leaf node is labelled with
+    Merkle tree: A tree in which every leaf node is labelled with
     the hash of a data block, and every non-leaf node is labelled
     with the cryptographic hash of the labels of its child nodes
     """
