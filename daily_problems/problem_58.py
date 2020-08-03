@@ -19,12 +19,12 @@ def find_index(arr: list, k: int) -> Optional[int]:
         if arr[mid] == k:
             return mid
         elif arr[mid] > k:
-            if k < arr[0] and arr[mid] > arr[0]:
+            if k < arr[0] < arr[mid]:
                 start = mid + 1
             else:
                 end = mid - 1
         else:
-            if k > arr[0] and arr[mid] < arr[0]:
+            if k > arr[0] > arr[mid]:
                 end = mid - 1
             else:
                 start = mid + 1
