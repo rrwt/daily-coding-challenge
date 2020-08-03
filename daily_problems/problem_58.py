@@ -32,12 +32,12 @@ def find_index(arr: list, k: int) -> Optional[int]:
 
 
 if __name__ == "__main__":
-    arr: list = [13, 18, 25, 2, 8, 10]
+    sorted_rotated_array: list = [13, 18, 25, 2, 8, 10]
 
-    assert find_index(arr, 13) == 0
-    assert find_index(arr, 18) == 1
-    assert find_index(arr, 25) == 2
-    assert find_index(arr, 2) == 3
-    assert find_index(arr, 8) == 4
-    assert find_index(arr, 10) == 5
-    assert find_index(arr, 1) is None
+    assert find_index(sorted_rotated_array, 13) == 0
+    assert find_index(sorted_rotated_array, 18) == 1
+    assert find_index(sorted_rotated_array, 25) == 2
+    assert find_index(sorted_rotated_array, 2) == 3
+    assert find_index(sorted_rotated_array, 8) == 4
+    assert find_index(sorted_rotated_array, 10) == 5
+    assert find_index(sorted_rotated_array, 1) is None
