@@ -32,18 +32,16 @@ def count_ways_dp(n: int, m: int) -> int:
     if n == 0 or m == 0:
         return 0
 
-    count_arr: list = [[None] * (m + 1) for _ in range(n + 1)]
+    count_arr: list = [[None] * m for _ in range(n)]
 
-    for i in range(m + 1):
-        count_arr[1][i] = 1
-    for i in range(n + 1):
-        count_arr[i][1] = 1
+    for i in range(n):
+        for j in range(m):
+            if i == 0 or j == 0:
+                count_arr[i][j] = 1
+            else:
+                count_arr[i][j] = count_arr[i - 1][j] + count_arr[i][j - 1]
 
-    for i in range(2, n + 1):
-        for j in range(2, m + 1):
-            count_arr[i][j] = count_arr[i - 1][j] + count_arr[i][j - 1]
-
-    return count_arr[n][m]
+    return count_arr[n-1][m-1]
 
 
 def count_ways_print_all_paths(n: int, m: int) -> int:
@@ -91,8 +89,8 @@ def count_ways_combinatorics(n: int, m: int) -> int:
 if __name__ == "__main__":
     n_m_arr, res_arr = [(0, 2), (1, 10), (2, 2), (3, 3), (5, 5)], [0, 1, 2, 6, 70]
 
-    for (n, m), res in zip(n_m_arr, res_arr):
-        assert count_ways_recursive(n, m) == res
-        assert count_ways_print_all_paths(n, m) == res
-        assert count_ways_dp(n, m) == res
-        assert count_ways_combinatorics(n, m) == res
+    for (a, b), r in zip(n_m_arr, res_arr):
+        assert count_ways_recursive(a, b) == r
+        assert count_ways_print_all_paths(a, b) == r
+        assert count_ways_dp(a, b) == r
+        assert count_ways_combinatorics(a, b) == r
