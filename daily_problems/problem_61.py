@@ -8,7 +8,7 @@ For example, pow(2, 10) should return 1024.
 from typing import Union
 
 
-def pow(x: Union[int, float], y: int) -> Union[int, float]:
+def power(x: Union[int, float], y: int) -> Union[int, float]:
     """
     y can be +ve or -ve
     x can be int or float (always positive)
@@ -24,7 +24,7 @@ def pow(x: Union[int, float], y: int) -> Union[int, float]:
         if y == 1:
             return x
 
-        res = pow(x, int(y / 2))
+        res = calc_pow(x, int(y / 2))
 
         if y % 2 == 0:
             return res * res
@@ -42,6 +42,6 @@ def pow(x: Union[int, float], y: int) -> Union[int, float]:
 
 
 if __name__ == "__main__":
-    assert pow(2, 10) == 1024
-    assert pow(3, 5) == 3 ** 5
-    assert pow(3, -3) == 1 / 27
+    assert power(2, 10) == 1024
+    assert power(3, 5) == 3 ** 5
+    assert power(3, -3) == 1 / 27
