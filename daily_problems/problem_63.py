@@ -20,28 +20,27 @@ def recursive_search(
     y_max: int,
     word: str,
     index: int,
-    wlen: int,
-    dir: str,
+    w_len: int,
+    direction: str,
 ) -> bool:
     """
     dir: None - both directions are available
          h - horizontally
          v - vertically
     """
-    if index == wlen:
+    if index == w_len:
         return True
     if x > x_max or y > y_max:
         return False
 
-    if dir == "h":
+    if direction == "h":
         return arr[x][y] == word[index] and recursive_search(
-            arr, x + 1, x_max, y, y_max, word, index + 1, wlen, "h"
+            arr, x + 1, x_max, y, y_max, word, index + 1, w_len, "h"
         )
     else:
         return arr[x][y] == word[index] and recursive_search(
-            arr, x, x_max, y + 1, y_max, word, index + 1, wlen, "v"
+            arr, x, x_max, y + 1, y_max, word, index + 1, w_len, "v"
         )
-    return False
 
 
 def find_word(arr: list, word: str) -> bool:
@@ -49,15 +48,16 @@ def find_word(arr: list, word: str) -> bool:
     Time Complexity: O(n*n)
     Space Complexity: O(n)  # stack
     """
-    x_max, y_max, wlen = len(arr) - 1, len(arr[0]) - 1, len(word)
+    x_max, y_max, w_len = len(arr) - 1, len(arr[0]) - 1, len(word)
     res: bool = False
 
+    # choose starting position
     for i in range(0, x_max + 1):
         for j in range(0, y_max + 1):
             if arr[i][j] == word[0]:
                 res = recursive_search(
-                    arr, i + 1, x_max, j, y_max, word, 1, wlen, "h"
-                ) or recursive_search(arr, i, x_max, j + 1, y_max, word, 1, wlen, "v")
+                    arr, i + 1, x_max, j, y_max, word, 1, w_len, "h"
+                ) or recursive_search(arr, i, x_max, j + 1, y_max, word, 1, w_len, "v")
 
             if res:
                 return res
@@ -66,13 +66,13 @@ def find_word(arr: list, word: str) -> bool:
 
 
 if __name__ == "__main__":
-    arr: list = [
+    arr_words: list = [
         ["F", "A", "C", "I"],
         ["O", "B", "Q", "P"],
         ["A", "N", "O", "B"],
         ["M", "A", "S", "S"],
     ]
-    assert find_word(arr, "FOAM") == True
-    assert find_word(arr, "MASS") == True
-    assert find_word(arr, "NO") == True
-    assert find_word(arr, "NAS") == False
+    assert find_word(arr_words, "FOAM") is True
+    assert find_word(arr_words, "MASS") is True
+    assert find_word(arr_words, "NO") is True
+    assert find_word(arr_words, "NAS") is False
