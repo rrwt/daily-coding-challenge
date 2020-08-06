@@ -10,6 +10,9 @@ For example,
 
 
 def overlapping_intervals(intervals: list) -> list:
+    """
+    O(n*log(n))
+    """
     length = len(intervals)
 
     if length < 2:
@@ -20,10 +23,9 @@ def overlapping_intervals(intervals: list) -> list:
     return_list = [intervals[0]]
 
     for i in range(1, length):
-        for j, tup in enumerate(return_list):
-            if intervals[i][0] <= tup[1]:
-                return_list[j] = (tup[0], max(tup[1], intervals[i][1]))
-                break
+        if return_list[-1][1] >= intervals[i][0]:  # only compare with the last element
+            return_list[-1] = (return_list[-1][0], max(return_list[-1][1], intervals[i][1]))
+            break
         else:
             return_list.append(intervals[i])
 
