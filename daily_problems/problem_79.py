@@ -12,6 +12,9 @@ For example,
 
 
 def verify_non_decreasing(arr: list) -> bool:
+    """
+    O(n) & O(n)
+    """
     len_arr = len(arr)
 
     if len_arr < 3:
