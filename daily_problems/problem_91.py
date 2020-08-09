@@ -18,6 +18,8 @@ for f in functions:
 # this i gets accessed by the lambda function when we try to execute it, i.e. in next for loop
 # therefore, when we invoke lambda using f(), we print 9 each time.
 # to fix it, we'd need to bind the value of i to anonymous function when we try to add it.
+# https://stackoverflow.com/questions/2295290/what-do-lambda-function-closures-capture
+# https://stackoverflow.com/questions/58280201/lambda-function-call
 
 print("new implementation")
 functions = []
