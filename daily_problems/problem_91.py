@@ -20,6 +20,7 @@ for f in functions:
 # to fix it, we'd need to bind the value of i to anonymous function when we try to add it.
 # https://stackoverflow.com/questions/2295290/what-do-lambda-function-closures-capture
 # https://stackoverflow.com/questions/58280201/lambda-function-call
+# https://docs.python.org/3/faq/programming.html#why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result
 
 print("new implementation")
 functions = []
