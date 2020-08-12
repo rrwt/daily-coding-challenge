@@ -9,7 +9,7 @@ from daily_problems.binary_tree_node import Node
 
 
 def _largest_bst(
-        min_val: int, max_val: int, root_node: Optional[Node] = None
+    min_val: int, max_val: int, root_node: Optional[Node] = None
 ) -> Tuple[Optional[Node], bool, int]:
     """
     min_val and max_val are helper variables, helping us make sure that if the values of a node
@@ -23,10 +23,18 @@ def _largest_bst(
     if root_node.left is None and root_node.right is None:
         return root_node, True, 1
 
-    left_bst, is_left_bst, size_left = _largest_bst(min_val, root_node.data, root_node.left)
-    right_bst, is_right_bst, size_right = _largest_bst(root_node.data, max_val, root_node.right)
+    left_bst, is_left_bst, size_left = _largest_bst(
+        min_val, root_node.data, root_node.left
+    )
+    right_bst, is_right_bst, size_right = _largest_bst(
+        root_node.data, max_val, root_node.right
+    )
 
-    if is_left_bst and is_right_bst and root_node.left.data < root_node.data < root_node.right.data:
+    if (
+        is_left_bst
+        and is_right_bst
+        and root_node.left.data < root_node.data < root_node.right.data
+    ):
         return root_node, True, size_left + size_right + 1
 
     if size_left >= size_right:
@@ -40,7 +48,7 @@ def largest_bst(root_node: Optional[Node] = None) -> Tuple[Optional[Node], int]:
     return bst_node, size
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     root = Node(5)
     root.left = Node(2)
     root.right = Node(4)
