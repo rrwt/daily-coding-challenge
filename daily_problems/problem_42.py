@@ -38,20 +38,22 @@ def subset_sum_dp(arr: list, k: int, arr_size: int) -> Tuple[bool, Optional[list
     Time Complexity: O(sum * n)
     Space Complexity: O(sum * n)
     """
-    dp = [[False] * (k+1) for _ in range(arr_size+1)]
+    dp = [[False] * (k + 1) for _ in range(arr_size + 1)]
 
-    for _ in range(arr_size+1):
+    for _ in range(arr_size + 1):
         dp[_][0] = True
 
-    for ind in range(1, arr_size+1):
-        for cur_sum in range(1, k+1):
-            if cur_sum >= arr[ind-1]:
+    for ind in range(1, arr_size + 1):
+        for cur_sum in range(1, k + 1):
+            if cur_sum >= arr[ind - 1]:
                 # if current sum >= current element, then dp[ind][cur_sum] is true if
                 # dp[ind-1[cur_sum] is true - leave current element
                 # or dp[ind-1][cur_sum-arr[ind-1]] is true - take current element
-                dp[ind][cur_sum] = dp[ind-1][cur_sum] or dp[ind-1][cur_sum-arr[ind-1]]
+                dp[ind][cur_sum] = (
+                    dp[ind - 1][cur_sum] or dp[ind - 1][cur_sum - arr[ind - 1]]
+                )
             else:
-                dp[ind][cur_sum] = dp[ind-1][cur_sum]
+                dp[ind][cur_sum] = dp[ind - 1][cur_sum]
 
     if dp[arr_size][k] is False:
         return False, None
@@ -63,9 +65,9 @@ def subset_sum_dp(arr: list, k: int, arr_size: int) -> Tuple[bool, Optional[list
     while cur_sum > 0:
         # reverse the logic from dp construction
         # leave the element part has no impact, therefore do not test for it
-        if cur_sum >= arr[ind-1] and dp[ind-1][cur_sum-arr[ind-1]] is True:
-            res.append(arr[ind-1])
-            cur_sum -= arr[ind-1]
+        if cur_sum >= arr[ind - 1] and dp[ind - 1][cur_sum - arr[ind - 1]] is True:
+            res.append(arr[ind - 1])
+            cur_sum -= arr[ind - 1]
         ind -= 1
 
     return True, res

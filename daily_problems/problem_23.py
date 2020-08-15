@@ -75,8 +75,12 @@ def shortest_path(
 
 
 def is_legal_bfs(x, y, len_x, len_y, matrix, distance_bfs):
-    return (-1 < x < len_x and -1 < y < len_y and matrix[x][y] is False
-            and distance_bfs[x][y] == sys.maxsize)
+    return (
+        -1 < x < len_x
+        and -1 < y < len_y
+        and matrix[x][y] is False
+        and distance_bfs[x][y] == sys.maxsize
+    )
 
 
 def shortest_path_bfs(matrix, len_x, len_y, start_x, start_y, end_x, end_y) -> int:
@@ -104,7 +108,7 @@ def shortest_path_bfs(matrix, len_x, len_y, start_x, start_y, end_x, end_y) -> i
                 if new_x == end_x and new_y == end_y:
                     return distance
 
-                neighbors.append((new_x, new_y, distance+1))
+                neighbors.append((new_x, new_y, distance + 1))
 
     return sys.maxsize
 
@@ -121,4 +125,3 @@ if __name__ == "__main__":
 
     print(shortest_path(board, len(board), len(board[0]), 3, 0, 0, 0, 0))
     print(shortest_path_bfs(board, len(board), len(board[0]), 3, 0, 0, 0))
-

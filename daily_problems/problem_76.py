@@ -26,7 +26,7 @@ def make_lexicographic(matrix: List[List[str]]) -> int:
 
     for w in range(width):
         for h in range(1, height):
-            if matrix[h][w] < matrix[h-1][w]:
+            if matrix[h][w] < matrix[h - 1][w]:
                 count_removal += 1
                 break
 
@@ -34,6 +34,6 @@ def make_lexicographic(matrix: List[List[str]]) -> int:
 
 
 if __name__ == "__main__":
-    assert make_lexicographic([['c', 'b', 'a'], ['d', 'a', 'f'], ['g', 'h', 'i']]) == 1
-    assert make_lexicographic([['a', 'b', 'c', 'd', 'e', 'f']]) == 0
-    assert make_lexicographic([['z', 'y', 'x'], ['w', 'v', 'u'], ['t', 's', 'r']]) == 3
+    assert make_lexicographic([["c", "b", "a"], ["d", "a", "f"], ["g", "h", "i"]]) == 1
+    assert make_lexicographic([["a", "b", "c", "d", "e", "f"]]) == 0
+    assert make_lexicographic([["z", "y", "x"], ["w", "v", "u"], ["t", "s", "r"]]) == 3

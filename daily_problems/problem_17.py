@@ -90,7 +90,14 @@ if __name__ == "__main__":
     assert longest_path("") == ""
     assert longest_path("dir") == "dir"
     assert longest_path("d\n\ts") == "d/s"
-    assert longest_path("dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext") == "dir/subdir2/file.ext"
-    assert longest_path("dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2"
-                        "\n\t\t\tfile2.ext") == "dir/subdir2/subsubdir2/file2.ext"
-
+    assert (
+        longest_path("dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext")
+        == "dir/subdir2/file.ext"
+    )
+    assert (
+        longest_path(
+            "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2"
+            "\n\t\t\tfile2.ext"
+        )
+        == "dir/subdir2/subsubdir2/file2.ext"
+    )

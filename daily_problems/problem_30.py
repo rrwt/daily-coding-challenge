@@ -26,11 +26,11 @@ def trapped_water(elevations: List[int]) -> int:
     max_right = [0] * count_el
     water_trapped = 0
 
-    for index in range(1, count_el-1):
-        max_left[index] = max(max_left[index-1], elevations[index-1])
+    for index in range(1, count_el - 1):
+        max_left[index] = max(max_left[index - 1], elevations[index - 1])
 
-    for index in range(count_el-2, 0, -1):
-        max_right[index] = max(max_right[index+1], elevations[index+1])
+    for index in range(count_el - 2, 0, -1):
+        max_right[index] = max(max_right[index + 1], elevations[index + 1])
 
     for index, elevation in enumerate(elevations):
         water_trapped += max(min(max_left[index], max_right[index]) - elevation, 0)

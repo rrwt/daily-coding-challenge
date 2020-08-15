@@ -38,5 +38,5 @@ def longest_consecutive_subsequence(arr: List[int]) -> int:
     return max_count
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     assert longest_consecutive_subsequence([100, 4, 200, 1, 3, 2]) == 4

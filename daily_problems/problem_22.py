@@ -17,7 +17,7 @@ from typing import List, Tuple
 
 
 def get_word_list(
-        word_list: List[str], string: str, current_list: List[str] = None
+    word_list: List[str], string: str, current_list: List[str] = None
 ) -> Tuple[bool, List[str]]:
     """
     Inefficient solution since it is checking every prefix.
@@ -34,8 +34,9 @@ def get_word_list(
     for word in word_list:
         if string.startswith(word):
             new_word_list.remove(word)
-            found, final_list = get_word_list(new_word_list, string[len(word):],
-                                              current_list + [word])
+            found, final_list = get_word_list(
+                new_word_list, string[len(word) :], current_list + [word]
+            )
 
             if found:
                 return True, final_list
@@ -46,5 +47,7 @@ def get_word_list(
 
 
 if __name__ == "__main__":
-    print(get_word_list(['quick', 'brown', 'the', 'fox'], "thequickbrownfox"))
-    print(get_word_list(['bed', 'bath', 'bedbath', 'and', 'beyond'], "bedbathandbeyond"))
+    print(get_word_list(["quick", "brown", "the", "fox"], "thequickbrownfox"))
+    print(
+        get_word_list(["bed", "bath", "bedbath", "and", "beyond"], "bedbathandbeyond")
+    )

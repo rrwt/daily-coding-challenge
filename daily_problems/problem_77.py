@@ -24,7 +24,10 @@ def overlapping_intervals(intervals: list) -> list:
 
     for i in range(1, length):
         if return_list[-1][1] >= intervals[i][0]:  # only compare with the last element
-            return_list[-1] = (return_list[-1][0], max(return_list[-1][1], intervals[i][1]))
+            return_list[-1] = (
+                return_list[-1][0],
+                max(return_list[-1][1], intervals[i][1]),
+            )
             break
         else:
             return_list.append(intervals[i])

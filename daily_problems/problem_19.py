@@ -78,6 +78,7 @@ def color_houses_dp_alt(house_colors: List[List[int]], n: int, k: int) -> int:
     To get min cost so far, we need to make sure that
         sum(previously painted houses + cur paint cost) is min.
     """
+
     def get_min(cur_color, previous_house):
         # get min so far where we don't paint last house with cur_color
         return_value = sys.maxsize
@@ -95,7 +96,7 @@ def color_houses_dp_alt(house_colors: List[List[int]], n: int, k: int) -> int:
 
     for house in range(1, n):
         for color in range(k):
-            cost[house][color] = house_colors[house][color] + get_min(color, house-1)
+            cost[house][color] = house_colors[house][color] + get_min(color, house - 1)
 
     return min(cost[-1])
 

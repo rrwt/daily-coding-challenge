@@ -24,7 +24,7 @@ class OrderDeque:
         self.len = min(self.len + 1, self.max_len)
 
     def get_last(self, i: int) -> int:
-        return self.log[i-1] if i < self.len else -1
+        return self.log[i - 1] if i < self.len else -1
 
 
 class OrderCircularBuffer:

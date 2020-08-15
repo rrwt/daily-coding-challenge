@@ -44,5 +44,11 @@ def can_color_graph(graph: List[List[int]], num_vertices: int, k: int) -> bool:
 
 
 if __name__ == "__main__":
-    assert can_color_graph([[0, 1, 1, 1], [1, 0, 1, 1], [1, 1, 0, 1], [1, 1, 1, 0]], 4, 4) is True
-    assert can_color_graph([[0, 1, 1, 1], [1, 0, 1, 1], [1, 1, 0, 1], [1, 1, 1, 0]], 4, 3) is False
+    assert (
+        can_color_graph([[0, 1, 1, 1], [1, 0, 1, 1], [1, 1, 0, 1], [1, 1, 1, 0]], 4, 4)
+        is True
+    )
+    assert (
+        can_color_graph([[0, 1, 1, 1], [1, 0, 1, 1], [1, 1, 0, 1], [1, 1, 1, 0]], 4, 3)
+        is False
+    )

@@ -28,7 +28,7 @@ def backtrack_fi(itineraries: List[Tuple[str, str]], start: str) -> list:
     for index, (s, e) in enumerate(itineraries):
         if s == start:
             return_list = [start] + backtrack_fi(
-                itineraries[:index] + itineraries[index + 1:], e
+                itineraries[:index] + itineraries[index + 1 :], e
             )
 
             if len(return_list) == len(itineraries) + 1:

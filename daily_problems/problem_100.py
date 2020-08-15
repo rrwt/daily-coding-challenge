@@ -38,5 +38,5 @@ def min_steps_grid(seq: List[Tuple[int, int]]) -> int:
     return steps
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     assert min_steps_grid([(0, 0), (1, 1), (1, 2)]) == 2

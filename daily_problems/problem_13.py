@@ -61,7 +61,7 @@ def longest_substring_alt(string: str, k: int) -> int:
     for index, char in enumerate(string[k:], start=k):
         if char not in distinct_chars:
             if set_size == k:
-                char_to_remove = string[index-k]
+                char_to_remove = string[index - k]
                 distinct_chars.remove(char_to_remove)
                 curr_len = index - 1 - hash_map[char_to_remove]
                 set_size -= 1

@@ -30,7 +30,6 @@ from typing import Optional, Tuple
 
 
 class BSTNode:
-
     def __init__(self, data: Tuple[int, int]) -> None:
         self.data = data
         self.left = None
@@ -38,7 +37,6 @@ class BSTNode:
 
 
 class BST:
-
     def __init__(self, root: Optional[BSTNode] = None) -> None:
         self.root = root
 
@@ -64,7 +62,9 @@ class BST:
 
         return self.root
 
-    def _search(self, cur_node: BSTNode, min_time: int, max_time: int) -> Optional[Tuple[int, int]]:
+    def _search(
+        self, cur_node: BSTNode, min_time: int, max_time: int
+    ) -> Optional[Tuple[int, int]]:
         # return potential time and value combination
         if cur_node is None:
             return None
@@ -72,7 +72,7 @@ class BST:
         if cur_node.data[0] > min_time and cur_node.left is not None:
             return self._search(cur_node.left, min_time, max_time)
         elif cur_node.data[0] < min_time and cur_node.right is not None:
-            right_res= self._search(cur_node.right, min_time, cur_node.data[0])
+            right_res = self._search(cur_node.right, min_time, cur_node.data[0])
 
             if right_res and right_res[0] <= min_time:
                 return right_res
@@ -85,7 +85,6 @@ class BST:
 
 
 class Map:
-
     def __init__(self):
         """
         _map = {key: value,  # value is a bst, where all nodes store [time, value] tuple}
@@ -104,7 +103,7 @@ class Map:
         return None
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     d = Map()
     d.set(1, 1, 0)  # set key 1 to value 1 at time 0
     d.set(1, 2, 2)  # set key 1 to value 2 at time 2

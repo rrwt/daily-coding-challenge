@@ -49,7 +49,7 @@ def find_unique_opt(arr: array) -> int:
 
 
 if __name__ == "__main__":
-    assert find_unique(array('I', [6, 1, 3, 3, 3, 6, 6])) == 1
-    assert find_unique(array('I', [13, 19, 13, 13])) == 19
-    assert find_unique_opt(array('I', [6, 1, 3, 3, 3, 6, 6])) == 1
-    assert find_unique_opt(array('I', [13, 19, 13, 13])) == 19
+    assert find_unique(array("I", [6, 1, 3, 3, 3, 6, 6])) == 1
+    assert find_unique(array("I", [13, 19, 13, 13])) == 19
+    assert find_unique_opt(array("I", [6, 1, 3, 3, 3, 6, 6])) == 1
+    assert find_unique_opt(array("I", [13, 19, 13, 13])) == 19

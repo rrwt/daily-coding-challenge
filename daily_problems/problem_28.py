@@ -37,7 +37,9 @@ def get_spaced_string(string_list: List[str], string_len: int, line_length: int)
     while spaces_required:
         new_space_list[i] += 1
         spaces_required -= 1
-        i = (i+1) % (length_list - 1)  # the last word doesn't get extra space after it
+        i = (i + 1) % (
+            length_list - 1
+        )  # the last word doesn't get extra space after it
 
     for i in range(length_list - 1):  # the last word doesn't get extra space after it
         string_list[i] = string_list[i] + " " * new_space_list[i]

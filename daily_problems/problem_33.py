@@ -22,7 +22,7 @@ def running_median() -> float:
             index_med += 1
             median = arr[index_med]
         else:
-            median = (arr[index_med] + arr[index_med+1]) / 2
+            median = (arr[index_med] + arr[index_med + 1]) / 2
 
 
 if __name__ == "__main__":

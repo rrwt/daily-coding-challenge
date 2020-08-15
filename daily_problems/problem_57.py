@@ -31,7 +31,7 @@ def word_break(text: str, k: int) -> Optional[List[str]]:
         if start == index or cur_len > k:
             return None
 
-        return_list.append(" ".join(words[start: index]))
+        return_list.append(" ".join(words[start:index]))
 
     return return_list
 

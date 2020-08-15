@@ -12,7 +12,7 @@ from .problem_0 import (
 
 class TestMergeKSortedList:
     def test_given_two_lists_with_same_elements_each_returns_a_list_of_two_elements(
-        self
+        self,
     ):
         assert merge_sorted_lists([[1], [1]]) == [1, 1]
 
@@ -32,7 +32,7 @@ class TestMergeKSortedList:
 
 class TestMergeKSortedListUsingMinHeap:
     def test_given_two_lists_with_same_elements_each_returns_a_list_of_two_elements(
-        self
+        self,
     ):
         assert merge_sorted_lists_min_heap([[1], [1]]) == [1, 1]
 
@@ -52,7 +52,7 @@ class TestMergeKSortedListUsingMinHeap:
 
 class TestMergeKSortedListUsingMergeSort:
     def test_given_two_lists_with_same_elements_each_returns_a_list_of_two_elements(
-        self
+        self,
     ):
         assert merge_sorted_merge_sort_algorithm([[1], [1]]) == [1, 1]
 

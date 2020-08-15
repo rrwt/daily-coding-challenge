@@ -27,4 +27,7 @@ def longest_increasing_sub(numbers: List[int]) -> int:
 
 
 if __name__ == "__main__":
-    assert longest_increasing_sub([0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]) == 6
+    assert (
+        longest_increasing_sub([0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15])
+        == 6
+    )

@@ -14,21 +14,23 @@ For example, this matrix has 4 islands.
 from typing import List
 
 
-def mark_neighbors(matrix: List[List[int]], h: int, w: int, height: int, width: int) -> None:
+def mark_neighbors(
+    matrix: List[List[int]], h: int, w: int, height: int, width: int
+) -> None:
     """
     Mark unmarked and island neighbors in all directions.
     """
     if 0 <= w < width and 0 <= h < height:
         matrix[h][w] = -1
 
-        if w > 0 and matrix[h][w-1] == 1:
-            mark_neighbors(matrix, h, w-1, height, width)
-        if h > 0 and matrix[h-1][w] == 1:
-            mark_neighbors(matrix, h-1, w, height, width)
-        if w < width - 1 and matrix[h][w+1] == 1:
-            mark_neighbors(matrix, h, w+1, height, width)
-        if h < height - 1 and matrix[h+1][w] == 1:
-            mark_neighbors(matrix, h+1, w, height, width)
+        if w > 0 and matrix[h][w - 1] == 1:
+            mark_neighbors(matrix, h, w - 1, height, width)
+        if h > 0 and matrix[h - 1][w] == 1:
+            mark_neighbors(matrix, h - 1, w, height, width)
+        if w < width - 1 and matrix[h][w + 1] == 1:
+            mark_neighbors(matrix, h, w + 1, height, width)
+        if h < height - 1 and matrix[h + 1][w] == 1:
+            mark_neighbors(matrix, h + 1, w, height, width)
 
 
 def num_islands(matrix: List[List[int]]) -> int:
@@ -50,9 +52,16 @@ def num_islands(matrix: List[List[int]]) -> int:
 
 
 if __name__ == "__main__":
-    assert num_islands([[1, 0, 0, 0, 0],
-                        [0, 0, 1, 1, 0],
-                        [0, 1, 1, 0, 0],
-                        [0, 0, 0, 0, 0],
-                        [1, 1, 0, 0, 1],
-                        [1, 1, 0, 0, 1]]) == 4
+    assert (
+        num_islands(
+            [
+                [1, 0, 0, 0, 0],
+                [0, 0, 1, 1, 0],
+                [0, 1, 1, 0, 0],
+                [0, 0, 0, 0, 0],
+                [1, 1, 0, 0, 1],
+                [1, 1, 0, 0, 1],
+            ]
+        )
+        == 4
+    )

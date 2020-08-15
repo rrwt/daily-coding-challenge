@@ -19,9 +19,9 @@ def get_deepest_node(root_node: Optional[Node] = None) -> str:
         if not node:
             return None
         if node.left:
-            get_deepest(node.left, level+1)
+            get_deepest(node.left, level + 1)
         if node.right:
-            get_deepest(node.right, level+1)
+            get_deepest(node.right, level + 1)
         if level > max_level:
             max_level = level
             deepest_node = node.data

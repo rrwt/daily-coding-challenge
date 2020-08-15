@@ -16,7 +16,9 @@ def _is_bst(min_val: int, max_val: int, node: Optional[Node] = None) -> bool:
         return True
 
     if min_val < node.data < max_val:
-        return _is_bst(min_val, node.data, node.left) and _is_bst(node.data, max_val, node.right)
+        return _is_bst(min_val, node.data, node.left) and _is_bst(
+            node.data, max_val, node.right
+        )
 
     return False
 

@@ -35,6 +35,9 @@ if __name__ == "__main__":
     arr: array = array("u", ["G", "B", "R", "R", "B", "R", "G", "R"])
     assert segregate_rgb(arr) == array("u", ["R", "R", "R", "R", "G", "G", "B", "B"])
 
-    arr: array = array("u", ["R", "G", "G", "R", "G", "B", "G", "B", "R", "R", "R", "G"])
-    assert segregate_rgb(arr) == array("u", ["R", "R", "R", "R", "R", "G", "G", "G", "G",
-                                       "G", "B", "B"])
+    arr: array = array(
+        "u", ["R", "G", "G", "R", "G", "B", "G", "B", "R", "R", "R", "G"]
+    )
+    assert segregate_rgb(arr) == array(
+        "u", ["R", "R", "R", "R", "R", "G", "G", "G", "G", "G", "B", "B"]
+    )

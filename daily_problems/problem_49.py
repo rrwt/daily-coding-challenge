@@ -40,9 +40,9 @@ def max_sum(arr: list) -> Tuple[list, int]:
         index += 1
 
     if sum_inc > 0 and sum_inc >= sum_exc:
-        return arr[start_inc: end_inc], sum_inc
+        return arr[start_inc:end_inc], sum_inc
     elif sum_exc > 0 and sum_exc > sum_inc:
-        return arr[start_exc: end_exc], sum_exc
+        return arr[start_exc:end_exc], sum_exc
     else:
         return [], 0
 

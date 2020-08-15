@@ -18,12 +18,13 @@ def regex_match_naive(text: str, pattern: str) -> bool:
     if not pattern:
         return not text
 
-    first_match = bool(text) and pattern[0] in {text[0], '.'}
+    first_match = bool(text) and pattern[0] in {text[0], "."}
 
-    if len(pattern) >= 2 and pattern[1] == '*':
+    if len(pattern) >= 2 and pattern[1] == "*":
         # 0 match or 1+ match using *
-        return (regex_match_naive(text, pattern[2:]) or
-                (first_match and regex_match_naive(text[1:], pattern)))
+        return regex_match_naive(text, pattern[2:]) or (
+            first_match and regex_match_naive(text[1:], pattern)
+        )
     else:  # there is no asterisk
         return first_match and regex_match_naive(text[1:], pattern[1:])
 
@@ -36,9 +37,9 @@ def regex_match_dp(text: str, pattern: str) -> bool:
 
     dp[0][0] = True  # both empty
 
-    for index in range(2, len_p+1):
-        if pattern[index-1] == "*":
-            dp[0][index] = dp[0][index-2]
+    for index in range(2, len_p + 1):
+        if pattern[index - 1] == "*":
+            dp[0][index] = dp[0][index - 2]
 
     for i_t in range(0, len_t):
         for i_p in range(0, len_p):
@@ -47,8 +48,9 @@ def regex_match_dp(text: str, pattern: str) -> bool:
                 # 0 occurrence: res = do not consider * and previous char
                 # 1+ occurrences: res = curr text char = previous pattern char and
                 # there was a match of current pattern with previous text char
-                dp[i_t+1][i_p+1] = (dp[i_t+1][i_p-1] or
-                                    (pattern[i_p-1] in (text[i_t], ".") and dp[i_t][i_p+1]))
+                dp[i_t + 1][i_p + 1] = dp[i_t + 1][i_p - 1] or (
+                    pattern[i_p - 1] in (text[i_t], ".") and dp[i_t][i_p + 1]
+                )
             else:
                 # current text char matches with curr pattern char and
                 # there was a match until previous char

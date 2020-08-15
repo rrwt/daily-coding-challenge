@@ -41,7 +41,7 @@ def count_ways_dp(n: int, m: int) -> int:
             else:
                 count_arr[i][j] = count_arr[i - 1][j] + count_arr[i][j - 1]
 
-    return count_arr[n-1][m-1]
+    return count_arr[n - 1][m - 1]
 
 
 def count_ways_print_all_paths(n: int, m: int) -> int:

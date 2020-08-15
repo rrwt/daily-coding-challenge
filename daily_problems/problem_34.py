@@ -27,8 +27,8 @@ def lexicographic_palindrome(text: str, start: int = -1, end: int = -1) -> str:
     if text[start] == text[end]:
         return text[start] + lexicographic_palindrome(text, start+1, end-1) + text[end]
 
-    res_1 = text[start] + lexicographic_palindrome(text, start+1, end) + text[start]
-    res_2 = text[end] + lexicographic_palindrome(text, start, end-1) + text[end]
+    res_1 = text[start] + lexicographic_palindrome(text, start + 1, end) + text[start]
+    res_2 = text[end] + lexicographic_palindrome(text, start, end - 1) + text[end]
 
     if len(res_1) == len(res_2):
         return res_1 if text[start] < text[end] else res_2
@@ -51,13 +51,13 @@ def find_min_insertions_palindrome(text: str) -> int:
 
         for right in range(gap, length):
             if text[left] == text[right]:
-                dp[left][right] = dp[left+1][right-1]
+                dp[left][right] = dp[left + 1][right - 1]
             else:
-                dp[left][right] = 1 + min(dp[left+1][right], dp[left][right-1])
+                dp[left][right] = 1 + min(dp[left + 1][right], dp[left][right - 1])
 
             left += 1
 
-    return dp[0][length-1]
+    return dp[0][length - 1]
 
 
 if __name__ == "__main__":

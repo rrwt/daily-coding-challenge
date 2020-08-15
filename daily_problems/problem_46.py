@@ -24,12 +24,12 @@ def longest_palindromic_substring(text: str) -> str:
     for str_len in range(1, length):
         start = 0
 
-        for end in range(start+str_len, length):
+        for end in range(start + str_len, length):
             if text[start] == text[end]:
-                if start == end-1:
+                if start == end - 1:
                     dp[start][end] = 2
                 else:
-                    dp[start][end] = dp[start+1][end-1] + 2
+                    dp[start][end] = dp[start + 1][end - 1] + 2
 
                 if dp[start][end] > max_len:
                     max_len = end - start + 1
@@ -37,11 +37,11 @@ def longest_palindromic_substring(text: str) -> str:
                     max_end = end
 
             else:
-                dp[start][end] = max(dp[start+1][end], dp[start][end-1])
+                dp[start][end] = max(dp[start + 1][end], dp[start][end - 1])
 
             start += 1
 
-    return text[max_start: max_end+1]
+    return text[max_start: max_end + 1]
 
 
 if __name__ == "__main__":

@@ -32,7 +32,9 @@ def encode(text: str) -> str:
 
 
 def decode(text: str) -> str:
-    return "".join([text[index] * int(text[index+1]) for index in range(0, len(text), 2)])
+    return "".join(
+        [text[index] * int(text[index + 1]) for index in range(0, len(text), 2)]
+    )
 
 
 if __name__ == "__main__":

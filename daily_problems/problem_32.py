@@ -59,7 +59,7 @@ def arbitrage(graph):
     # get the right result
     source = 0
     n = len(transformed_graph)
-    min_dist = [float('inf')] * n
+    min_dist = [float("inf")] * n
 
     min_dist[source] = 0
 

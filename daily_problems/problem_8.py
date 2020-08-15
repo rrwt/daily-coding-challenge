@@ -31,7 +31,7 @@ def count_unival(root_node: Optional[Node] = None) -> Tuple[int, bool]:
 
     if is_left_unival and is_right_unival:
         if (root_node.left and root_node.data != root_node.left.data) or (
-                root_node.right and root_node.data != root_node.right.data
+            root_node.right and root_node.data != root_node.right.data
         ):
             return total_count, False
         return total_count + 1, True

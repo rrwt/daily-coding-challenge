@@ -12,7 +12,7 @@ def get_permutations(numbers: Optional[List[int]] = None) -> List[List[int]]:
     permutations = []
 
     for index, number in enumerate(numbers):
-        sub_perms = get_permutations(numbers[:index] + numbers[index+1:])
+        sub_perms = get_permutations(numbers[:index] + numbers[index + 1 :])
 
         for sub_perm in sub_perms:
             permutations.append(sub_perm + [number])
