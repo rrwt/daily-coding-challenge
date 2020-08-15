@@ -26,7 +26,6 @@ Consider the following examples:
     d.get(1, 0) # get key 1 at time 0 should be 2
 """
 import sys
-from collections import defaultdict
 from typing import Optional, Tuple
 
 
