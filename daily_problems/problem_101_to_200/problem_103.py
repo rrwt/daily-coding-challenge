@@ -43,6 +43,6 @@ def shortest_substring_containing_characters(text: str, char_set: set) -> Option
     return text[start: end + 1] if end > start else None
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     assert shortest_substring_containing_characters("figehaeci", {"a", "e", "i"}) == "aeci"
     assert shortest_substring_containing_characters("abcdefgh", {"a", "e", "n"}) is None
