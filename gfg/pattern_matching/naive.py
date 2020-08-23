@@ -27,9 +27,7 @@ def find_substring(string: str, substring: str) -> int:
 
 
 if __name__ == "__main__":
-    index = find_substring("THIS IS A TEST TEXT", "TEXT")
-
-    if index > -1:
-        print(f"Found at index {index}")
+    if (ind := find_substring("THIS IS A TEST TEXT", "TEXT")) > -1:
+        print(f"Found at index {ind}")
     else:
         print("Not Found")
