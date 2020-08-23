@@ -10,15 +10,15 @@ def generate_lps(pattern: str, length: int) -> List[int]:
     """
     index = 1
     lps: List[int] = [0] * length
-    j = 0
+    cur_len = 0
 
     while index < length:
-        if pattern[index] == pattern[j]:
-            j += 1
-            lps[index] = j
+        if pattern[index] == pattern[cur_len]:
+            cur_len += 1
+            lps[index] = cur_len
             index += 1
-        elif j != 0:
-            j = lps[j - 1]
+        elif cur_len != 0:
+            cur_len = lps[cur_len - 1]
         else:
             index += 1
 
@@ -31,23 +31,21 @@ def kmp(text: str, pattern: str) -> List[int]:
 
     lps: List[int] = generate_lps(pattern, l_pat)
 
-    index: int = 0
+    index_text, index_pat = 0, 0
     return_list: List[int] = []
 
-    j = 0
+    while index_text < l_text:
+        if text[index_text] == pattern[index_pat]:
+            index_text += 1
+            index_pat += 1
 
-    while index < l_text:
-        while index < l_text and j < l_pat and text[index] == pattern[j]:
-            index += 1
-            j += 1
-
-        if j == l_pat:
-            return_list.append(index - l_pat)
-
-        if index < l_text and j > 0:
-            j = lps[j - 1]
+            if index_pat == l_pat:
+                return_list.append(index_text - l_pat)
+                index_pat = lps[index_pat - 1]
+        elif index_pat > 0:
+            index_pat = lps[index_pat - 1]
         else:
-            index += 1
+            index_text += 1
 
     return return_list
 
