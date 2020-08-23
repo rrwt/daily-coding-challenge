@@ -9,7 +9,7 @@ Follow-up: Can you do this in O(N) time and constant space?
 """
 import pytest
 
-from daily_problems.problem_9 import largest_non_adjacent_sum
+from daily_problems.problem_0_to_100.problem_9 import largest_non_adjacent_sum
 
 
 class TestLargestSum:

@@ -3,7 +3,7 @@ Given the head of a singly linked list, reverse it in-place.
 """
 from typing import Optional
 
-from .linked_list import Node
+from daily_problems.linked_list import Node
 
 
 def reverse_ll(head_node: Node) -> Node:

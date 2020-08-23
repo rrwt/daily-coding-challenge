@@ -6,7 +6,7 @@ You can assume that the messages are decodable. For example, '001' is not allowe
 """
 import pytest
 
-from daily_problems.problem_7 import count_mapping, count_mapping_dp
+from daily_problems.problem_0_to_100.problem_7 import count_mapping, count_mapping_dp
 
 
 class TestCountMapping:
