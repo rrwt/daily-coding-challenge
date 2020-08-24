@@ -16,7 +16,7 @@ def my_sqrt(n: int) -> int:
     start, end = 0, n
 
     while start < end:
-        mid = start + (end-start) / 2
+        mid = start + (end - start) / 2
 
         if almost_equal(mid * mid, n):
             return mid
@@ -26,7 +26,7 @@ def my_sqrt(n: int) -> int:
             end = mid
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     assert almost_equal(my_sqrt(9), 3) is True
     assert almost_equal(my_sqrt(4), 2) is True
     assert almost_equal(my_sqrt(25), 5) is True
