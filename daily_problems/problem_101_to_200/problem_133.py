@@ -16,8 +16,7 @@ from typing import Optional
 
 
 class Node:
-
-    def __init__(self, data: int, parent: Optional['Node'] = None) -> None:
+    def __init__(self, data: int, parent: Optional["Node"] = None) -> None:
         self.data = data
         self.left = None
         self.right = None
@@ -38,7 +37,7 @@ def inorder_successor(node: Node) -> int:
         return -1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     root = Node(10)
     root.left = Node(5, root)
     root.right = Node(30, root)

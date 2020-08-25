@@ -24,8 +24,7 @@ class CounterNodeNull:
 
 
 class CounterNode:
-
-    def __init__(self, timestamp: int, parent: Optional['CounterNode']) -> None:
+    def __init__(self, timestamp: int, parent: Optional["CounterNode"]) -> None:
         self.timestamp = timestamp
         self.left = CounterNodeNull()
         self.right = CounterNodeNull()
@@ -51,11 +50,11 @@ class HitCounter:
             node = node.parent
 
     def create_node(
-            self,
-            root: Union['CounterNode', 'CounterNodeNull'],
-            parent: Optional['CounterNode'],
-            timestamp: int
-    ) -> 'CounterNode':
+        self,
+        root: Union["CounterNode", "CounterNodeNull"],
+        parent: Optional["CounterNode"],
+        timestamp: int,
+    ) -> "CounterNode":
         if not root or root.timestamp < 0:
             return CounterNode(timestamp, parent)
         else:
@@ -126,7 +125,7 @@ class HitCounter:
         return common_parent.count - first_node.left.count - second_node.right.count
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     hc = HitCounter()
     hc.record(3)
     hc.record(3)

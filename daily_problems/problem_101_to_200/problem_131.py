@@ -6,7 +6,6 @@ from typing import Tuple
 
 
 class Node:
-
     def __init__(self, data: int) -> None:
         self.data = data
         self.next = None
@@ -50,7 +49,7 @@ def deep_clone_ll(ll_head: Node) -> Tuple[Node, Node]:
     return ll_head, new_head
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     head = Node(1)
     head.next = Node(2)
     head.next.next = Node(3)
