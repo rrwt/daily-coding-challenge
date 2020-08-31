@@ -17,5 +17,5 @@ def reverse_bits(n: int) -> int:
     return integer
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(reverse_bits(randint(1, 1_000_000)))
