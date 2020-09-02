@@ -41,7 +41,7 @@ def legal_graph_coloring(graph: List[List[int]], num_vertices: int, max_degree: 
     So, if we look at any node, there's always at least one color that's not taken by its neighbors.
     So D+1 is always enough colors for a legal coloring.
 
-    Time Complexity: O(num_vertices + max_degree)
+    Time Complexity: O(num_vertices + num_edges)
     Space Complexity: O(max_degree)
     """
     all_colors = list(range(1, max_degree + 2))
