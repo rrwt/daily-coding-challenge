@@ -6,6 +6,11 @@ from typing import Optional, Union
 from .queue import Deque, DNode  # type: ignore
 
 
+"""
+There is a better solution using Ordered Dict.
+See: other_problems/lru_cache.py
+"""
+
 class LRUCache:
     """
     LRU cache implementation.
