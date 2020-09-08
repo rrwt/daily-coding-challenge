@@ -30,7 +30,7 @@ def get_balanced_parenthesis(parenthesis: str) -> str:
             opening = closing = 0
 
     if closing:
-        res.extend(stack[-closing * 2:])
+        res.extend(stack[opening-closing:])
 
     return "".join(res)
 
