@@ -1,5 +1,8 @@
 """
-
+We say a number is sparse if there are no adjacent ones in its binary representation.
+For example, 21 (10101) is sparse, but 22 (10110) is not.
+For a given input N, find the smallest sparse number greater than or equal to N.
+Do this in faster than O(N log N) time.
 """
 
 
@@ -12,7 +15,6 @@ def next_sparse(n: int) -> int:
             (i)  Make all bits after this 1 to last finalized bit (including last finalized) as 0.
             (ii) Update last finalized bit as next bit.
     """
-    n += 1
     n = list(str(bin(n)))[2:]
     size = len(n)
 
@@ -44,5 +46,5 @@ def next_sparse(n: int) -> int:
 
 
 if __name__ == "__main__":
-    for i in range(20):
+    for i in range(23):
         print(f"{i} -> {next_sparse(i)}")
