@@ -9,28 +9,27 @@ t     a     g
   i i   i z
    s     g
 """
+from typing import Tuple
+
+
+def set_row_and_direction(row, k, direction) -> Tuple[int, int]:
+    if row == 0:
+        direction = 1
+    elif row == k - 1:
+        direction = -1
+
+    return min(max(row + direction, 0), k - 1), direction
 
 
 def print_zig_zag(text: str, k: int) -> None:
     size = len(text)
     output = [[" "] * size for _ in range(k)]
-    height = 0
-    direction = True
+    row = 0
+    direction = 1
 
     for index in range(size):
-        output[height][index] = text[index]
-        if direction is True:
-            if height < k - 1:
-                height += 1
-            else:
-                direction = False
-                height = height - 1
-        elif direction is False:
-            if height > 0:
-                height -= 1
-            else:
-                direction = True
-                height += 1
+        output[row][index] = text[index]
+        row, direction = set_row_and_direction(row, k, direction)
 
     for index in range(k):
         print("".join(output[index]))
