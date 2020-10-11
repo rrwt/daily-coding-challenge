@@ -28,7 +28,9 @@ class VotingMachine:
                 self.candidates[candidate_id] += 1
 
     def top_candidates(self) -> Tuple[int, ...]:
-        return list(zip(*sorted(self.candidates.items(), key=lambda item: item[1], reverse=True)))[0][:3]
+        return list(
+            zip(*sorted(self.candidates.items(), key=lambda item: item[1], reverse=True))
+        )[0][:3]
 
 
 if __name__ == "__main__":
