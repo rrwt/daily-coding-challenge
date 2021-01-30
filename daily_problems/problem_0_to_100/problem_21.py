@@ -30,9 +30,9 @@ def min_rooms_alt(intervals: List[tuple]) -> int:
     previous = -1
 
     for (start, end) in intervals:
-        if start >= previous:
+        if start <= previous:
             count += 1
-            previous = end
+        previous = end
 
     return count
 
