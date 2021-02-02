@@ -9,14 +9,14 @@ from daily_problems.binary_tree_node import Node
 
 def level_with_min_sum(root_node: Node) -> int:
     q = deque()  # to traverse nodes in Level Order Fashion
-    d = defaultdict(list)  # to store level sum
+    d = defaultdict(int)  # to store level sum
 
     # insert node and level
     q.append((root_node, 0))
 
     while q:
         node, level = q.popleft()
-        d[level].append(node.data)
+        d[level] += node.data
 
         if node.left:
             q.append((node.left, level + 1))
@@ -26,10 +26,9 @@ def level_with_min_sum(root_node: Node) -> int:
     min_sum = sys.maxsize
     min_sum_level = 0
 
-    for level, values in d.items():
-        cur_sum = sum(values)
-        if cur_sum < min_sum:
-            min_sum = cur_sum
+    for level, level_sum in d.items():
+        if level_sum < min_sum:
+            min_sum = level_sum
             min_sum_level = level
 
     return min_sum_level
