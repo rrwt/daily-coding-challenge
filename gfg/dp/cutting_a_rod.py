@@ -1,4 +1,5 @@
 """Cutting a rod
+
 Given a rod of length n inches and an array of prices that contains prices
 of all pieces of size smaller than n. Determine the maximum value obtainable
 by cutting up the rod and selling the pieces
@@ -28,6 +29,7 @@ def cut_tabulated(prices: List[int]) -> int:
         values[cur_length] = prices[cur_length - 1]
 
         for cut in range(cur_length // 2 + 1):
+            # cur_length // 2 + 1 the calculations are symmetric around the half point
             values[cur_length] = max(values[cur_length], values[cut] + values[cur_length - cut])
 
     return values[rod_length]

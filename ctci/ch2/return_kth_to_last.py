@@ -15,7 +15,7 @@ def kth_to_last_element(llist: list, k: int) -> int:
     l: int = len(llist)
 
     if l < k:
-        return None
+        return -1
 
     i: int = k
     j: int = 0

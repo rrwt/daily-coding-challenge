@@ -85,7 +85,7 @@ def is_legal_bfs(x, y, len_x, len_y, matrix, distance_bfs):
 
 def shortest_path_bfs(matrix, len_x, len_y, start_x, start_y, end_x, end_y) -> int:
     """
-    Using BFS. BFS generates shortest path from point 1 to point 2 in a matrix/graph.
+    Using BFS. BFS generates the shortest path from point 1 to point 2 in a matrix/graph.
     Optimal Solution.
     Time Complexity: O(len_x * len_y)
     Space Complexity: O(len_x * len_y)
@@ -94,13 +94,18 @@ def shortest_path_bfs(matrix, len_x, len_y, start_x, start_y, end_x, end_y) -> i
     distance_bfs = [[sys.maxsize] * len_x for _ in range(len_y)]
     distance_bfs[start_x][start_y] = 0
     neighbors = deque([(start_x, start_y, 1)])
+    visited = set()
 
     while neighbors:
         cur_x, cur_y, distance = neighbors.popleft()
+        visited.add((cur_x, cur_y))
 
         for x, y in zip(step_x, step_y):
             new_x = cur_x + x
             new_y = cur_y + y
+
+            if (new_x, new_y) in visited:
+                continue
 
             if is_legal_bfs(new_x, new_y, len_x, len_y, matrix, distance_bfs):
                 distance_bfs[new_x][new_y] = distance

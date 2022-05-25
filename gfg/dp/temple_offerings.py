@@ -35,6 +35,29 @@ def min_offerings(heights: List[int]) -> int:
     return sum(1 + max(left_inc[index], right_inc[index]) for index in range(length))
 
 
-if __name__ == '__main__':
+def min_offerings_two_pass(heights: List[int]) -> int:
+    length = len(heights)
+
+    if length < 2:
+        return length
+
+    offerings = [1] * length
+
+    for i in range(1, length):
+        # if current height is greater than previous, then this should receive more offerings
+        if heights[i] > heights[i - 1]:
+            offerings[i] = offerings[i - 1] + 1
+
+    for i in range(length - 2, -1, -1):
+        # if current height is greater than the next, then this should receive more offerings
+        if heights[i] > heights[i + 1] and offerings[i + 1] >= offerings[i]:
+            offerings[i] = offerings[i + 1] + 1
+
+    return sum(offerings)
+
+
+if __name__ == "__main__":
     assert min_offerings([1, 2, 2]) == 4
     assert min_offerings([1, 4, 3, 6, 2, 1]) == 10
+    assert min_offerings_two_pass([1, 2, 2]) == 4
+    assert min_offerings_two_pass([1, 4, 3, 6, 2, 1]) == 10

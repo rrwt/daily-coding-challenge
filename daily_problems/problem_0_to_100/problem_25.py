@@ -4,7 +4,7 @@ Implement regular expression matching with the following special characters:
     * (asterisk) which matches zero or more of the preceding element
 
 That is, implement a function that takes in a string and a valid regular expression
-and returns whether or not the string matches the regular expression.
+and returns whether the string matches the regular expression.
 For example, given the regular expression "ra." and the string "ray",
 your function should return true. The same regular expression on the string
 "raymond" should return false.
@@ -41,8 +41,8 @@ def regex_match_dp(text: str, pattern: str) -> bool:
         if pattern[index - 1] == "*":
             dp[0][index] = dp[0][index - 2]
 
-    for i_t in range(0, len_t):
-        for i_p in range(0, len_p):
+    for i_t in range(len_t):
+        for i_p in range(len_p):
             if pattern[i_p] == "*" and i_p > 0:
                 # 0 occurrence or 1+ occurrence
                 # 0 occurrence: res = do not consider * and previous char
@@ -78,4 +78,4 @@ if __name__ == "__main__":
     assert regex_match_dp("aab", "c*a*b") is True
     assert regex_match_dp("aaa", "ab*ac*a") is True
     assert regex_match_dp("aaa", "ab*a*c*a") is True
-    assert regex_match_dp("bbbba", ".*a*a") is True  # Not working
+    assert regex_match_dp("bbbba", ".*a*a") is True

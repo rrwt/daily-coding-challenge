@@ -8,7 +8,7 @@ For example, consider the following binary tree.
     20        30
 40      50         60
      70    60
-The largest independent set(LIS) is {10, 40, 60, 70, 80} and size of the LIS is 5.
+The largest independent set(LIS) is {10, 40, 60, 70, 60} and size of the LIS is 5.
 """
 from typing import Optional
 

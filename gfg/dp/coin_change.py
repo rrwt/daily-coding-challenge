@@ -1,7 +1,8 @@
 """Coin Change
+
 Given a value N, if we want to make change for N cents, and we have
 infinite supply of each of S = { S1, S2, .. , Sm} valued coins,
-how many ways can we make the change? The order of coins doesn’t matter.
+how many ways can we make the change? The order of coins does not matter.
 """
 from typing import Sequence, List
 
@@ -29,20 +30,20 @@ def change_coin_tabulated(amount: int, denominations: Sequence[int]) -> int:
     """
     For amount m, only the coins with value <= m are considered repeatedly
     """
-    len_denoms: int = len(denominations)
-    matrix: Sequence[List[int]] = [[0] * (len_denoms + 1) for _ in range(amount + 1)]
+    len_denominations: int = len(denominations)
+    table: Sequence[List[int]] = [[0] * (len_denominations + 1) for _ in range(amount + 1)]
 
-    for index in range(1, len_denoms + 1):
+    for index in range(1, len_denominations + 1):
         # amount = 0 -> 1 solution
-        matrix[0][index] = 1
+        table[0][index] = 1
 
     for a in range(1, amount + 1):
-        for b in range(len_denoms):
+        for b in range(len_denominations):
             if denominations[b] <= a:
-                matrix[a][b + 1] = matrix[a - denominations[b]][b + 1]  # include
-            matrix[a][b + 1] += matrix[a][b]  # exclude
+                table[a][b + 1] = table[a - denominations[b]][b + 1]  # include
+            table[a][b + 1] += table[a][b]  # exclude
 
-    return matrix[amount][len_denoms]
+    return table[amount][len_denominations]
 
 
 if __name__ == "__main__":

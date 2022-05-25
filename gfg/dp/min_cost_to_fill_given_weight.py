@@ -1,4 +1,4 @@
-# You are given a bag of size W kg and you are provided costs of packets different weights
+# You are given a bag of size W kg, and you are provided costs of packets different weights
 # of oranges in array cost[] where cost[i] is basically cost of ‘i’ kg packet of oranges.
 # Where cost[i] = -1 means that ‘i’ kg packet of orange is unavailable
 # Find the minimum total cost to buy exactly W kg oranges and if it is not possible

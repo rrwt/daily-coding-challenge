@@ -15,13 +15,16 @@ class MinHeap:
         self.arr: list = []
         self.size = 0
 
-    def parent_index(self, index: int) -> int:
+    @staticmethod
+    def parent_index(index: int) -> int:
         return int((index - 1) / 2)
 
-    def right_child_index(self, index: int) -> int:
+    @staticmethod
+    def right_child_index(index: int) -> int:
         return 2 * (index + 1)
 
-    def left_child_index(self, index: int) -> int:
+    @staticmethod
+    def left_child_index(index: int) -> int:
         return 2 * index + 1
 
     def exchange_nodes(self, index_1, index_2):

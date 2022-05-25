@@ -44,7 +44,7 @@ def remove_duplicates_without_buffer(llist):
 
 
 if __name__ == "__main__":
-    llist = [1, 5, 1, 1, 2, 3, 5, 2, 5, 3, 2]
-    print(llist)
-    print(remove_duplicates(llist))
-    print(remove_duplicates_without_buffer(llist))
+    ll = [1, 5, 1, 1, 2, 3, 5, 2, 5, 3, 2]
+    print(ll)
+    print(remove_duplicates(ll))
+    print(remove_duplicates_without_buffer(ll))

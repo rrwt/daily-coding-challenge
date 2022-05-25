@@ -8,9 +8,9 @@ Do this in O(M + N) time (where M and N are the lengths of the lists) and consta
 
 
 class Node:
-    def __init__(self, data, next=None):
+    def __init__(self, data, _next=None):
         self.data = data
-        self.next = next
+        self.next = _next
 
 
 def get_count(head):

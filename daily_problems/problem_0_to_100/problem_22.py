@@ -35,7 +35,7 @@ def get_word_list(
         if string.startswith(word):
             new_word_list.remove(word)
             found, final_list = get_word_list(
-                new_word_list, string[len(word) :], current_list + [word]
+                new_word_list, string[len(word):], current_list + [word]
             )
 
             if found:

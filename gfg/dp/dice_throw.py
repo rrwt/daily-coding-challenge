@@ -7,7 +7,7 @@ X is the summation of values on each face when all the dice are thrown.
 def find_ways(m: int, n: int, x: int) -> int:
     """
     Time Complexity: O(m*n*x)
-    Space Complexity: O(n*x
+    Space Complexity: O(n*x)
     """
     if x >= m * n:
         return int(x == m * n)

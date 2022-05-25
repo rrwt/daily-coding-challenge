@@ -26,11 +26,14 @@ def kth_last_element(linked_list: Node, k: int) -> Optional[int]:
         first_pointer = first_pointer.next
         k -= 1
 
+    prev = None
     while first_pointer and second_pointer:
         first_pointer = first_pointer.next
+        prev = second_pointer
         second_pointer = second_pointer.next
 
-    return second_pointer.data if second_pointer else None
+    prev.next = second_pointer.next
+    return second_pointer.data
 
 
 if __name__ == "__main__":

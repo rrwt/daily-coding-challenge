@@ -2,8 +2,8 @@
 Quicksort: One of the fastest sorting algorithm. Divide and conquer.
     Select a pivot and place it in it's place in the array, then
     recursively do the same for left and right partitions of the remaining array.
-Time Complexity: O(nlogn) [O(n*n) - Worst case]
-Space Complexity: O(logn)
+Time Complexity: O(n*log(n)) [O(n*n) - Worst case]
+Space Complexity: O(log(n))
 Inplace: Yes
 Stable: No
 3-Way: Maintain 3 subarrays. 1. Of lesser value, 2. Of equal, 3. Of greater

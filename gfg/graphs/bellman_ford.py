@@ -27,6 +27,7 @@ def bellman_ford_sp(graph: list, source: int, num_vertices: int) -> list:
     # do it V-1 times. V-1 = number of edges in a graph with shortest path and no cycle
     for _ in range(num_vertices-1):
         for src in range(num_vertices):
+            # important to check each source vertex, to propagate the new min dist to the dest
             if min_dist[src] < sys.maxsize:
                 for dest, weight in enumerate(graph[src]):
                     if weight < sys.maxsize:

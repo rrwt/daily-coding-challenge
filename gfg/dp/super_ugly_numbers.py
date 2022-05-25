@@ -1,12 +1,12 @@
-# Super ugly numbers are positive numbers whose all prime factors are in the given prime list.
-# Given a number n, the task is to find n’th Super Ugly number.
+# Super-ugly numbers are positive numbers with all prime factors in the given prime list.
+# Given a number n, the task is to find n’th Super-Ugly number.
 # It may be assumed that given set of primes is sorted.
-# Also, first Super Ugly number is 1 by convention.
+# Also, first Super-Ugly number is 1 by convention.
 from typing import List
 
 
 def super_ugly_numbers(n: int, primes: List[int]) -> int:
-    # get nth super ugly number
+    # get nth super-ugly number
     ugly_nums = [0] * n
     ugly_nums[0] = 1
     length = len(primes)

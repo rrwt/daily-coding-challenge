@@ -30,19 +30,19 @@ def zero_one_knapsack_naive(w: int, weights: list, values: list, index: int) -> 
 
 def zero_one_knapsack_tabulated(w: int, weights: list, values: list) -> int:
     length: int = len(weights)
-    matrix: List[List[int]] = [[0] * (w + 1) for _ in range(length + 1)]
+    table: List[List[int]] = [[0] * (w + 1) for _ in range(length + 1)]
 
     for index in range(1, length + 1):
         for cur_weight in range(1, w + 1):
             if cur_weight >= weights[index - 1]:
-                matrix[index][cur_weight] = max(
-                    values[index - 1] + matrix[index - 1][cur_weight - weights[index - 1]],
-                    matrix[index - 1][cur_weight],
+                table[index][cur_weight] = max(
+                    values[index - 1] + table[index - 1][cur_weight - weights[index - 1]],  # take
+                    table[index - 1][cur_weight],  # leave
                 )
             else:
-                matrix[index][cur_weight] = matrix[index - 1][cur_weight]
+                table[index][cur_weight] = table[index - 1][cur_weight]  # leave
 
-    return matrix[length][w]
+    return table[length][w]
 
 
 if __name__ == "__main__":

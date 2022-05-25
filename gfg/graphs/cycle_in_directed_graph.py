@@ -60,14 +60,14 @@ def detect_print_cycle(graph: list, vertices: int) -> None:
     parent_map: dict = {}
 
     while initial_set or gray_stack:
-        found: bool = False
+        explored: bool = True
         if gray_stack:
             cur_node = gray_stack.pop()
 
             for neighbor, conn in enumerate(graph[cur_node]):
                 if neighbor not in processed_set and 0 < conn < math.inf:
                     # only work if the subtree is not completely visited and there is a connection
-                    found = True
+                    explored = False
                     parent_map[neighbor] = cur_node
 
                     if neighbor in gray_set:
@@ -77,7 +77,7 @@ def detect_print_cycle(graph: list, vertices: int) -> None:
                         gray_set.add(neighbor)
                         initial_set.remove(neighbor)
 
-            if not found:  # if sub-graph is completely explored, move the node to processed
+            if explored:  # if sub-graph is completely explored, move the node to processed
                 gray_set.remove(cur_node)
                 processed_set.add(cur_node)
         else:

@@ -1,12 +1,12 @@
 """
 Solve tower of hanoi iteratively
 
-Fact: Number oof moves: 2^n - 1
+Fact: Number of moves: 2^n - 1
 """
 import math
 
 
-def toh_recursive(n: int, source: list, destination: list, aux: list) -> None:
+def toh_recursive(n: int, source: str, destination: str, aux: str) -> None:
     """
     1) Only one disk can be moved at a time.
     2) Each move consists of taking the upper disk from one of the stacks
@@ -49,7 +49,7 @@ def toh(source: list) -> None:
             # between source and destination
             source, destination = move_between(source, destination)
         elif i % 3 == 1:
-            # between source and aux"
+            # between source and aux
             source, aux = move_between(source, aux)
         else:
             # between aux and destination
@@ -63,7 +63,5 @@ def toh(source: list) -> None:
 
 
 if __name__ == "__main__":
-    from random import randint
-
     toh(list(range(3))[::-1])
     toh_recursive(3, "source", "destination", "auxilliary")

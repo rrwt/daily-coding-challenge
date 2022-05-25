@@ -3,13 +3,15 @@ Implement an algorithm to delete a node in the middle (i.e., any node but the
 first and last node, not necessarily the exact middle) of a singly linked list,
 given only access to that node.
 """
+from typing import Optional
+
 import sys
 
 
 class Node:
     def __init__(self, data: int):
         self.data: int = data
-        self.next: Node = None
+        self.next: Optional[Node] = None
 
 
 class LinkedList:
@@ -37,7 +39,7 @@ class LinkedList:
         while head and head.next != middle:
             head = head.next
 
-        data: int = None
+        data: int = -sys.maxsize
 
         if head:
             data = head.next.data

@@ -1,5 +1,5 @@
 """
-Given the root to a binary search tree, find the second largest node in the tree.
+Given the root to a binary search tree, find the second-largest node in the tree.
 """
 from typing import Optional, Union, Tuple
 
@@ -11,8 +11,8 @@ def get_second_largest(root_node: Optional[Node]) -> Optional[Union[int, str]]:
     Time Complexity: O(n)
     Space Complexity: O(1)
 
-    If root has a right child, then largest/second largest node cannot be part of the left subtree
-    If root doesn't have a right child, then the second largest node will be the largest element of
+    If root has a right child, then largest/second-largest node cannot be part of the left subtree
+    If root doesn't have a right child, then the second-largest node will be the largest element of
     left subtree
     """
     if not root_node:

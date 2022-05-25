@@ -23,7 +23,7 @@ def largest_non_adjacent_sum(input_list):
     max_sum_exc_cur = 0
 
     for elem in input_list[1:]:
-        temp = max(max_sum_exc_cur, max_sum_exc_cur + elem)
+        temp = max(max_sum_exc_cur, max_sum_exc_cur + elem, elem)
         max_sum_exc_cur = max(max_sum_inc_cur, max_sum_exc_cur)
         max_sum_inc_cur = temp
 

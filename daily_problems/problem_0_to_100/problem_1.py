@@ -5,7 +5,7 @@ Bonus: Can you do this in one pass?
 """
 
 
-# naive solution O(n*n)
+# naive solution O(n*n) & O(1)
 def verify_sum(ar, value):
     for i in range(len(ar)):
         for j in range(i + 1, len(ar)):
@@ -15,7 +15,7 @@ def verify_sum(ar, value):
     return False
 
 
-# more efficient solution O(n*log(n))
+# more efficient solution O(n*log(n)) & O(1)
 def verify_sum_2(ar, value):
     ar.sort()
     i = 0
@@ -34,7 +34,7 @@ def verify_sum_2(ar, value):
     return False
 
 
-# Using sets. most efficient O(n)
+# Using sets. most efficient O(n) & O(n)
 def verify_sum_3(ar, value):
     s = set()
 

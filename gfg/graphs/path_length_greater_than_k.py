@@ -8,7 +8,7 @@ import math
 from gfg.graphs.ds import GraphM  # type: ignore
 
 
-def path_greater(graph: list, source: int, k: int, vertices: int) -> list:
+def path_greater(graph: list, source: int, k: int) -> list:
     """
     Greedy solution won't always work. We'd need to try every possible
     path from source to all other vertices.
@@ -66,4 +66,4 @@ if __name__ == "__main__":
     g.add_edge(6, 8, 6)
     g.add_edge(7, 8, 7)
 
-    print(path_greater(g.graph, 0, 60, g.num_vertices))
+    print(path_greater(g.graph, 0, 60))

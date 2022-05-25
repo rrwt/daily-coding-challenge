@@ -1,5 +1,6 @@
 """Longest Palindromic Subsequence
-Length of longest palindromic subsequence. The subsequence doesn't need to be continuous
+
+Length of the longest palindromic subsequence. The subsequence doesn't need to be continuous
 """
 from typing import Sequence, List
 

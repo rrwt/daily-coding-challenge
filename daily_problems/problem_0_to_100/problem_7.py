@@ -73,10 +73,14 @@ def get_cur_val(cur_val, next_val, dp, index) -> int:
     plus_2 = dp[index + 2] or 1
 
     if next_val == "0":
+        # All the variations till + 2
         return plus_2
     elif 10 < int(cur_val + next_val) < 27:
+        # All the variations till index + 2 and a two-digit number +
+        # All the variations till index + 1 and a one-digit number
         return dp[index + 1] + plus_2
 
+    # All the variations till + 1
     return dp[index + 1]
 
 

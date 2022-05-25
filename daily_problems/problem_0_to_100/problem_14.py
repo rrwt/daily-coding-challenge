@@ -22,7 +22,7 @@ def monte_carlo_pi():
         if distance <= 0.5:
             inside += 1
 
-    print(4 * inside / 1_000_000)
+    print(4 * inside / 1_000_000)  # multiply by 4 to account for x < 0 and/or y < 0
 
 
 if __name__ == "__main__":

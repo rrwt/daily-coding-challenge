@@ -3,7 +3,7 @@ Given an unordered list of flights taken by someone,
 each represented as (origin, destination) pairs,
 and a starting airport, compute the person's itinerary.
 If no such itinerary exists, return null.
-If there are multiple possible itineraries, return the lexicographically smallest one.
+If there are multiple possible itineraries, return lexicographically the smallest one.
 All flights must be used in the itinerary.
 
 For example,
@@ -28,7 +28,7 @@ def backtrack_fi(itineraries: List[Tuple[str, str]], start: str) -> list:
     for index, (s, e) in enumerate(itineraries):
         if s == start:
             return_list = [start] + backtrack_fi(
-                itineraries[:index] + itineraries[index + 1 :], e
+                itineraries[:index] + itineraries[index + 1:], e
             )
 
             if len(return_list) == len(itineraries) + 1:

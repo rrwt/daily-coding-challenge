@@ -76,10 +76,33 @@ def longest_substring_alt(string: str, k: int) -> int:
     return max_len
 
 
+def longest_substring_3(string, k):
+    start, cur_idx = 0, 0
+    length = len(string)
+    max_len = 0
+    char_pos = {}
+
+    for cur_idx, cur_el in enumerate(string):
+        if cur_el not in char_pos:
+            while start < cur_idx and len(char_pos.keys()) >= k:
+                el = string[start]
+                if el in char_pos and char_pos[el] == start:
+                    del char_pos[el]
+                start += 1
+
+        char_pos[cur_el] = cur_idx
+        max_len = max(max_len, cur_idx - start + 1)
+
+    return max_len
+
+
 if __name__ == "__main__":
     assert longest_substring("abcba", 2) == 3
     assert longest_substring_alt("abcba", 2) == 3
+    assert longest_substring_3("abcba", 2) == 3
     assert longest_substring("aabacbebebe", 3) == 7
     assert longest_substring_alt("aabacbebebe", 3) == 7
+    assert longest_substring_3("aabacbebebe", 3) == 7
     assert longest_substring("eceba", 3) == 4
     assert longest_substring_alt("eceba", 3) == 4
+    assert longest_substring_3("eceba", 3) == 4

@@ -6,7 +6,7 @@ dir
     subdir2
         file.ext
 
-The directory dir contains an empty sub-directory subdir1 and a sub-directory subdir2
+The directory dir contains an empty subdirectory subdir1 and a subdirectory subdir2
 containing a file file.ext.
 The string
 "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"
@@ -20,9 +20,9 @@ dir
         subsubdir2
             file2.ext
 
-The directory dir contains two sub-directories subdir1 and subdir2.
-subdir1 contains a file file1.ext and an empty second-level sub-directory subsubdir1.
-subdir2 contains a second-level sub-directory subsubdir2 containing a file file2.ext.
+The directory dir contains two subdirectories subdir1 and subdir2.
+subdir1 contains a file file1.ext and an empty second-level subdirectory subsubdir1.
+subdir2 contains a second-level subdirectory subsubdir2 containing a file file2.ext.
 
 We are interested in finding the longest (number of characters) absolute path to a file
 within our file system. For example, in the second example above, the longest absolute path

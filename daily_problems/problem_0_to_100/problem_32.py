@@ -3,7 +3,7 @@ Suppose you are given a table of currency exchange rates, represented as a 2D ar
 Determine whether there is a possible arbitrage: that is, whether there is some
 sequence of trades you can make, starting with some amount A of any currency,
 so that you can end up with some amount greater than A of that currency.
-There are no transaction costs and you can trade fractional quantities.
+There are no transaction costs, and you can trade fractional quantities.
 
 Solution:
 We can model the currencies and the exchange rates as a graph, where the
@@ -27,7 +27,7 @@ if means that the product of the weighted edges is bigger than 1.
 
 The Bellman-Ford algorithm can detect negative cycles.
 So if we run Bellman-Ford on our graph and discover one,
-then that means its corresponding edge weights multiply out to more than 1,
+then that means that corresponding edge weights multiply out to more than 1,
 and thus we can perform an arbitrage.
 
 As a refresher, the Bellman-Ford algorithm is commonly used to find the shortest path

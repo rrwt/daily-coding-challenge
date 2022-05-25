@@ -1,6 +1,6 @@
 """
 You are given a set of n types of rectangular 3-D boxes,
-where the i^th box has height h(i), width w(i) and depth d(i).
+where the ith box has height h(i), width w(i) and depth d(i).
 You want to create a stack of boxes which is as tall as possible,
 but you can only stack a box on top of another box
 if the dimensions of the 2-D base of the lower box

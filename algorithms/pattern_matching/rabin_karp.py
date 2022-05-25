@@ -19,7 +19,7 @@ d = 256
 q = 101
 
 
-def calculate_hash(string: str, prev_hash: str, start: int, end: int, h: int) -> str:
+def calculate_hash(string: str, prev_hash: int, start: int, end: int, h: int) -> int:
     """
     calculate rolling hash
     """
@@ -44,8 +44,8 @@ def rabin_karp(text: str, pattern: str) -> None:
     for _ in range(m - 1):
         h = (h * d) % q  # avoid overflow
 
-    pattern_hash: str = calculate_hash(pattern, "", 0, m - 1, h)
-    substr_hash: str = calculate_hash(text, "", 0, m - 1, h)
+    pattern_hash: int = calculate_hash(pattern, 0, 0, m - 1, h)
+    substr_hash: int = calculate_hash(text, 0, 0, m - 1, h)
 
     i = 0
 

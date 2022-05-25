@@ -1,12 +1,12 @@
 """
 Merge Sort: Divide and Conquer sorting algorithm. Repeatedly get smaller subarrays
     and merge them in sorted manner.
-Time Complexity: O(nlogn) - bet, worst, average
+Time Complexity: O(n*log(n)) - best, worst, average
 Space Complexity: O(n)
 Inplace: No
 Stable: Yes
 
-- Can even sort linked lists in O(nlogn).
+- Can even sort linked lists in O(n*log(n)).
 - Constant operations are more expensive than that of QuickSort.
 - Useful when sorting huge data (that can't fit in memory).
 """

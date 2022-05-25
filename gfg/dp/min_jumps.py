@@ -29,6 +29,33 @@ def min_jumps(arr: list) -> int:
     return jumps[length - 1]
 
 
+def min_jumps_efficient(array: list) -> int:
+    """
+    O(n) & O(1)
+    """
+    jumps: int = 0
+    index: int = 0
+    size: int = len(array)
+    reach = 0
+    max_reach = 0
+
+    while index < size:
+        max_reach = max(max_reach, array[index] + index)
+
+        if reach == index:
+            jumps += 1
+            reach = max_reach
+
+        if reach >= size - 1:
+            break
+
+        index += 1
+
+    return jumps
+
+
 if __name__ == "__main__":
     assert min_jumps([1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9]) == 3
     assert min_jumps([1, 3, 6, 1, 0, 9]) == 3
+    assert min_jumps_efficient([1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9]) == 3
+    assert min_jumps_efficient([1, 3, 6, 1, 0, 9]) == 3

@@ -1,6 +1,6 @@
 """
 Given two (singly) linked lists, determine if the two lists intersect.
-Return the inter­secting node. Note that the intersection is defined based
+Return the intersecting node. Note that the intersection is defined based
 on reference, not value. That is, if the kth node of the first linked list
 is the exact same node (by reference) as the jth node of the second linked
 list, then they are intersecting.
@@ -10,7 +10,7 @@ from typing import Optional
 from list_structure import LinkedList, Node
 
 
-def intersect(ll1: LinkedList, ll2: LinkedList) -> bool:
+def intersect(ll1: LinkedList, ll2: LinkedList) -> Optional[Node]:
     """
     A simple solution would be O(n*n), where we try and match every node of first
     list to every node of second list.
@@ -34,7 +34,7 @@ def intersect(ll1: LinkedList, ll2: LinkedList) -> bool:
             return h  # return the intersecting node
         h = h.next
 
-    return False
+    return None
 
 
 def get_loop(ll: LinkedList) -> (bool, Optional[Node]):
@@ -52,7 +52,7 @@ def get_loop(ll: LinkedList) -> (bool, Optional[Node]):
         if fast == slow:
             break
 
-    if not fast:
+    if fast != slow:
         return False, None
 
     """
@@ -68,7 +68,7 @@ def get_loop(ll: LinkedList) -> (bool, Optional[Node]):
     return True, slow
 
 
-def intersect_without_extra_space(ll1: LinkedList, ll2: LinkedList) -> bool:
+def intersect_without_extra_space(ll1: LinkedList, ll2: LinkedList) -> Optional[Node]:
     """
     Assumption, end parts of the joined linkedlists is same (singly linked list).
     Solution: Make first list circular. Detect circle in the second list.
@@ -83,36 +83,33 @@ def intersect_without_extra_space(ll1: LinkedList, ll2: LinkedList) -> bool:
         h1 = h1.next
 
     h1.next = ll1.head
-
     has_loop, node = get_loop(ll2)
-
     h1.next = None
-
-    return node or has_loop
+    return node
 
 
 if __name__ == "__main__":
-    ll1: LinkedList = LinkedList(Node(1))
-    ll1.push(Node(3)).push(Node(5))
+    first: LinkedList = LinkedList(Node(1))
+    first.push(3).push(5)
     node = Node(7)
     node.next = Node(9)
     node.next.next = Node(11)
 
-    ll2: LinkedList = LinkedList(Node(2))
-    ll2.head.next = node
-    ll1.head.next.next.next = node
+    second: LinkedList = LinkedList(Node(2))
+    second.head.next = node
+    first.head.next.next.next = node
 
-    node = intersect(ll1, ll2)
+    node = intersect(first, second)
     print("intersecting node is", node.data, sep=" ")
 
-    ll3: LinkedList = LinkedList(Node(11))
-    ll3.push(13).push(15).push(17)
+    third: LinkedList = LinkedList(Node(11))
+    third.push(13).push(15).push(17)
 
-    assert intersect(ll1, ll3) == False
-    assert intersect(ll2, ll3) == False
+    assert intersect(first, third) is None
+    assert intersect(second, third) is None
 
-    node = intersect_without_extra_space(ll1, ll2)
+    node = intersect_without_extra_space(first, second)
     print("interseting node is", node.data, sep=" ")
 
-    assert intersect_without_extra_space(ll1, ll3) == False
-    assert intersect_without_extra_space(ll2, ll3) == False
+    assert intersect_without_extra_space(first, third) is None
+    assert intersect_without_extra_space(second, third) is None

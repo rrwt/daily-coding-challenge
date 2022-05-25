@@ -25,7 +25,6 @@ def sum_reverse(ll1: LinkedList, ll2: LinkedList) -> LinkedList:
     head1: Node = ll1.head
     head2: Node = ll2.head
     result: LinkedList = LinkedList()
-    data: int = 0
     carry: int = 0
 
     while head1 and head2:

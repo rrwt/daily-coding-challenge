@@ -9,6 +9,8 @@ EXAMPLE
 Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1[partition=5]
 Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
 """
+from typing import Optional
+
 from list_structure import LinkedList, Node
 
 
@@ -16,33 +18,33 @@ def partition(ll: LinkedList, x: int) -> LinkedList:
     """
     strategy: create two different lists and merge them afterwards
     """
-    before: LinkedList = None
-    after: Node = None
-    head: Node = ll.head
-    pbefore: Node = None
-    pafter: Node = None
+    before: Optional[LinkedList] = None
+    after: Optional[Node] = None
+    head: Optional[Node] = ll.head
+    p_before: Optional[Node] = None
+    p_after: Optional[Node] = None
 
     while head:
-        hnext = head.next
+        h_next = head.next
 
         if head.data < x:
-            if pbefore:
-                pbefore.next = head
-                pbefore = pbefore.next
+            if p_before:
+                p_before.next = head
+                p_before = p_before.next
             else:
                 before = LinkedList(head)
-                pbefore = before.head
+                p_before = before.head
         else:
-            if pafter:
-                pafter.next = head
-                pafter = pafter.next
+            if p_after:
+                p_after.next = head
+                p_after = p_after.next
             else:
-                pafter = after = head
+                p_after = after = head
 
-        head = hnext
+        head = h_next
 
-    pafter.next = None
-    pbefore.next = after
+    p_after.next = None
+    p_before.next = after
 
     return before
 

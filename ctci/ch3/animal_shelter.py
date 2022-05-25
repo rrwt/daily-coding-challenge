@@ -7,7 +7,6 @@ They cannot select which specific animal they would like. Create the data struct
 to maintain this system and implement operations such as enqueue, dequeueAny,
 dequeueDog, and dequeueCat. You may use the built-in Linked list data structure.
 """
-from __future__ import annotations
 from typing import Optional
 from enum import Enum
 from collections import deque
@@ -23,7 +22,7 @@ class Animal:
         self.name = name
         self.order = order
 
-    def is_older(self, other: Animal) -> bool:
+    def is_older(self, other: "Animal") -> bool:
         return self.order < other.order
 
 
@@ -44,7 +43,7 @@ class AnimalShelterQueue:
         else:
             raise ValueError(kind)
 
-    def dequeueAny(self) -> Optional[Animal]:
+    def dequeue_any(self) -> Optional[Animal]:
         if self.dog and self.cat:
             if self.dog[0].is_older(self.cat[0]):
                 return self.dog.popleft()
@@ -57,10 +56,10 @@ class AnimalShelterQueue:
 
         return None
 
-    def dequeueCat(self) -> Optional[Animal]:
+    def dequeue_cat(self) -> Optional[Animal]:
         return self.cat.popleft() if self.cat else None
 
-    def dequeueDog(self) -> Optional[Animal]:
+    def dequeue_dog(self) -> Optional[Animal]:
         return self.dog.popleft() if self.dog else None
 
 
@@ -69,9 +68,9 @@ if __name__ == "__main__":
     animals.enqueue("perro", AnimalKind.dog)
     animals.enqueue("gato", AnimalKind.cat)
 
-    first = animals.dequeueAny()
-    second = animals.dequeueCat()
+    first = animals.dequeue_any()
+    second = animals.dequeue_cat()
 
     assert first is not None and first.name == "perro"
-    assert animals.dequeueDog() is None
+    assert animals.dequeue_dog() is None
     assert second is not None and second.name == "gato"

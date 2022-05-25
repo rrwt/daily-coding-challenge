@@ -33,4 +33,3 @@ def compress(str_in):
 
 if __name__ == "__main__":
     assert compress("aabcccccaaa") == "a2b1c5a3"
-    test()

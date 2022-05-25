@@ -19,5 +19,5 @@ def permutate(str_list: list, start: int, end: int) -> None:
 if __name__ == "__main__":
     print("permutation of ABC:")
     permutate(list("ABC"), 0, 2)
-    print("Permutation of ABCD")
+    print("Permutation of ABCDE")
     permutate(list("ABCDE"), 0, 3)

@@ -3,6 +3,7 @@ Dijkstra's Shortest Path Algorithm
 Greedy. Similar to Prim's MST.
 
 Given a graph and a source vertex, find the distance to all vertices from this vertex.
+Does not work for Graphs with negative weight edges.
 """
 import sys
 from typing import Tuple

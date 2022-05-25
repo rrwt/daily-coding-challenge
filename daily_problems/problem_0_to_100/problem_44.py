@@ -40,7 +40,7 @@ def count_inversions(arr: list) -> Tuple[list, int]:
     """
     l: int = len(arr)
     if l > 1:
-        mid = int(l / 2)
+        mid = l // 2
 
         left_arr, inv_left = count_inversions(arr[0:mid])
         right_arr, inv_right = count_inversions(arr[mid:l])

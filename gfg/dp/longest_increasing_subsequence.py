@@ -1,5 +1,6 @@
 """Longest Increasing Subsequence
-Given an array of integers, find the length of longest increasing subarray.
+
+Given an array of integers, find the length of the longest increasing subarray.
 """
 from typing import List
 

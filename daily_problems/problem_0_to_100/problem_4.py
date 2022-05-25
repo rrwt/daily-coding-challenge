@@ -37,7 +37,7 @@ def first_missing_positive_integer_using_constant_space(arr):
     return start + 1
 
 
-# using set in O(n) and constant extra space
+# using set in O(n) and O(n)
 def first_missing_positive_integer(arr):
     arr = set(arr)
 

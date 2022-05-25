@@ -3,6 +3,7 @@ Implement an algorithm to determine if a string has all unique characters.
 What if you cannot use additional data structures
 """
 
+
 # time: O(n), space: O(n)
 def using_hash_table(str_in):
     d = {}

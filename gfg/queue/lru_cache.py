@@ -11,6 +11,7 @@ There is a better solution using Ordered Dict.
 See: other_problems/lru_cache.py
 """
 
+
 class LRUCache:
     """
     LRU cache implementation.
@@ -22,7 +23,7 @@ class LRUCache:
 
     def __init__(self, size: int):
         self.queue: Deque = Deque(size)
-        self.hash_table: dict = {}  # store item and it's pointer (for faster movements)
+        self.hash_table: dict = {}  # stores item, and it's pointer (for faster movements)
 
     def move_to_front(self, key: int, value: int):
         """
@@ -30,7 +31,7 @@ class LRUCache:
         time complexity: O(1)
         """
         self.delete(key)
-        self.push(key, value)  # value can be different than original
+        self.push(key, value)  # value can be different from original
 
     def push(self, key: int, value: int):
         """
